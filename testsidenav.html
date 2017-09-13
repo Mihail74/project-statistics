@@ -2,16 +2,19 @@
 <html>
 <head>
     <title></title>
-    <style>html {
+    <style>
+
+html {
     height: 100%;
 }
 
-body {
+.container {
     height: 100%;   
     overflow: hidden;  /*makes the body non-scrollable (we will add scrolling to the sidebar and main content containers)*/
     margin: 0px;  /*removes default style*/
     display: flex;  /*enables flex content for its children*/
     box-sizing: border-box;
+    align-items: stretch;
 }
 
 .column {
@@ -22,6 +25,12 @@ body {
 
 #left {
     flex-shrink: 0;  /*makes sure that content is not cut off in a smaller browser window*/
+}
+
+#right {
+    width: 100%;  /*makes sure that content is not cut off in a smaller browser window*/
+    display: flex;
+    justify-content: center;
 }
 
 .top-left {
@@ -42,17 +51,24 @@ ul {
     flex-grow: 1;  /*ensures that the container will take up the full height of the parent container*/
     overflow-y: auto;  /*adds scroll to this container*/
 }
+#header, #footer{
+    width:100%;
+}
 </style>
 </head>
 <body>
-    <div id="left" class="column">
-        <div class="top-left">323333333388888888888</div>
-        <div class="bottom">1</div>
+<div id="header">header</div>
+    <div class="container">
+        <div id="left" class="column">
+            <div class="top-left">323333333388888888888</div>
+            <div class="bottom">1</div>
+        </div>
+        <div id="right" class="column">
+            <div class="top-right">287876876876</div>
+            <div class="bottom">3</div>
+        </div>
     </div>
-    <div id="right" class="column">
-        <div class="top-right">287876876876</div>
-        <div class="bottom">3</div>
-    </div>
+    <div id="footer">footer</div>
 
 
 </body>
