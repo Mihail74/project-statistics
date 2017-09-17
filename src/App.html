@@ -1,36 +1,23 @@
 <div class="body">
 
-  <md-whiteframe class="header">I'm header</md-whiteframe>
+  <md-toolbar class="header">
+    <h2 class="md-title">I'm a header</h2>
+  </md-toolbar>
 
   <div class="center">
     <md-whiteframe class="left-menu">
-      <ul>
-        <li>Menu 1</li>
-        <li>Menu 2</li>
-        <li>Menu 3</li>
-        <li>Menu 4</li>
-      </ul>
+      <md-list>
+        <md-list-item>
+          <router-link to="/games">Игры</router-link>
+        </md-list-item>
+        <md-list-item>
+          <router-link to="/hello2">Router View2</router-link>
+        </md-list-item>
+      </md-list>
     </md-whiteframe>
 
     <div class="content">
-      <md-button class="md-raised md-primary">Primary</md-button>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque accumsan bibendum risus id mattis. Sed eget ligula hendrerit, finibus nisl id, viverra magna. Suspendisse feugiat suscipit lectus ac euismod. Aenean fermentum tortor lorem, sed viverra tellus
-        rutrum sit amet. Aenean tempor ex ac interdum egestas. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis iaculis justo in sapien dictum, at molestie urna maximus. Nulla ac lacus tempor, malesuada
-        arcu eu, venenatis augue. Sed ullamcorper lacus id efficitur consequat.</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque accumsan bibendum risus id mattis. Sed eget ligula hendrerit, finibus nisl id, viverra magna. Suspendisse feugiat suscipit lectus ac euismod. Aenean fermentum tortor lorem, sed viverra
-        tellus rutrum sit amet. Aenean tempor ex ac interdum egestas. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis iaculis justo in sapien dictum, at molestie urna maximus. Nulla ac lacus tempor, malesuada
-        arcu eu, venenatis augue. Sed ullamcorper lacus id efficitur consequat.</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque accumsan bibendum risus id mattis. Sed eget ligula hendrerit, finibus nisl id, viverra magna. Suspendisse feugiat suscipit lectus ac euismod. Aenean fermentum tortor lorem, sed viverra
-        tellus rutrum sit amet. Aenean tempor ex ac interdum egestas. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis iaculis justo in sapien dictum, at molestie urna maximus. Nulla ac lacus tempor, malesuada
-        arcu eu, venenatis augue. Sed ullamcorper lacus id efficitur consequat.</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque accumsan bibendum risus id mattis. Sed eget ligula hendrerit, finibus nisl id, viverra magna. Suspendisse feugiat suscipit lectus ac euismod. Aenean fermentum tortor lorem, sed viverra
-        tellus rutrum sit amet. Aenean tempor ex ac interdum egestas. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis iaculis justo in sapien dictum, at molestie urna maximus. Nulla ac lacus tempor, malesuada
-        arcu eu, venenatis augue. Sed ullamcorper lacus id efficitur consequat.</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque accumsan bibendum risus id mattis. Sed eget ligula hendrerit, finibus nisl id, viverra magna. Suspendisse feugiat suscipit lectus ac euismod. Aenean fermentum tortor lorem, sed viverra
-        tellus rutrum sit amet. Aenean tempor ex ac interdum egestas. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis iaculis justo in sapien dictum, at molestie urna maximus. Nulla ac lacus tempor, malesuada
-        arcu eu, venenatis augue. Sed ullamcorper lacus id efficitur consequat.
-      </p>
+      <router-view></router-view>
     </div>
   </div>
 
