@@ -1,0 +1,26 @@
+<div>
+  <md-button class="md-raised md-primary" @click="openDialog('creationDialog')">Создать новую игру</md-button>
+  <ul>
+    <li v-for="game in games" :key="game.id">
+      {{ game.name }}
+    </li>
+  </ul>
+
+  <md-dialog ref="creationDialog">
+    <md-dialog-title>Создание новой игры</md-dialog-title>
+
+    <md-dialog-content>
+      <form>
+        <md-input-container>
+          <label>Название</label>
+          <md-textarea></md-textarea>
+        </md-input-container>
+      </form>
+    </md-dialog-content>
+
+    <md-dialog-actions>
+      <md-button class="md-primary" @click="closeDialog('creationDialog')">Отмена</md-button>
+      <md-button class="md-primary" @click="closeDialog('creationDialog')">Создать</md-button>
+    </md-dialog-actions>
+  </md-dialog>
+</div>
