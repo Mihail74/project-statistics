@@ -11,16 +11,16 @@
 
     <md-dialog-content>
       <form>
-        <md-input-container>
+        <md-input-container md-clearable ref="gameName">
           <label>Название</label>
-          <md-textarea></md-textarea>
+          <md-input required></md-input>
         </md-input-container>
       </form>
     </md-dialog-content>
 
     <md-dialog-actions>
       <md-button class="md-primary" @click="closeDialog('creationDialog')">Отмена</md-button>
-      <md-button class="md-primary" @click="closeDialog('creationDialog')">Создать</md-button>
+      <md-button class="md-primary" @click="createGame()">Создать</md-button>
     </md-dialog-actions>
   </md-dialog>
 </div>
