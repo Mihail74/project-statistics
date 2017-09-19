@@ -8,6 +8,11 @@
         <label>Название</label>
         <md-input v-model="name" required></md-input>
       </md-input-container>
+
+      <md-input-container md-clearable ref="gameDescription">
+        <label>Описание</label>
+        <md-input v-model="description" required></md-input>
+      </md-input-container>
     </form>
   </md-dialog-content>
 
@@ -25,7 +30,8 @@ export default {
 
   data() {
     return {
-      name: ""
+      name: "",
+      description: ""
     }
   },
 
@@ -41,8 +47,10 @@ export default {
     createGame() {
       this.closeDialog("creationDialog");
 
+
       Vue.http.post("http://localhost:8080/api/games/create", {
-          name
+          name: this.name,
+          description: this.description
         })
         .then(response => {
           this.$emit("gameCreated");
@@ -51,6 +59,7 @@ export default {
     },
     clearInput() {
       this.$refs["gameName"].clearInput();
+      this.$refs["gameDescription"].clearInput();
     }
   }
 }

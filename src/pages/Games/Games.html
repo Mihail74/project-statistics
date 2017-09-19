@@ -1,11 +1,18 @@
 <div>
+
   <md-button class="md-raised md-primary" @click="openCreationGameDialog()">Создать новую игру</md-button>
 
-  <ul>
-    <li v-for="game in games" :key="game.id">
-      {{ game.name }}
-    </li>
-  </ul>
+  <div class="card-holder">
+    <md-card v-for="game in games" :key="game.id" md-with-hover>
+      <md-card-header>
+        <div class="md-title">{{game.name}}</div>
+      </md-card-header>
 
-  <creation-game-dialog ref="creationDialog" @gameCreated="fetchData"/>
+      <md-card-content>
+        {{game.description}}
+      </md-card-content>
+    </md-card>
+  </div>
+
+  <creation-game-dialog ref="creationDialog" @gameCreated="fetchData" />
 </div>
