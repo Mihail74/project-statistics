@@ -1,4 +1,5 @@
-import Vue from 'vue'
+import Vue from "vue"
+import CreationGameDialog from "./CreationGameDialog.vue"
 
 export default {
   name: "games",
@@ -9,6 +10,10 @@ export default {
     }
   },
 
+  components: {
+    CreationGameDialog
+  },
+
   created() {
     this.fetchData();
   },
@@ -16,35 +21,15 @@ export default {
   methods: {
 
     fetchData() {
-      let self = this;
-      Vue.http.get('http://localhost:8080/api/games/')
+
+      Vue.http.get("http://localhost:8080/api/games/")
         .then(response => {
-          self.games = response.data.games
+          this.games = response.data.games
         })
     },
 
-    openDialog(ref) {
-      this.$refs[ref].open();
-    },
-
-    closeDialog(ref) {
-      this.$refs[ref].close();
-    },
-
-    createGame() {
-      this.closeDialog('creationDialog');
-
-      let gameNameInput = this.$refs.gameName;
-      let name = gameNameInput.value;
-      gameNameInput.clearInput();
-
-      Vue.http.post('http://localhost:8080/api/games/create', {
-          name,
-          "scoreToWin": 1
-        })
-        .then(response => {
-          this.fetchData();
-        })
+    openCreationGameDialog() {
+      this.$refs["creationDialog"].openDialog();
     }
   }
 }
