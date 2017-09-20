@@ -1,4 +1,4 @@
-import Games from "./Games/Games.vue"
+import Games from "./games/Games.vue"
 
 export default {
   Games
