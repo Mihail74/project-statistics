@@ -6,8 +6,27 @@ Vue.use(Router)
 
 export default new Router({
   routes: [{
-    path: "/games",
-    name: "games",
-    component: Pages.Games
-  }]
+      path: '/',
+      redirect: {
+        path: '/pages/games'
+      }
+    },
+
+    {
+      path: "/signin",
+      name: "signin",
+      component: Pages.SignIn
+    },
+
+    {
+      path: "/pages",
+      component: Pages.Layout,
+
+      children: [{
+        path: "games",
+        name: "games",
+        component: Pages.Games
+      }]
+    }
+  ]
 })

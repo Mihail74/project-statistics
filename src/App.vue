@@ -1,3 +1,9 @@
-<template src="./App.html"></template>
-<style src="./App.css"></style>
-<script src="./App.js"></script>
+<template>
+  <router-view></router-view>
+</template>
+
+<script>
+export default {
+  name: "app",
+}
+</script>
