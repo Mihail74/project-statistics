@@ -28,11 +28,14 @@ export default {
   },
 
   methods: {
+
     signIn() {
-      restApi.post("/signin", {
+      let credentials = {
         login: this.login,
         password: this.password
-      });
+      };
+      
+      this.$emit("signin", credentials);
     }
   }
 }

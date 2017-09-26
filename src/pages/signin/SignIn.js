@@ -1,5 +1,6 @@
 import SignInTab from "./SignInTab.vue";
 import RegisterTab from "./RegisterTab.vue";
+import restApi from "@/restapi";
 
 export default {
   name: "signin",
@@ -10,9 +11,11 @@ export default {
   },
 
   methods: {
-    successfulRegistered(credentials) {
+    doSignIn(credentials) {
       console.log(credentials);
-      //TODO: залогиниться. Переименовать метод, ну и из SignInTab тоже сюда ходить
+      restApi.post("/signin", credentials).then(data => {
+        console.log(data)
+      });
     }
   }
 }

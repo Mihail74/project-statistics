@@ -3,11 +3,11 @@
   <div class="signin-modal">
     <md-tabs md-fixed>
       <md-tab id="signin" md-active md-label="Вход">
-        <SignInTab/>
+        <sign-in-tab @signin="doSignIn"/>
       </md-tab>
 
       <md-tab id="register" md-label="Регистрация">
-        <RegisterTab @registered="successfulRegistered" />
+        <register-tab @registered="doSignIn" />
       </md-tab>
     </md-tabs>
   </div>

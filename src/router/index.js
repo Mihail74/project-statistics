@@ -8,7 +8,7 @@ export default new Router({
   routes: [{
       path: '/',
       redirect: {
-        path: '/pages/games'
+        path: '/signin'
       }
     },
 
