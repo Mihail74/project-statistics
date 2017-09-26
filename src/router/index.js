@@ -15,12 +15,16 @@ export default new Router({
     {
       path: "/signin",
       name: "signin",
-      component: Pages.SignIn
+      component: Pages.SignIn,
     },
 
     {
       path: "/pages",
       component: Pages.Layout,
+
+      meta: {
+        requiresAuth: true
+      },
 
       children: [{
         path: "games",

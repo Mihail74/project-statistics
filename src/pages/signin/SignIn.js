@@ -7,5 +7,12 @@ export default {
   components: {
     SignInTab,
     RegisterTab
+  },
+
+  methods: {
+    successfulRegistered(credentials) {
+      console.log(credentials);
+      //TODO: залогиниться. Переименовать метод, ну и из SignInTab тоже сюда ходить
+    }
   }
 }

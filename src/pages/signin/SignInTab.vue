@@ -1,7 +1,7 @@
 <template>
 <div>
   <md-input-container>
-    <label>E-mail</label>
+    <label>Логин</label>
     <md-input v-model="login"></md-input>
   </md-input-container>
 
@@ -15,6 +15,8 @@
 </template>
 
 <script>
+import restApi from "@/restapi";
+
 export default {
   name: "signin-tab",
 
@@ -27,7 +29,10 @@ export default {
 
   methods: {
     signIn() {
-      //TODO: Отправляется запрос на вход
+      restApi.post("/signin", {
+        login: this.login,
+        password: this.password
+      });
     }
   }
 }
