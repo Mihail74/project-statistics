@@ -24,6 +24,7 @@
 </template>
 <script>
 import Vue from "vue"
+import restApi from "@/restapi"
 
 export default {
   name: "creation-game-dialog",
@@ -48,11 +49,11 @@ export default {
       this.closeDialog("creationDialog");
 
 
-      Vue.http.post("http://localhost:11111/api/games/create", {
+      restApi.post("/api/games/create", {
           name: this.name,
           description: this.description
         })
-        .then(response => {
+        .then(data => {
           this.$emit("gameCreated");
         })
       this.clearInput();

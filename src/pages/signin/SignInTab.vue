@@ -34,7 +34,7 @@ export default {
         login: this.login,
         password: this.password
       };
-      
+
       this.$emit("signin", credentials);
     }
   }

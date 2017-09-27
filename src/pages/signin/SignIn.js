@@ -1,7 +1,6 @@
 import SignInTab from "./SignInTab.vue";
 import RegisterTab from "./RegisterTab.vue";
 import restApi from "@/restapi";
-import {UPDATE_ACCESS_TOKEN} from "@/store/modules/security.js"
 export default {
   name: "signin",
 
@@ -10,13 +9,19 @@ export default {
     RegisterTab
   },
 
+  //TODO: похорешму, когда входим в этот компонент надо бы проверять
+  //нет ли у нас токенов и пытаться залогиниться и только в случае не успеха открывать форму логина
+  //эта логика есть в restApi.ensureSignIn может её и заиспользовать?
+
   methods: {
     doSignIn(credentials) {
-      this.$store.commit('security/'+ UPDATE_ACCESS_TOKEN, "aabbcc");
-      
-      restApi.post("/signin", credentials).then(data => {
-        console.log(data)
-      });
+      restApi.post("/signin", credentials)
+        .then(data => {
+          this.$store.dispatch('security/updateTokens', data)
+
+          let redirect = this.$route.query.redirect || '/pages/games';
+          this.$router.push(redirect);
+        });
     }
   }
 }

@@ -1,5 +1,6 @@
 import Vue from "vue"
 import CreationGameDialog from "./CreationGameDialog.vue"
+import restApi from "@/restapi"
 
 export default {
   name: "games",
@@ -21,11 +22,10 @@ export default {
   methods: {
 
     fetchData() {
-
-      Vue.http.get("http://localhost:11111/api/games/")
-        .then(response => {
-          this.games = response.data.games
-        })
+      restApi.get("/api/games/")
+        .then(data => {
+          this.games = data.games
+        });
     },
 
     openCreationGameDialog() {
