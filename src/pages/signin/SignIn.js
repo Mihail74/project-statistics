@@ -13,7 +13,7 @@ export default {
   methods: {
     doSignIn(credentials) {
       this.$store.commit('security/'+ UPDATE_ACCESS_TOKEN, "aabbcc");
-
+      
       restApi.post("/signin", credentials).then(data => {
         console.log(data)
       });

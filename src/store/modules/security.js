@@ -8,7 +8,7 @@ export default {
   },
 
   mutations: {
-    [SET_ACCESS_TOKEN]: (state, accessToken) => {
+    [UPDATE_ACCESS_TOKEN]: (state, accessToken) => {
       console.log(accessToken)
       console.log("inside mutations")
       state.accessToken = accessToken;
