@@ -1,5 +1,9 @@
 import Vue from "vue"
+import VueResource from "vue-resource"
 import Error from "./error.js"
+
+Vue.use(VueResource);
+
 
 class RestApi {
   constructor(config) {

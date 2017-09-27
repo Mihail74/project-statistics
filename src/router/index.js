@@ -1,14 +1,15 @@
-import Vue from "vue"
-import Router from "vue-router"
-import Pages from "@/pages"
+import Vue from "vue";
+import Router from "vue-router";
+import Pages from "@/pages";
+import store from "@/store";
 
-Vue.use(Router)
+Vue.use(Router);
 
-export default new Router({
+let router = new Router({
   routes: [{
       path: '/',
       redirect: {
-        path: '/signin'
+        path: '/pages/games'
       }
     },
 
@@ -33,4 +34,25 @@ export default new Router({
       }]
     }
   ]
-})
+});
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    // this route requires auth, check if logged in
+    // if not, redirect to login page.
+    if (store.state.security.accessToken == null) {
+      next({
+        path: '/signin',
+        query: {
+          redirect: to.fullPath
+        }
+      })
+    } else {
+      next()
+    }
+  } else {
+    next()
+  }
+});
+
+export default router;
