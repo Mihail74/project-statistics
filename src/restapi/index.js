@@ -2,6 +2,7 @@ import Vue from "vue"
 import VueResource from "vue-resource"
 import Error from "./error.js"
 import store from "@/store"
+import router from "@/router"
 
 Vue.use(VueResource);
 
@@ -61,7 +62,7 @@ class RestApi {
 
     let accessTokenExpiredTime = store.state.security.accessTokenExpiredTime;
     let refreshTokenExpiredTime = store.state.security.refreshTokenExpiredTime;
-
+    
     if (Date.now() < accessTokenExpiredTime) {
       //Access token doesn't expire. User is signed in
       return;
@@ -85,7 +86,7 @@ class RestApi {
     //don't have valid access and refresh tokens.
     //remove it from vuex and router redirect user to signin itself
     store.dispatch('security/clearTokens');
-    //TODO: как-то надо средиректить на форму логина
+    router.push({ path: '/signin', query: { redirect: router.history.current.path }});
   }
 }
 
