@@ -4,6 +4,11 @@ import restApi from "@/restapi";
 export default {
   name: "signin",
 
+  data() {
+    return {
+      snackBarDuration: 4000
+    }
+  },
   components: {
     SignInTab,
     RegisterTab
@@ -21,7 +26,13 @@ export default {
 
           let redirect = this.$route.query.redirect || '/pages/games';
           this.$router.push(redirect);
+        }, _ => {
+          this.openSnackBar()
         });
+    },
+
+    openSnackBar() {
+      this.$refs.snackbar.open();
     }
   }
 }

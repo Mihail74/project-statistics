@@ -4,13 +4,16 @@
     <h2 class="md-title">I'm a header</h2>
   </md-toolbar>
 
-  <div class="center md-theme-default" >
+  <div class="center md-theme-default">
     <md-whiteframe class="left-menu">
       <md-list>
         <md-list-item>
           <router-link to="/pages/games">Игры</router-link>
         </md-list-item>
+
+        <md-list-item @click="signOut">Выход</md-list-item>
       </md-list>
+
     </md-whiteframe>
 
     <div class="content">

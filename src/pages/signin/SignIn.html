@@ -3,7 +3,7 @@
   <div class="signin-modal">
     <md-tabs md-fixed>
       <md-tab id="signin" md-active md-label="Вход">
-        <sign-in-tab @signin="doSignIn"/>
+        <sign-in-tab @signin="doSignIn" />
       </md-tab>
 
       <md-tab id="register" md-label="Регистрация">
@@ -12,4 +12,8 @@
     </md-tabs>
   </div>
 
+  <md-snackbar md-position="bottom center" ref="snackbar" :md-duration="snackBarDuration">
+    <span>Неверный логин или пароль</span>
+    <md-button class="md-accent" @click="$refs.snackbar.close()">ок</md-button>
+  </md-snackbar>
 </div>
