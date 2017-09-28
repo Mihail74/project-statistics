@@ -24,8 +24,8 @@ class RestApi {
     }
   }
 
-  post(url, body) {
-    this.ensureSignIn();
+  async post(url, body) {
+    await this.ensureSignIn();
 
     return new Promise((resolve, reject) => {
       Vue.http.post(this.host + url, body)
@@ -38,8 +38,8 @@ class RestApi {
     });
   }
 
-  get(url) {
-    this.ensureSignIn();
+  async get(url) {
+    await this.ensureSignIn();
 
     return new Promise((resolve, reject) => {
       Vue.http.get(this.host + url)
@@ -52,7 +52,7 @@ class RestApi {
     });
   }
 
-  ensureSignIn() {
+  async ensureSignIn() {
     if (store.state.security.accessToken == null &&
       store.state.security.refreshToken == null) {
       //User doesn't signin before. Skip check.
@@ -69,20 +69,23 @@ class RestApi {
 
     if (Date.now() >= accessTokenExpiredTime &&
       Date.now() < refreshTokenExpiredTime) {
-      Vue.http.post(this.host + '/token/refresh', { rawRefreshToken: store.state.security.refreshToken })
+      //try refresh tokens
+      await Vue.http.post(this.host + '/token/refresh', { rawRefreshToken: store.state.security.refreshToken })
         .then(data => {
           store.dispatch('security/updateTokens', data)
         }, error => {
-          this.clearTokens();
+          this.redirectToSignIn();
         });
+    } else {
+      this.redirectToSignIn();
     }
-    this.clearTokens();
   }
 
-  clearTokens() {
+  redirectToSignIn() {
     //don't have valid access and refresh tokens.
     //remove it from vuex and router redirect user to signin itself
     store.dispatch('security/clearTokens');
+    //TODO: как-то надо средиректить на форму логина
   }
 }
 
