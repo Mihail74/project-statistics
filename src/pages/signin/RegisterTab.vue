@@ -11,11 +11,16 @@
   </md-input-container>
 
   <md-button class="md-raised md-primary modal-button" @click="register()">Зарегестрироваться</md-button>
+
+  <md-snackbar md-position="bottom center" ref="snackbar" :md-duration="snackBarDuration">
+    <span>Логин занят</span>
+    <md-button class="md-accent" @click="$refs.snackbar.close()">ок</md-button>
+  </md-snackbar>
 </div>
 </template>
 
 <script>
-import restApi from "@/restapi";
+import securityService from "@/services/security"
 
 export default {
   name: "register-tab",
@@ -23,7 +28,8 @@ export default {
   data() {
     return {
       login: "",
-      password: ""
+      password: "",
+      snackBarDuration: 4000
     }
   },
 
@@ -34,10 +40,15 @@ export default {
         password: this.password
       };
 
-      restApi.post("/register", credentials)
-      .then(r => {
-        this.$emit("registered", credentials)
-      });
+      securityService.register(credentials)
+        .then(r => {
+          this.$emit("registered", credentials)
+        }, _ => {
+          this.openSnackBar();
+        });
+    },
+    openSnackBar() {
+      this.$refs.snackbar.open();
     }
   }
 }

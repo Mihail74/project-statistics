@@ -1,6 +1,7 @@
 import SignInTab from "./SignInTab.vue";
 import RegisterTab from "./RegisterTab.vue";
-import restApi from "@/restapi";
+import securityService from "@/services/security"
+
 export default {
   name: "signin",
 
@@ -14,13 +15,23 @@ export default {
     RegisterTab
   },
 
-  //TODO: похорешму, когда входим в этот компонент надо бы проверять
-  //нет ли у нас токенов и пытаться залогиниться и только в случае не успеха открывать форму логина
-  //эта логика есть в restApi.ensureSignIn может её и заиспользовать?
+  async beforeCreate() {
+    //TODO: тут какая-то ошибка в консоли
+    if (securityService.isTokensExist()) {
+      if (securityService.isAtiveTokenExist()) {
+        this.$router.push('/pages/games');
+      } else if (securityService.canRefreshToken()) {
+        await securityService.refreshTokens()
+          .then(data => {
+            this.$router.push('/pages/games');
+          });
+      }
+    }
+  },
 
   methods: {
     doSignIn(credentials) {
-      restApi.post("/signin", credentials)
+      securityService.signin(credentials)
         .then(data => {
           this.$store.dispatch('security/updateTokens', data)
 

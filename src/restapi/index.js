@@ -3,6 +3,7 @@ import VueResource from "vue-resource"
 import Error from "./error.js"
 import store from "@/store"
 import router from "@/router"
+import securityService from "@/services/security"
 
 Vue.use(VueResource);
 
@@ -41,7 +42,6 @@ class RestApi {
 
   async get(url) {
     await this.ensureSignIn();
-
     return new Promise((resolve, reject) => {
       Vue.http.get(this.host + url)
         .then(response => {
@@ -53,25 +53,16 @@ class RestApi {
     });
   }
 
+
+
   async ensureSignIn() {
-    if (store.state.security.accessToken == null &&
-      store.state.security.refreshToken == null) {
-      //User doesn't signin before. Skip check.
+    if (securityService.isAtiveTokenExist()) {
       return;
     }
 
-    let accessTokenExpiredTime = store.state.security.accessTokenExpiredTime;
-    let refreshTokenExpiredTime = store.state.security.refreshTokenExpiredTime;
-    
-    if (Date.now() < accessTokenExpiredTime) {
-      //Access token doesn't expire. User is signed in
-      return;
-    }
-
-    if (Date.now() >= accessTokenExpiredTime &&
-      Date.now() < refreshTokenExpiredTime) {
+    if (securityService.canRefreshToken()) {
       //try refresh tokens
-      await Vue.http.post(this.host + '/token/refresh', { rawRefreshToken: store.state.security.refreshToken })
+      await securityService.refreshTokens()
         .then(data => {
           store.dispatch('security/updateTokens', data)
         }, error => {
@@ -86,7 +77,7 @@ class RestApi {
     //don't have valid access and refresh tokens.
     //remove it from vuex and router redirect user to signin itself
     store.dispatch('security/clearTokens');
-    router.push({ path: '/signin', query: { redirect: router.history.current.path }});
+    router.push({ path: '/signin', query: { redirect: router.history.current.path } });
   }
 }
 

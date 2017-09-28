@@ -1,7 +1,9 @@
 <div class="body">
 
   <md-toolbar class="header">
-    <h2 class="md-title">I'm a header</h2>
+    <md-button class="md-raised md-primary" @click="signOut">
+      <md-icon md-src="static/exit.svg">menu</md-icon>
+    </md-button>
   </md-toolbar>
 
   <div class="center md-theme-default">
@@ -10,8 +12,6 @@
         <md-list-item>
           <router-link to="/pages/games">Игры</router-link>
         </md-list-item>
-
-        <md-list-item @click="signOut">Выход</md-list-item>
       </md-list>
 
     </md-whiteframe>
