@@ -29,10 +29,10 @@ class SecurityService {
     let refreshTokenExpiredTime = store.state.security.refreshTokenExpiredTime;
     return Date.now() >= accessTokenExpiredTime && Date.now() < refreshTokenExpiredTime;
   }
-  
+
   refreshTokens() {
     return new Promise((resolve, reject) => {
-      Vue.http.post(this.host + '/token/refresh', { rawRefreshToken: store.state.security.refreshToken })
+      Vue.http.post(this.host + '/api/auth/token/refresh', { rawRefreshToken: store.state.security.refreshToken })
         .then(response => {
             resolve(response.data)
           },
@@ -44,7 +44,7 @@ class SecurityService {
 
   signin(credentials) {
     return new Promise((resolve, reject) => {
-      Vue.http.post(this.host + "/signin", credentials)
+      Vue.http.post(this.host + "/api/auth/signin", credentials)
         .then(response => {
             resolve(response.data)
           },
@@ -56,7 +56,7 @@ class SecurityService {
 
   register(credentials) {
     return new Promise((resolve, reject) => {
-      Vue.http.post(this.host + "/register", credentials)
+      Vue.http.post(this.host + "/api/auth/register", credentials)
         .then(response => {
             resolve(response.data)
           },
