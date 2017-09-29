@@ -1,6 +1,7 @@
 import SignInTab from "./SignInTab.vue";
 import RegisterTab from "./RegisterTab.vue";
-import securityService from "@/services/security"
+import authService from "@/services/authorization"
+import store from "@/store"
 
 export default {
   name: "signin",
@@ -15,23 +16,25 @@ export default {
     RegisterTab
   },
 
-  async beforeCreate() {
-    //TODO: тут какая-то ошибка в консоли
-    if (securityService.isTokensExist()) {
-      if (securityService.isAtiveTokenExist()) {
-        this.$router.push('/pages/games');
-      } else if (securityService.canRefreshToken()) {
-        await securityService.refreshTokens()
-          .then(data => {
-            this.$router.push('/pages/games');
-          });
+  beforeRouteEnter(to, from, next) {
+    next(async vm => {
+      if (authService.isTokensExist()) {
+        if (authService.isAtiveTokenExist()) {
+          vm.$router.push('/pages/games');
+        } else if (authService.canRefreshToken()) {
+          await authService.refreshTokens()
+            .then(data => {
+              store.dispatch('security/updateTokens', data)
+              vm.$router.push('/pages/games');
+            });
+        }
       }
-    }
+    })
   },
 
   methods: {
     doSignIn(credentials) {
-      securityService.signin(credentials)
+      authService.signin(credentials)
         .then(data => {
           this.$store.dispatch('security/updateTokens', data)
 

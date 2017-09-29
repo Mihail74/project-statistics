@@ -3,7 +3,7 @@ import VueResource from "vue-resource"
 import Error from "./error.js"
 import store from "@/store"
 import router from "@/router"
-import securityService from "@/services/security"
+import authService from "@/services/authorization"
 
 Vue.use(VueResource);
 
@@ -56,13 +56,13 @@ class RestApi {
 
 
   async ensureSignIn() {
-    if (securityService.isAtiveTokenExist()) {
+    if (authService.isAtiveTokenExist()) {
       return;
     }
 
-    if (securityService.canRefreshToken()) {
+    if (authService.canRefreshToken()) {
       //try refresh tokens
-      await securityService.refreshTokens()
+      await authService.refreshTokens()
         .then(data => {
           store.dispatch('security/updateTokens', data)
         }, error => {

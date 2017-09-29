@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import securityService from "@/services/security"
+import authService from "@/services/authorization"
 
 export default {
   name: "register-tab",
@@ -40,7 +40,7 @@ export default {
         password: this.password
       };
 
-      securityService.register(credentials)
+      authService.register(credentials)
         .then(r => {
           this.$emit("registered", credentials)
         }, _ => {
