@@ -17,15 +17,16 @@ export default {
   },
 
   beforeRouteEnter(to, from, next) {
+    console.log(from)
     next(async vm => {
       if (authService.isTokensExist()) {
         if (authService.isAtiveTokenExist()) {
-          vm.$router.push('/pages/games');
+          vm.$router.push(from.fullPath);
         } else if (authService.canRefreshToken()) {
           await authService.refreshTokens()
             .then(data => {
               store.dispatch('security/updateTokens', data)
-              vm.$router.push('/pages/games');
+              vm.$router.push(from.fullPath);
             });
         }
       }
