@@ -8,15 +8,13 @@ Vue.use(Router);
 let router = new Router({
   routes: [{
       path: '/',
-      redirect: {
-        path: '/pages/games'
-      }
+      redirect: { path: '/pages/games' }
     },
 
     {
       path: "/signin",
       name: "signin",
-      component: Pages.SignIn,
+      component: Pages.SignIn
     },
 
     {
@@ -28,12 +26,16 @@ let router = new Router({
       },
 
       children: [{
-        path: "games",
-        name: "games",
-        component: Pages.Games
+          path: "games",
+          name: "games",
+          component: Pages.Games
+      },
+        {
+          path: "teams",
+          name: "teams",
+          component: Pages.Teams
       }]
-    }
-  ]
+    }]
 });
 
 router.beforeEach((to, from, next) => {

@@ -1,0 +1,12 @@
+.card-holder {
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 16px;
+}
+
+.card-holder .md-card {
+  width:100%;
+  max-width: 300px;
+  min-width: 300px;
+  margin: 0 4px 16px
+}

@@ -17,7 +17,6 @@ export default {
   },
 
   beforeRouteEnter(to, from, next) {
-    console.log(from)
     next(async vm => {
       if (authService.isTokensExist()) {
         if (authService.isAtiveTokenExist()) {

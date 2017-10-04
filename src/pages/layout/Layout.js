@@ -5,7 +5,7 @@ export default {
 
   methods: {
     signOut() {
-      restApi.post("/api/signout")
+      restApi.post("/api/auth/signout")
         .then(this.redirectToSignIn, this.redirectToSignIn);
     },
 
