@@ -1,6 +1,11 @@
 <template>
 <div>
   <md-input-container>
+    <label>Имя</label>
+    <md-input v-model="name"></md-input>
+  </md-input-container>
+
+  <md-input-container>
     <label>Логин</label>
     <md-input v-model="login"></md-input>
   </md-input-container>
@@ -27,6 +32,7 @@ export default {
 
   data() {
     return {
+      name: "",
       login: "",
       password: "",
       snackBarDuration: 4000
@@ -37,7 +43,8 @@ export default {
     register() {
       let credentials = {
         login: this.login,
-        password: this.password
+        password: this.password,
+        name: this.name
       };
 
       authService.register(credentials)

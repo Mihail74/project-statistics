@@ -1,5 +1,6 @@
 import Vue from "vue"
 import restApi from "@/restapi"
+import CreationTeamDialog from "./CreationTeamDialog.vue"
 
 export default {
   name: "teams",
@@ -10,7 +11,9 @@ export default {
     }
   },
 
-
+  components: {
+    CreationTeamDialog
+  },
 
   created() {
     this.fetchData();
@@ -23,7 +26,7 @@ export default {
     },
 
     openCreationGameDialog() {
-      // this.$refs["creationDialog"].openDialog();
+      this.$refs["creationDialog"].openDialog();
     }
   }
 }

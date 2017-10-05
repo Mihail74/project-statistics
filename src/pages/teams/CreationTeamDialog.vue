@@ -8,17 +8,12 @@
         <label>Название</label>
         <md-input v-model="name" required></md-input>
       </md-input-container>
-
-      <md-input-container md-clearable ref="description">
-        <label>Описание</label>
-        <md-input v-model="description" required></md-input>
-      </md-input-container>
     </form>
   </md-dialog-content>
 
   <md-dialog-actions>
     <md-button class="md-primary" @click="closeDialog()">Отмена</md-button>
-    <md-button class="md-primary" @click="createGame()">Создать</md-button>
+    <md-button class="md-primary">Создать</md-button>
   </md-dialog-actions>
 </md-dialog>
 </template>
@@ -27,7 +22,7 @@ import Vue from "vue"
 import restApi from "@/restapi"
 
 export default {
-  name: "creation-game-dialog",
+  name: "creation-team-dialog",
 
   data() {
     return {
@@ -49,18 +44,11 @@ export default {
       this.closeDialog();
 
 
-      restApi.post("/api/games/create", {
-          name: this.name,
-          description: this.description
-        })
-        .then(data => {
-          this.$emit("gameCreated");
-        })
+
       this.clearInput();
     },
     clearInput() {
       this.$refs["name"].clearInput();
-      this.$refs["description"].clearInput();
     }
   }
 }

@@ -1,5 +1,6 @@
 <div>
 
-  <md-button class="md-raised md-primary">Создать новую команду</md-button>
+  <md-button class="md-raised md-primary" @click="openCreationGameDialog()">Создать новую команду</md-button>
 
+  <creation-team-dialog ref="creationDialog"/>
 </div>
