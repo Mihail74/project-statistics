@@ -1,6 +1,6 @@
 <template>
 <md-dialog ref="creationDialog">
-  <md-dialog-title>Создание новой игры</md-dialog-title>
+  <md-dialog-title>Создание новой команды</md-dialog-title>
 
   <md-dialog-content>
     <form>
@@ -8,18 +8,21 @@
         <label>Название</label>
         <md-input v-model="name" required></md-input>
       </md-input-container>
+
+      <users-multiselect ref="users" @change="changeUserSelect" />
     </form>
   </md-dialog-content>
 
   <md-dialog-actions>
-    <md-button class="md-primary" @click="closeDialog()">Отмена</md-button>
-    <md-button class="md-primary">Создать</md-button>
+    <md-button class="md-primary" @click="closeDialog">Отмена</md-button>
+    <md-button class="md-primary" @click="createTeam">Создать</md-button>
   </md-dialog-actions>
 </md-dialog>
 </template>
 <script>
 import Vue from "vue"
 import restApi from "@/restapi"
+import UsersMultiselect from "@/ui/components/users/multiselect"
 
 export default {
   name: "creation-team-dialog",
@@ -27,11 +30,33 @@ export default {
   data() {
     return {
       name: "",
-      description: ""
+      selectedUsers: []
     }
   },
 
+  components: {
+    //TODO: vue-multiselect?
+    UsersMultiselect
+  },
+
   methods: {
+
+    changeUserSelect(selectedUsers) {
+      this.selectedUsers = selectedUsers;
+    },
+
+    createTeam() {
+      this.closeDialog();
+      console.log(this.selectedUsers)
+
+      this.clearInput();
+    },
+
+    clearInput() {
+      this.$refs["name"].clearInput();
+      this.$refs["users"].clearInput();
+    },
+
     openDialog() {
       this.$refs["creationDialog"].open();
     },
@@ -39,17 +64,6 @@ export default {
     closeDialog() {
       this.$refs["creationDialog"].close();
     },
-
-    createGame() {
-      this.closeDialog();
-
-
-
-      this.clearInput();
-    },
-    clearInput() {
-      this.$refs["name"].clearInput();
-    }
   }
 }
 </script>
