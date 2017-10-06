@@ -1,6 +1,8 @@
 import Vue from "vue"
 import restApi from "@/restapi"
 import CreationTeamDialog from "./CreationTeamDialog.vue"
+import TeamFormingStatus from "@/enums/teams/TeamFormingStatus.js"
+
 
 export default {
   name: "teams",
@@ -22,10 +24,11 @@ export default {
   methods: {
 
     fetchData() {
-      restApi.get("/api/me/teams/").then(data => {
-        this.teams = data.teams;
-        console.log(data)
-      })
+      restApi.get("/api/me/teams/", { "formingStatus": TeamFormingStatus.FORMING })
+        .then(data => {
+          this.teams = data.teams;
+          console.log(data)
+        })
     },
 
     openCreationGameDialog() {

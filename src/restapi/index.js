@@ -40,10 +40,10 @@ class RestApi {
     });
   }
 
-  async get(url) {
+  async get(url, params) {
     await this.ensureSignIn();
     return new Promise((resolve, reject) => {
-      Vue.http.get(this.host + url)
+      Vue.http.get(this.host + url, { params: params })
         .then(response => {
             resolve(response.data)
           },
