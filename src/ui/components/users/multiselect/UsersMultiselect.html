@@ -1,8 +1,0 @@
-<md-input-container ref="users-multiselect">
-  <label>Пользователи</label>
-  <md-select name="users-multiselect" id="user.id" v-model="selected" @change="changeSelected" multiple>
-    <md-option v-for="user in users" :key="user.id" :value="user.name">
-      {{ user.name }}
-    </md-option>
-  </md-select>
-</md-input-container>

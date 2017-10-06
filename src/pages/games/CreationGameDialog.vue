@@ -46,17 +46,18 @@ export default {
     },
 
     createGame() {
-      this.closeDialog();
-
-
       restApi.post("/api/games/create", {
           name: this.name,
           description: this.description
         })
         .then(data => {
-          this.$emit("gameCreated");
-        })
-      this.clearInput();
+            this.$emit("gameCreated");
+            this.closeDialog();
+            this.clearInput();
+          },
+          error => {
+            alert("Ошибка")
+          })
     },
     clearInput() {
       this.$refs["name"].clearInput();
