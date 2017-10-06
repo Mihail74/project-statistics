@@ -1,6 +1,21 @@
 <div>
-
   <md-button class="md-raised md-primary" @click="openCreationGameDialog()">Создать новую команду</md-button>
 
-  <creation-team-dialog ref="creationDialog"/>
+  <md-table>
+    <md-table-header>
+      <md-table-row>
+        <md-table-head>Название</md-table-head>
+        <md-table-head>Игра</md-table-head>
+      </md-table-row>
+    </md-table-header>
+
+    <md-table-body>
+      <md-table-row v-for="team in teams" :key="team.id">
+        <md-table-cell>{{team.name}}</md-table-cell>
+        <md-table-cell>{{team.game.name}}</md-table-cell>
+      </md-table-row>
+    </md-table-body>
+  </md-table>
+
+  <creation-team-dialog ref="creationDialog" />
 </div>
