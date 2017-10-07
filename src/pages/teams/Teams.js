@@ -3,6 +3,10 @@ import restApi from "@/restapi"
 import CreationTeamDialog from "./CreationTeamDialog.vue"
 import TeamFormingStatus from "@/enums/teams/TeamFormingStatus.js"
 
+const TAB_INDEX_ROUNTING = {
+  "0" : "/pages/teams/formed",
+  "1" : "/pages/teams/forming"
+}
 
 export default {
   name: "teams",
@@ -29,6 +33,14 @@ export default {
           this.teams = data.teams;
           console.log(data)
         })
+    },
+
+    isPath(path) {
+      return this.$route.path === path
+    },
+
+    onTabChanged(tabIndex){
+      this.$router.push({ path: TAB_INDEX_ROUNTING[tabIndex] })
     },
 
     openCreationGameDialog() {

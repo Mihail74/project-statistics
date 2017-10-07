@@ -9,7 +9,7 @@ Vue.use(VueResource);
 
 Vue.http.interceptors.push(function(request, next) {
   let accessToken = store.state.security.accessToken;
-
+  
   if (accessToken != null) {
     request.headers.set('Authorization', accessToken);
   }
