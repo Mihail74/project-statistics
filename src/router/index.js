@@ -40,6 +40,17 @@ let router = new Router({
           name: "team",
           component: Pages.Team,
           props: true
+        },
+        {
+          path: "invites",
+          name: "invites",
+          component: Pages.Invites
+        },
+        {
+          path: "invite/:id",
+          name: "invite",
+          component: Pages.Invite,
+          props: true
         }
       ]
     }

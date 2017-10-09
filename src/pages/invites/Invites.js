@@ -3,15 +3,13 @@ import restApi from "@/restapi"
 
 
 export default {
-  name: "team",
-  props: ['id'],
+  name: "invites",
+
+
 
   data() {
     return {
-      team: {
-        users: [],
-        game: {}
-      }
+      invites: []
     }
   },
 
@@ -21,11 +19,13 @@ export default {
 
   methods: {
     fetchData() {
-      restApi.get("/api/teams/", { id: this.id })
+      restApi.get("/api/me/teams/invites/")
         .then(data => {
-          this.team = data.team;
-          console.log(this.team)
+          this.invites = data.invites;
         })
+    },
+    onClick(team) {
+      this.$router.push({ name: 'invite', params: { id: team.id } })
     }
   }
 }

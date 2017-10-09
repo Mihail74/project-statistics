@@ -1,0 +1,17 @@
+<div>
+  <md-table>
+    <md-table-header>
+      <md-table-row>
+        <md-table-head>Команда</md-table-head>
+        <md-table-head>Игра</md-table-head>
+      </md-table-row>
+    </md-table-header>
+
+    <md-table-body>
+      <md-table-row class="cursor-pointer" v-for="invite in invites" :key="invite.id" @click.native="() => onClick(invite)">
+        <md-table-cell>{{invite.team.name}}</md-table-cell>
+        <md-table-cell>{{invite.team.game.name}}</md-table-cell>
+      </md-table-row>
+    </md-table-body>
+  </md-table>
+</div>
