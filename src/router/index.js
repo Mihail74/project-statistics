@@ -29,13 +29,20 @@ let router = new Router({
           path: "games",
           name: "games",
           component: Pages.Games
-      },
+        },
         {
           path: "(teams/forming|teams/formed)",
           name: "teams",
           component: Pages.Teams
-      }]
-    }]
+        },
+        {
+          path: "team/:id",
+          name: "team",
+          component: Pages.Team
+        }
+      ]
+    }
+  ]
 });
 
 router.beforeEach((to, from, next) => {

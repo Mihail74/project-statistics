@@ -62,8 +62,6 @@ export default {
           this.closeDialog();
           this.clearInput();
         })
-      this.closeDialog();
-      this.clearInput();
     },
 
     clearInput() {

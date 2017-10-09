@@ -38,7 +38,7 @@ export default {
         .then(data => {
           this.$store.dispatch('security/updateTokens', data)
 
-          let redirect = this.$route.query.redirect || '/pages/games';
+          let redirect = this.$route.query.redirect || { name: "games" };
           this.$router.push(redirect);
         }, _ => {
           this.openSnackBar()

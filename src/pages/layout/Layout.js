@@ -11,7 +11,7 @@ export default {
 
     redirectToSignIn() {
       this.$store.dispatch('security/clearTokens');
-      this.$router.push("/signin");
+      this.$router.push({ name: "signin" });
     }
   }
 }

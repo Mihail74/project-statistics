@@ -9,7 +9,7 @@ Vue.use(VueResource);
 
 Vue.http.interceptors.push(function(request, next) {
   let accessToken = store.state.security.accessToken;
-  
+
   if (accessToken != null) {
     request.headers.set('Authorization', accessToken);
   }
@@ -77,7 +77,7 @@ class RestApi {
     //don't have valid access and refresh tokens.
     //remove it from vuex and router redirect user to signin itself
     store.dispatch('security/clearTokens');
-    router.push({ path: '/signin', query: { redirect: router.history.current.path } });
+    router.push({ name: 'signin', query: { redirect: router.history.current.path } });
   }
 }
 

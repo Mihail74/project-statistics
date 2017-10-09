@@ -1,32 +1,11 @@
 <div>
-  <md-button class="md-raised md-primary" @click="openCreationGameDialog()">Создать новую команду</md-button>
-
   <md-tabs class="md-transparent" @change="onTabChanged">
-    <md-tab id="formed-teams" md-label="Сформированные" :md-active="isPath('/pages/teams/formed')">
-      <md-table>
-        <md-table-header>
-          <md-table-row>
-            <md-table-head>Название</md-table-head>
-            <md-table-head>Игра</md-table-head>
-          </md-table-row>
-        </md-table-header>
-
-        <md-table-body>
-          <md-table-row v-for="team in teams" :key="team.id">
-            <md-table-cell>{{team.name}}</md-table-cell>
-            <md-table-cell>{{team.game.name}}</md-table-cell>
-          </md-table-row>
-        </md-table-body>
-      </md-table>
+    <md-tab id="formed-teams-tab" md-label="Сформированные" :md-active="isPath('/pages/teams/formed')">
+      <formed-teams />
     </md-tab>
 
-    <md-tab id="forming-teams" md-label="Формирующиеся" :md-active="isPath('/pages/teams/forming')">
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt dolorum quas amet cum vitae, omnis! Illum quas voluptatem, expedita iste, dicta ipsum ea veniam dolore in, quod saepe reiciendis nihil.</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt dolorum quas amet cum vitae, omnis! Illum quas voluptatem, expedita iste, dicta ipsum ea veniam dolore in, quod saepe reiciendis nihil.</p>
+    <md-tab id="forming-teams-tab" md-label="Формирующиеся" :md-active="isPath('/pages/teams/forming')">
+      <forming-teams />
     </md-tab>
   </md-tabs>
-
-
-
-  <creation-team-dialog ref="creationDialog" />
 </div>
