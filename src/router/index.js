@@ -38,7 +38,8 @@ let router = new Router({
         {
           path: "team/:id",
           name: "team",
-          component: Pages.Team
+          component: Pages.Team,
+          props: true
         }
       ]
     }

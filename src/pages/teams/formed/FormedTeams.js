@@ -18,13 +18,13 @@ export default {
 
   methods: {
     fetchData() {
-      restApi.get("/api/me/teams/", { "formingStatus": TeamFormingStatus.FORMED })
+      restApi.get("/api/me/teams/", { formingStatus: TeamFormingStatus.FORMED })
         .then(data => {
           this.teams = data.teams;
         })
     },
     onClick(team) {
-      console.log(team)
+      this.$router.push({ name: 'team', params: { id: team.id } })
     }
   }
 }

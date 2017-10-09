@@ -4,15 +4,29 @@ import restApi from "@/restapi"
 
 export default {
   name: "team",
+  props: ['id'],
+
 
   data() {
-    return {}
+    return {
+      team: {
+        users: [],
+        game: {}
+      }
+    }
   },
 
   created() {
-    alert(this.$route.params.id)
+    this.fetchData();
   },
-  methods: {
 
+  methods: {
+    fetchData() {
+      restApi.get("/api/teams/", { id: this.id })
+        .then(data => {
+          this.team = data.team;
+          console.log(this.team)
+        })
+    }
   }
 }

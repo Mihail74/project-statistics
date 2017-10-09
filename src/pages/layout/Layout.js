@@ -1,4 +1,5 @@
 import restApi from "@/restapi"
+import { CLEAR_TOKENS } from "@/store/modules/security.js"
 
 export default {
   name: "app",
@@ -10,7 +11,7 @@ export default {
     },
 
     redirectToSignIn() {
-      this.$store.dispatch('security/clearTokens');
+      this.$store.dispatch(`security/${CLEAR_TOKENS}`);
       this.$router.push({ name: "signin" });
     }
   }

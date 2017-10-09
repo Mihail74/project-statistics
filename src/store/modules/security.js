@@ -1,4 +1,5 @@
 export const UPDATE_TOKENS = 'updateTokens'
+export const UPDATE_PROFILE = 'updateProfile'
 export const CLEAR_TOKENS = 'clearTokens'
 
 export default {
@@ -9,6 +10,7 @@ export default {
     accessTokenExpiredTime: null,
     refreshToken: null,
     refreshTokenExpiredTime: null,
+    profile: null
   },
 
   mutations: {
@@ -17,6 +19,10 @@ export default {
       state.accessTokenExpiredTime = tokensData.accessTokenExpiredTime;
       state.refreshToken = tokensData.refreshToken;
       state.refreshTokenExpiredTime = tokensData.refreshTokenExpiredTime;
+    },
+
+    [UPDATE_PROFILE]: (state, profile) => {
+      state.profile = profile;
     },
 
     [CLEAR_TOKENS]: (state) => {
@@ -30,6 +36,10 @@ export default {
   actions: {
     updateTokens({ commit }, tokensData) {
       commit(UPDATE_TOKENS, tokensData);
+    },
+
+    updateProfile({ commit }, profile) {
+      commit(UPDATE_PROFILE, profile);
     },
 
     clearTokens({ commit }) {
