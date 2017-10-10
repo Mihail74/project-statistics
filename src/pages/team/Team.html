@@ -1,5 +1,7 @@
 <div>
+  <md-button class="md-raised md-primary" v-if="isForming()" @click="formTeam">Сформировать команду</md-button><br>
   <span>Название:</span> <span>{{team.name}}</span><br>
   <span>Игра:</span> <md-chip md-static>{{team.game.name}}</md-chip><br>
+  <span>Статус:</span> <md-chip md-static>{{team.formingStatus}}</md-chip><br>
   <span>Участники:</span> <md-chip v-for="user in team.users" :key="user.id">{{user.name}}</md-chip>
 </div>

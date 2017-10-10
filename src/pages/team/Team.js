@@ -1,6 +1,6 @@
 import Vue from "vue"
 import restApi from "@/restapi"
-
+import TeamFormingStatus from "@/enums/teams/TeamFormingStatus.js"
 
 export default {
   name: "team",
@@ -24,8 +24,16 @@ export default {
       restApi.get("/api/teams/", { id: this.id })
         .then(data => {
           this.team = data.team;
-          console.log(this.team)
-        })
+        });
+    },
+    isForming() {
+      return this.team.formingStatus == TeamFormingStatus.FORMING;
+    },
+    formTeam() {
+      restApi.post("/api/me/teams/form", { id: this.id })
+        .then(data => {
+          this.fetchData();
+        });
     }
   }
 }
