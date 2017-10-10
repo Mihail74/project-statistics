@@ -31,7 +31,7 @@ export default {
     },
 
     acceptInvite() {
-      restApi.post("/api/me/teams/invites/accept", { id: this.id })
+      restApi.post(`/api/me/teams/invites/${this.id}/accept`)
         .then(data => {
           this.$router.push({ name: "invites" })
         })

@@ -1,6 +1,7 @@
 import Vue from "vue"
 import restApi from "@/restapi"
 import TeamFormingStatus from "@/enums/teams/TeamFormingStatus.js"
+import InviteStatus from "@/enums/invites/InviteStatus.js"
 
 export default {
   name: "team",
@@ -11,7 +12,8 @@ export default {
       team: {
         users: [],
         game: {}
-      }
+      },
+      invitedUsers: []
     }
   },
 
@@ -19,11 +21,18 @@ export default {
     this.fetchData();
   },
 
+  computed:{
+    notAcceptedInvitedUsers(){
+      return this.invitedUsers.filter(e => e.inviteStatus != InviteStatus.ACCEPTED)
+    }
+  },
+
   methods: {
     fetchData() {
       restApi.get("/api/teams/", { id: this.id })
         .then(data => {
           this.team = data.team;
+          this.invitedUsers = data.invitedUsers;
         });
     },
     isForming() {

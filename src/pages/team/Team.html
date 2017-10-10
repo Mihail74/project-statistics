@@ -3,5 +3,6 @@
   <span>Название:</span> <span>{{team.name}}</span><br>
   <span>Игра:</span> <md-chip md-static>{{team.game.name}}</md-chip><br>
   <span>Статус:</span> <md-chip md-static>{{team.formingStatus}}</md-chip><br>
-  <span>Участники:</span> <md-chip v-for="user in team.users" :key="user.id">{{user.name}}</md-chip>
+  <span>Участники:</span> <md-chip v-for="user in team.users" :key="user.id">{{user.name}}</md-chip><br>
+  <span>Приглашенные:</span> <md-chip v-for="invitedUser in notAcceptedInvitedUsers" :key="invitedUser.user.id">{{invitedUser.user.name}}</md-chip>
 </div>
