@@ -32,7 +32,7 @@ export default {
       restApi.get("/api/teams/", { id: this.id })
         .then(data => {
           this.team = data.team;
-          this.invitedUsers = data.invitedUsers;
+          this.invitedUsers = data.invitedUsers || [];
         });
     },
     isForming() {
