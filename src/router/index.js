@@ -12,9 +12,9 @@ let router = new Router({
     },
 
     {
-      path: "/signin",
-      name: "signin",
-      component: Pages.SignIn
+      path: "/login",
+      name: "login",
+      component: Pages.Login
     },
 
     {

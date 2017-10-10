@@ -56,6 +56,8 @@ class RestApi {
 
 
   async ensureSignIn() {
+    console.log("isAtiveTokenExist")
+    console.log(authService.isAtiveTokenExist())
     if (authService.isAtiveTokenExist()) {
       return;
     }
@@ -77,7 +79,7 @@ class RestApi {
     //don't have valid access and refresh tokens.
     //remove it from vuex and router redirect user to signin itself
     store.dispatch('security/clearTokens');
-    router.push({ name: 'signin', query: { redirect: router.history.current.path } });
+    router.push({ name: 'login', query: { redirect: router.history.current.path } });
   }
 }
 

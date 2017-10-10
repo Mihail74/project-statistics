@@ -1,13 +1,13 @@
 <div class="modal-container active">
 
-  <div class="signin-modal">
+  <div class="login-modal">
     <md-tabs md-fixed>
-      <md-tab id="signin" md-active md-label="Вход">
-        <sign-in-tab @signin="doSignIn" />
+      <md-tab id="login" md-active md-label="Вход">
+        <login-tab @login="login" />
       </md-tab>
 
       <md-tab id="register" md-label="Регистрация">
-        <register-tab @registered="doSignIn" />
+        <register-tab @registered="login" />
       </md-tab>
     </md-tabs>
   </div>

@@ -22,7 +22,7 @@
   visibility: visible;
 }
 
-.modal-container .signin-modal {
+.modal-container .login-modal {
   position: relative;
   width: 90%;
   max-width: 500px;
@@ -30,7 +30,7 @@
   background-color: white;
 }
 
-.modal-container .signin-modal .modal-button {
+.modal-container .login-modal .modal-button {
   width: 100%;
   margin: 0 auto;
 }

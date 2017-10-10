@@ -17,17 +17,16 @@ class SecurityService {
   }
 
   isAtiveTokenExist() {
+    console.log(store.state.security.accessTokenExpiredTime)
+    console.log(store.state.security.accessToken)
     let accessTokenExpiredTime = store.state.security.accessTokenExpiredTime;
-    let refreshTokenExpiredTime = store.state.security.refreshTokenExpiredTime;
 
-    return accessTokenExpiredTime != null &&
-      Date.now() < accessTokenExpiredTime;
+    return accessTokenExpiredTime != null && Date.now() < accessTokenExpiredTime;
   }
 
   canRefreshToken() {
-    let accessTokenExpiredTime = store.state.security.accessTokenExpiredTime;
     let refreshTokenExpiredTime = store.state.security.refreshTokenExpiredTime;
-    return Date.now() >= accessTokenExpiredTime && Date.now() < refreshTokenExpiredTime;
+    return Date.now() < refreshTokenExpiredTime;
   }
 
   refreshTokens() {
@@ -42,9 +41,9 @@ class SecurityService {
     });
   }
 
-  signin(credentials) {
+  login(credentials) {
     return new Promise((resolve, reject) => {
-      Vue.http.post(this.host + "/api/auth/signin", credentials)
+      Vue.http.post(this.host + "/api/auth/login", credentials)
         .then(response => {
             resolve(response.data)
           },

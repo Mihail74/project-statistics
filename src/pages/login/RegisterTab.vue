@@ -41,7 +41,7 @@ export default {
 
   methods: {
     register() {
-      let credentials = {
+      const credentials = {
         login: this.login,
         password: this.password,
         name: this.name

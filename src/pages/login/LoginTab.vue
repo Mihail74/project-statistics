@@ -10,7 +10,7 @@
     <md-input v-model="password" type="password"></md-input>
   </md-input-container>
 
-  <md-button class="md-raised md-primary modal-button" @click="signIn()">Войти</md-button>
+  <md-button class="md-raised md-primary modal-button" @click="doLogin()">Войти</md-button>
 </div>
 </template>
 
@@ -29,13 +29,13 @@ export default {
 
   methods: {
 
-    signIn() {
-      let credentials = {
+    doLogin() {
+      const credentials = {
         login: this.login,
         password: this.password
       };
 
-      this.$emit("signin", credentials);
+      this.$emit("login", credentials);
     }
   }
 }

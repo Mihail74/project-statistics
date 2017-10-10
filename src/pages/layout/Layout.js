@@ -1,18 +1,19 @@
 import restApi from "@/restapi"
-import { CLEAR_TOKENS } from "@/store/modules/security.js"
+import { CLEAR_TOKENS, CLEAR_PROFILE } from "@/store/modules/security.js"
 
 export default {
-  name: "app",
+  name: "layout",
 
   methods: {
-    signOut() {
-      restApi.post("/api/auth/signout")
-        .then(this.redirectToSignIn, this.redirectToSignIn);
+    logout() {
+      restApi.post("/api/auth/logout")
+        .then(this.redirectToLogin, this.redirectToLogin);
     },
 
-    redirectToSignIn() {
+    redirectToLogin() {
       this.$store.dispatch(`security/${CLEAR_TOKENS}`);
-      this.$router.push({ name: "signin" });
+      this.$store.dispatch(`security/${CLEAR_PROFILE}`);
+      this.$router.push({ name: "login" });
     }
   }
 }

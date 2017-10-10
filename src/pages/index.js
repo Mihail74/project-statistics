@@ -1,5 +1,5 @@
 import Games from "./games/Games.vue"
-import SignIn from "./signin/SignIn.vue"
+import Login from "./login/Login.vue"
 import Layout from "./layout/Layout.vue"
 import Teams from "./teams/Teams.vue"
 import Team from "./team/Team.vue"
@@ -8,7 +8,7 @@ import Invite from "./invite/Invite.vue"
 
 export default {
   Games,
-  SignIn,
+  Login,
   Layout,
   Teams,
   Team,

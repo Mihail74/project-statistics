@@ -1,6 +1,12 @@
 export const UPDATE_TOKENS = 'updateTokens'
 export const UPDATE_PROFILE = 'updateProfile'
 export const CLEAR_TOKENS = 'clearTokens'
+export const CLEAR_PROFILE = 'clearProfile'
+
+function getExpitedTime(token) {
+  return JSON.parse(atob(token.split('.')[1]))
+    .exp * 1000;
+}
 
 export default {
   namespaced: true,
@@ -16,9 +22,9 @@ export default {
   mutations: {
     [UPDATE_TOKENS]: (state, tokensData) => {
       state.accessToken = tokensData.accessToken;
-      state.accessTokenExpiredTime = tokensData.accessTokenExpiredTime;
+      state.accessTokenExpiredTime = getExpitedTime(tokensData.accessToken);
       state.refreshToken = tokensData.refreshToken;
-      state.refreshTokenExpiredTime = tokensData.refreshTokenExpiredTime;
+      state.refreshTokenExpiredTime = getExpitedTime(tokensData.refreshToken);
     },
 
     [UPDATE_PROFILE]: (state, profile) => {
@@ -30,6 +36,10 @@ export default {
       state.accessTokenExpiredTime = null;
       state.refreshToken = null;
       state.refreshTokenExpiredTime = null;
+    },
+
+    [CLEAR_PROFILE]: (state) => {
+      state.profile = null;
     }
   },
 
@@ -44,6 +54,10 @@ export default {
 
     clearTokens({ commit }) {
       commit(CLEAR_TOKENS);
+    },
+
+    clearProfile({ commit }) {
+      commit(CLEAR_PROFILE);
     }
   },
 

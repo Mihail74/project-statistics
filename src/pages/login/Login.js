@@ -1,11 +1,11 @@
-import SignInTab from "./SignInTab.vue";
+import LoginTab from "./LoginTab.vue";
 import RegisterTab from "./RegisterTab.vue";
 import authService from "@/services/authorization"
 import store from "@/store"
 import {UPDATE_TOKENS, UPDATE_PROFILE} from "@/store/modules/security.js"
 
 export default {
-  name: "signin",
+  name: "login",
 
   data() {
     return {
@@ -13,7 +13,7 @@ export default {
     }
   },
   components: {
-    SignInTab,
+    LoginTab,
     RegisterTab
   },
 
@@ -34,9 +34,10 @@ export default {
   },
 
   methods: {
-    doSignIn(credentials) {
-      authService.signin(credentials)
+    login(credentials) {
+      authService.login(credentials)
         .then(data => {
+          console.log(data)
           this.$store.dispatch(`security/${UPDATE_TOKENS}`, data);
           this.$store.dispatch(`security/${UPDATE_PROFILE}`, data.user);
 
