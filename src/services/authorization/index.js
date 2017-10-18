@@ -17,8 +17,6 @@ class SecurityService {
   }
 
   isAtiveTokenExist() {
-    console.log(store.state.security.accessTokenExpiredTime)
-    console.log(store.state.security.accessToken)
     let accessTokenExpiredTime = store.state.security.accessTokenExpiredTime;
 
     return accessTokenExpiredTime != null && Date.now() < accessTokenExpiredTime;

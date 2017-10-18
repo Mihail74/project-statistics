@@ -13,7 +13,7 @@ export default {
         users: [],
         game: {}
       },
-      invitedUsers: []
+      invites: []
     }
   },
 
@@ -21,25 +21,36 @@ export default {
     this.fetchData();
   },
 
-  computed:{
-    notAcceptedInvitedUsers(){
-      return this.invitedUsers.filter(e => e.inviteStatus != InviteStatus.ACCEPTED)
+  computed: {
+    notAcceptedInvites() {
+      return this.invites.filter(e => e.status != InviteStatus.ACCEPTED)
     }
   },
 
   methods: {
     fetchData() {
-      restApi.get("/api/teams/", { id: this.id })
+      restApi.get(`/api/teams/${this.id}`)
         .then(data => {
+          console.log(data)
           this.team = data.team;
-          this.invitedUsers = data.invitedUsers || [];
+          this.invites = data.invites || [];
         });
     },
+
     isForming() {
       return this.team.formingStatus == TeamFormingStatus.FORMING;
     },
+
+    isLeader(){
+      return this.team.leader.id == this.$store.state.security.profile.id;
+    },
+
+    isDeclineInvite(invite){
+      return invite.status == InviteStatus.DECLINED
+    },
+
     formTeam() {
-      restApi.post("/api/me/teams/form", { id: this.id })
+      restApi.post(`/api/me/teams/${this.id}/form`)
         .then(data => {
           this.fetchData();
         });

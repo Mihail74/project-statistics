@@ -1,7 +1,6 @@
 import LoginTab from "./LoginTab.vue";
 import RegisterTab from "./RegisterTab.vue";
 import authService from "@/services/authorization"
-import store from "@/store"
 import {UPDATE_TOKENS, UPDATE_PROFILE} from "@/store/modules/security.js"
 
 export default {
@@ -25,7 +24,7 @@ export default {
         } else if (authService.canRefreshToken()) {
           await authService.refreshTokens()
             .then(data => {
-              store.dispatch(`security/${UPDATE_TOKENS}`, data)
+              this.$store.dispatch(`security/${UPDATE_TOKENS}`, data)
               vm.$router.push(from.fullPath);
             });
         }
@@ -37,7 +36,6 @@ export default {
     login(credentials) {
       authService.login(credentials)
         .then(data => {
-          console.log(data)
           this.$store.dispatch(`security/${UPDATE_TOKENS}`, data);
           this.$store.dispatch(`security/${UPDATE_PROFILE}`, data.user);
 

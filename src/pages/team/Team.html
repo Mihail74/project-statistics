@@ -1,8 +1,14 @@
 <div>
-  <md-button class="md-raised md-primary" v-if="isForming()" @click="formTeam">Сформировать команду</md-button><br>
+  <md-button class="md-raised md-primary" v-if="isForming() && isLeader()" @click="formTeam">Сформировать команду</md-button><br>
   <span>Название:</span> <span>{{team.name}}</span><br>
-  <span>Игра:</span> <md-chip md-static>{{team.game.name}}</md-chip><br>
-  <span>Статус:</span> <md-chip md-static>{{team.formingStatus}}</md-chip><br>
-  <span>Участники:</span> <md-chip v-for="user in team.users" :key="user.id">{{user.name}}</md-chip><br>
-  <span>Приглашенные:</span> <md-chip v-for="invitedUser in notAcceptedInvitedUsers" :key="invitedUser.user.id">{{invitedUser.user.name}}</md-chip>
+  <span>Игра:</span>
+  <md-chip md-static>{{team.game.name}}</md-chip><br>
+  <span>Статус:</span>
+  <md-chip md-static>{{team.formingStatus}}</md-chip><br>
+  <span>Участники:</span>
+  <md-chip v-for="user in team.users" :key="user.id">{{user.name}}</md-chip><br>
+  <div v-if="isForming()">
+    <span>Приглашенные:</span>
+    <md-chip v-for="invite in notAcceptedInvites" :key="invite.user.id" v-bind:class="[isDeclineInvite(invite) ? 'md-warn' : '']">{{invite.user.name}}</md-chip>
+  </div>
 </div>

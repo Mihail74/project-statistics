@@ -56,8 +56,6 @@ class RestApi {
 
 
   async ensureSignIn() {
-    console.log("isAtiveTokenExist")
-    console.log(authService.isAtiveTokenExist())
     if (authService.isAtiveTokenExist()) {
       return;
     }
