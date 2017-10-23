@@ -18,7 +18,7 @@
 import restApi from "@/restapi";
 
 export default {
-  name: "signin-tab",
+  name: "login-tab",
 
   data() {
     return {

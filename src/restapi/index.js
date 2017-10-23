@@ -27,7 +27,7 @@ class RestApi {
   }
 
   async post(url, body) {
-    await this.ensureSignIn();
+    await this.ensureLogin();
 
     return new Promise((resolve, reject) => {
       Vue.http.post(this.host + url, body)
@@ -41,7 +41,7 @@ class RestApi {
   }
 
   async get(url, params) {
-    await this.ensureSignIn();
+    await this.ensureLogin();
     return new Promise((resolve, reject) => {
       Vue.http.get(this.host + url, { params: params })
         .then(response => {
@@ -55,7 +55,7 @@ class RestApi {
 
 
 
-  async ensureSignIn() {
+  async ensureLogin() {
     if (authService.isAtiveTokenExist()) {
       return;
     }
@@ -66,16 +66,16 @@ class RestApi {
         .then(data => {
           store.dispatch('security/updateTokens', data)
         }, error => {
-          this.redirectToSignIn();
+          this.redirectToLogin();
         });
     } else {
-      this.redirectToSignIn();
+      this.redirectToLogin();
     }
   }
 
-  redirectToSignIn() {
+  redirectToLogin() {
     //don't have valid access and refresh tokens.
-    //remove it from vuex and router redirect user to signin itself
+    //remove it from vuex and router redirect user to Login itself
     store.dispatch('security/clearTokens');
     router.push({ name: 'login', query: { redirect: router.history.current.path } });
   }

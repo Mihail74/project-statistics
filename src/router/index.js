@@ -63,7 +63,7 @@ router.beforeEach((to, from, next) => {
     // if not, redirect to login page.
     if (store.state.security.accessToken == null) {
       next({
-        path: '/signin',
+        path: '/login',
         query: {
           redirect: to.fullPath
         }
