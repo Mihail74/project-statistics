@@ -29,7 +29,7 @@ class SecurityService {
 
   refreshTokens() {
     return new Promise((resolve, reject) => {
-      Vue.http.post(this.host + '/api/auth/token/refresh', { rawRefreshToken: store.state.security.refreshToken })
+      Vue.http.post(this.host + '/api/auth/token/refresh', { refreshToken: store.state.security.refreshToken })
         .then(response => {
             resolve(response.data)
           },

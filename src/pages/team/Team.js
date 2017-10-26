@@ -25,6 +25,9 @@ export default {
   computed: {
     notAcceptedInvites() {
       return this.invites.filter(e => e.status != InviteStatus.ACCEPTED)
+    },
+    statistic() {
+      return this.team.numberOfMatches == 0 ? 0 : this.team.numberOfMatches / this.team.numberOfWinMatches;
     }
   },
 
@@ -41,11 +44,11 @@ export default {
       return this.team.formingStatus == TeamFormingStatus.FORMING;
     },
 
-    isLeader(){
+    isLeader() {
       return this.team.leader.id == this.$store.state.security.profile.id;
     },
 
-    isDeclineInvite(invite){
+    isDeclineInvite(invite) {
       return invite.status == InviteStatus.DECLINED
     },
 

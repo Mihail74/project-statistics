@@ -13,4 +13,5 @@
     <span>Приглашенные:</span>
     <md-chip v-for="invite in notAcceptedInvites" :key="invite.user.id" v-bind:class="[isDeclineInvite(invite) ? 'md-warn' : '']">{{invite.user.name}}</md-chip>
   </div>
+  <span>%:</span><span>{{statistic}}</span><br>
 </div>
