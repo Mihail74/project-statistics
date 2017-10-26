@@ -11,6 +11,7 @@ export default {
     return {
       team: {
         users: [],
+        leader: {},
         game: {}
       },
       invites: []
@@ -31,7 +32,6 @@ export default {
     fetchData() {
       restApi.get(`/api/teams/${this.id}`)
         .then(data => {
-          console.log(data)
           this.team = data.team;
           this.invites = data.invites || [];
         });
@@ -50,7 +50,7 @@ export default {
     },
 
     formTeam() {
-      restApi.post(`/api/me/teams/${this.id}/form`)
+      restApi.put(`/api/me/teams/${this.id}/form`)
         .then(data => {
           this.fetchData();
         });

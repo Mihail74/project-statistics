@@ -40,6 +40,20 @@ class RestApi {
     });
   }
 
+  async put(url, body) {
+    await this.ensureLogin();
+
+    return new Promise((resolve, reject) => {
+      Vue.http.put(this.host + url, body)
+        .then(response => {
+            resolve(response.data)
+          },
+          response => {
+            reject(new Error(response.status, response.data.message));
+          });
+    });
+  }
+
   async get(url, params) {
     await this.ensureLogin();
     return new Promise((resolve, reject) => {
