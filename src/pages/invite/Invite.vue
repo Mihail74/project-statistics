@@ -1,3 +1,3 @@
 <template src="./Invite.html"></template>
 <script src="./Invite.js"></script>
-<style src="./Invite.css"></style>
+<style scoped src="./Invite.scss"></style>

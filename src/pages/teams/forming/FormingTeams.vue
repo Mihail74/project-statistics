@@ -1,3 +1,3 @@
 <template src="./FormingTeams.html"></template>
 <script src="./FormingTeams.js"></script>
-<style src="./FormingTeams.css"></style>
+<style scoped src="./FormingTeams.scss"></style>
