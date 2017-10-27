@@ -25,6 +25,10 @@ export default {
     },
     onClick(team) {
       this.$router.push({ name: 'team', params: { id: team.id } })
+    },
+
+    statistic(team) {
+      return (team.numberOfMatches == 0 ? 0 : team.numberOfWinMatches / team.numberOfMatches) * 100;
     }
   }
 }

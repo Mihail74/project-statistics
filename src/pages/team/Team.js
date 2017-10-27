@@ -27,7 +27,7 @@ export default {
       return this.invites.filter(e => e.status != InviteStatus.ACCEPTED)
     },
     statistic() {
-      return this.team.numberOfMatches == 0 ? 0 : this.team.numberOfMatches / this.team.numberOfWinMatches;
+      return (this.team.numberOfMatches == 0 ? 0 : this.team.numberOfWinMatches / this.team.numberOfMatches) * 100;
     }
   },
 

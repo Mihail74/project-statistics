@@ -1,0 +1,5 @@
+<div>
+  <md-button class="md-raised md-primary" @click="openCreationDialog()">Создать новый матч</md-button>
+
+  <creation-match-dialog ref="creationDialog" @matchCreated="fetchData" />
+</div>

@@ -1,17 +1,14 @@
 <div>
-  <md-table>
-    <md-table-header>
-      <md-table-row>
-        <md-table-head>Название</md-table-head>
-        <md-table-head>Игра</md-table-head>
-      </md-table-row>
-    </md-table-header>
+  <div class="card-holder cursor-pointer">
+    <md-card v-for="team in teams" :key="team.id" @click.native="() => onClick(team)" md-with-hover>
+      <md-card-header>
+        <div class="md-title">{{team.name}}</div>
+      </md-card-header>
 
-    <md-table-body>
-      <md-table-row class="cursor-pointer" v-for="team in teams" :key="team.id" @click.native="() => onClick(team)">
-        <md-table-cell>{{team.name}}</md-table-cell>
-        <md-table-cell>{{team.game.name}}</md-table-cell>
-      </md-table-row>
-    </md-table-body>
-  </md-table>
+      <md-card-content>
+        <div>Игра: {{team.game.name}}</div>
+        <div>% побед: {{statistic(team)}}</div>
+      </md-card-content>
+    </md-card>
+  </div>
 </div>

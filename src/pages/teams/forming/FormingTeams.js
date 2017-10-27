@@ -6,7 +6,6 @@ import CreationTeamDialog from "./CreationTeamDialog.vue"
 export default {
   name: "forming-teams",
 
-
   data() {
     return {
       teams: []
@@ -32,7 +31,7 @@ export default {
       this.$router.push({ name: 'team', params: { id: team.id } })
     },
 
-    openCreationGameDialog() {
+    openCreationTeamDialog() {
       this.$refs["creationDialog"].openDialog();
     }
   }

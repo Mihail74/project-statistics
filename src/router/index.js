@@ -51,6 +51,11 @@ let router = new Router({
           name: "invite",
           component: Pages.Invite,
           props: true
+        },
+        {
+          path: "matches",
+          name: "matches",
+          component: Pages.Matches
         }
       ]
     }

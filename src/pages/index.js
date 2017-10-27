@@ -5,6 +5,7 @@ import Teams from "./teams/Teams.vue"
 import Team from "./team/Team.vue"
 import Invites from "./invites/Invites.vue"
 import Invite from "./invite/Invite.vue"
+import Matches from "./matches/Matches.vue"
 
 export default {
   Games,
@@ -13,5 +14,6 @@ export default {
   Teams,
   Team,
   Invites,
-  Invite
+  Invite,
+  Matches
 }
