@@ -22,9 +22,8 @@ export default {
     fetchData() {
       restApi.get(`/api/me/teams/invites/${this.id}`)
         .then(data => {
-          console.log("ok")
           this.invite = data.invite;
-        }, _ =>{console.log('no ok')})
+        })
     },
 
     goToTeam(e) {

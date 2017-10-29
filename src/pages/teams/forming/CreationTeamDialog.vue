@@ -78,6 +78,7 @@ export default {
 
     closeDialog() {
       this.$refs["creationDialog"].close();
+      this.clearInput();
     },
   }
 }

@@ -5,6 +5,9 @@
   <md-dialog-content>
     <form>
       <game-select ref="game" @change="changeGameSelect" />
+      <div v-if="selectedGameID != null" v-for="ts in teamsAndScore">
+        <team-and-score v-bind:gameID="selectedGameID"/>
+      </div>
     </form>
   </md-dialog-content>
 
@@ -18,18 +21,21 @@
 import Vue from "vue"
 import restApi from "@/restapi"
 import GameSelect from "@/ui/components/games/select"
+import TeamAndScore from "./TeamAndScore.vue"
 
 export default {
   name: "creation-match-dialog",
 
   data() {
     return {
-      selectedGameID: null
+      selectedGameID: null,
+      teamsAndScore: []
     }
   },
 
   components: {
-    GameSelect
+    GameSelect,
+    TeamAndScore
   },
 
   methods: {
@@ -39,6 +45,7 @@ export default {
     },
 
     createMatch() {
+      this.teamsAndScore.push({})
       // restApi.post("/api/teams/create", {
       //     name: this.name,
       //     gameID: this.selectedGameID,
@@ -53,6 +60,8 @@ export default {
 
     clearInput() {
       this.$refs["game"].clearInput();
+      this.teamsAndScore=[];
+      this.selectedGameID = null
     },
 
     openDialog() {
@@ -61,6 +70,7 @@ export default {
 
     closeDialog() {
       this.$refs["creationDialog"].close();
+      this.clearInput();
     },
   }
 }

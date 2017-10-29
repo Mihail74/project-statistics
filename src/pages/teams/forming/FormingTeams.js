@@ -22,7 +22,7 @@ export default {
 
   methods: {
     fetchData() {
-      restApi.get("/api/me/teams/", { "formingStatus": TeamFormingStatus.FORMING })
+      restApi.get("/api/me/teams/", { formingStatus: TeamFormingStatus.FORMING })
         .then(data => {
           this.teams = data.teams;
         })

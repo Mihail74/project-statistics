@@ -43,6 +43,7 @@ export default {
 
     closeDialog() {
       this.$refs["creationDialog"].close();
+      this.clearInput();
     },
 
     createGame() {
@@ -59,6 +60,7 @@ export default {
             alert("Ошибка")
           })
     },
+    
     clearInput() {
       this.$refs["name"].clearInput();
       this.$refs["description"].clearInput();
