@@ -20,7 +20,7 @@ export default {
 
   methods: {
     fetchData() {
-      restApi.get(`/api/me/teams/invites/${this.id}`)
+      restApi.get(`/api/me/invites/${this.id}`)
         .then(data => {
           this.invite = data.invite;
         })
@@ -35,14 +35,14 @@ export default {
     },
 
     acceptInvite() {
-      restApi.post(`/api/me/teams/invites/${this.id}/accept`)
+      restApi.post(`/api/me/invites/${this.id}/accept`)
         .then(data => {
           this.$router.push({ name: "invites" })
         })
     },
 
     declineInvite(){
-      restApi.post(`/api/me/teams/invites/${this.id}/decline`)
+      restApi.post(`/api/me/invites/${this.id}/decline`)
         .then(data => {
           this.$router.push({ name: "invites" })
         })

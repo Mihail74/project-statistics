@@ -19,7 +19,7 @@ export default {
 
   methods: {
     fetchData() {
-      restApi.get("/api/me/teams/invites/")
+      restApi.get("/api/me/invites/")
         .then(data => {
           this.invites = data.invites;
         })
