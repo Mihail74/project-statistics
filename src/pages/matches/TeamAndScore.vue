@@ -1,31 +1,33 @@
 <template>
-<div>test</div>
+<div>
+  <team-select ref="team" v-bind:gameID="gameID" @change="changeTeamSelect"/>
+</div>
 </template>
 <script>
 import Vue from "vue"
 import restApi from "@/restapi"
 import TeamFormingStatus from "@/enums/teams/TeamFormingStatus.js"
+import TeamSelect from "@/ui/components/teams/select"
 
 export default {
   name: "team-and-score",
-  props: ['gameID'],
+  props: ["gameID"],
+
+  components: {
+    TeamSelect
+  },
 
   data() {
     return {
-      teams: []
+      selectedTeamID: null
     }
-  },
 
-  mounted(){
-    console.log(this.gameID)
   },
 
   methods: {
-    fetchData() {
-      // restApi.get("/api/me/teams/", { formingStatus: TeamFormingStatus.FORMING })
-      //   .then(data => {
-      //     this.teams = data.teams;
-      //   })
+    changeTeamSelect(teamID) {
+      this.selectedTeamID = teamID;
+      this.$emit("changeTeamID", this.selectedTeamID);
     }
   }
 }

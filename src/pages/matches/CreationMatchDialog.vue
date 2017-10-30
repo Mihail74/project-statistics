@@ -5,8 +5,13 @@
   <md-dialog-content>
     <form>
       <game-select ref="game" @change="changeGameSelect" />
-      <div v-if="selectedGameID != null" v-for="ts in teamsAndScore">
-        <team-and-score v-bind:gameID="selectedGameID"/>
+      <div v-if="selectedGameID != null">
+        <md-button class="md-icon-button md-raised md-primary" @click="addTeamAndScore">
+          <md-icon>add</md-icon>
+        </md-button>
+        <div v-for="ts in teamsAndScore">
+          <team-and-score v-bind:gameID="selectedGameID" @changeTeamID="teamID => ts.teamID = teamID" />
+        </div>
       </div>
     </form>
   </md-dialog-content>
@@ -45,7 +50,6 @@ export default {
     },
 
     createMatch() {
-      this.teamsAndScore.push({})
       // restApi.post("/api/teams/create", {
       //     name: this.name,
       //     gameID: this.selectedGameID,
@@ -58,9 +62,16 @@ export default {
       //   })
     },
 
+    addTeamAndScore() {
+      this.teamsAndScore.push({
+        teamID: null,
+        score: null
+      })
+    },
+
     clearInput() {
       this.$refs["game"].clearInput();
-      this.teamsAndScore=[];
+      this.teamsAndScore = [];
       this.selectedGameID = null
     },
 

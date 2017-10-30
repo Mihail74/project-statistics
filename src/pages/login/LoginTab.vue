@@ -40,3 +40,9 @@ export default {
   }
 }
 </script>
+<style scoped>
+.login-modal .modal-button {
+  width: 100%;
+  margin: 0 auto;
+}
+</style>
