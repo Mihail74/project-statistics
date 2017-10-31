@@ -1,6 +1,10 @@
 <template>
 <div>
-  <team-select ref="team" v-bind:gameID="gameID" @change="changeTeamSelect"/>
+  <team-select ref="team" v-bind:gameID="gameID" @change="changeTeamSelect" />
+  <md-input-container md-clearable ref="score">
+    <label>счет</label>
+    <md-input v-model="score" required></md-input>
+  </md-input-container>
 </div>
 </template>
 <script>
@@ -19,9 +23,16 @@ export default {
 
   data() {
     return {
-      selectedTeamID: null
+      selectedTeamID: null,
+      score: null,
     }
 
+  },
+
+  watch: {
+    score: function(newScore) {
+      this.$emit("changeScore", newScore);
+    }
   },
 
   methods: {
