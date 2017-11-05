@@ -1,33 +1,63 @@
 <div class="body">
 
-  <md-toolbar class="header">
-    <md-button class="md-raised md-primary" @click="logout">
-      <md-icon md-src="static/exit.svg">menu</md-icon>
-    </md-button>
-  </md-toolbar>
+  <section class="main-container">
+    <div class="container">
 
-  <div class="center md-theme-default">
-    <md-whiteframe class="left-menu">
-      <md-list>
-        <md-list-item>
-          <router-link to="/pages/games">Игры</router-link>
-        </md-list-item>
-        <md-list-item>
-          <router-link to="/pages/teams/formed">Команды</router-link>
-        </md-list-item>
-        <md-list-item>
-          <router-link to="/pages/invites">Приглашения в команды</router-link>
-        </md-list-item>
-        <md-list-item>
-          <router-link to="/pages/matches">Матчи</router-link>
-        </md-list-item>
-      </md-list>
+      <md-toolbar class="header">
+        <div class="ps-menu-button-conteiner">
+          <md-button class="md-icon-button ps-menu-btn" @click="toggleSidenav">
+            <md-icon>menu</md-icon>
+          </md-button>
+        </div>
+        <div class="ps-logout-button-conteiner">
+          <md-button class="md-raised md-primary ps-logout" @click="logout">
+            <md-icon md-src="../../static/exit.svg">logout</md-icon>
+          </md-button>
+        </div>
+      </md-toolbar>
 
-    </md-whiteframe>
+      <md-sidenav class="main-sidebar md-left md-fixed" md-swipeable ref="main-sidebar">
+        <md-toolbar class="vue-material-logo" md-theme="default">
+          <router-link exact to="/">
+            <span>Project statistic</span>
+          </router-link>
+        </md-toolbar>
 
-    <div class="content">
-      <router-view></router-view>
+        <div class="main-sidebar-links">
+          <md-list class="md-dense">
+            <md-list-item>
+              <router-link to="/pages/games">Игры</router-link>
+              <md-button class="md-icon-button md-raised md-primary">
+                <md-icon>add</md-icon>
+              </md-button>
+            </md-list-item>
+            <md-list-item>
+              <router-link to="/pages/teams/formed">Команды</router-link>
+              <md-button class="md-icon-button md-raised md-primary">
+                <md-icon>add</md-icon>
+              </md-button>
+            </md-list-item>
+            <md-list-item>
+              <router-link to="/pages/invites">Приглашения в команды</router-link>
+              <md-button class="md-icon-button md-raised md-primary">
+                <md-icon>add</md-icon>
+              </md-button>
+            </md-list-item>
+            <md-list-item>
+              <router-link to="/pages/matches">Матчи</router-link>
+              <md-button class="md-icon-button md-raised md-primary">
+                <md-icon>add</md-icon>
+              </md-button>
+            </md-list-item>
+          </md-list>
+        </div>
+      </md-sidenav>
+
+      <div class="views">
+        <transition name="md-router" appear>
+          <router-view></router-view>
+        </transition>
+      </div>
     </div>
-  </div>
-
+  </section>
 </div>

@@ -1,42 +1,172 @@
-html, body {
-  height: 100%;
-}
+@import '../../core/stylesheets/variables.scss';
 
-div {
-  box-sizing: border-box;
-}
+$sizebar-size: 280px;
 
+html,
 .body {
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-}
+  height: 100%;
+  overflow: hidden;
+}    
 
-.header {
-  height: 50px;
-  flex-shrink: 0;
-  flex-grow: 0;
-  text-align: center;
-  display: flex;
-  justify-content: flex-end;
-}
+.main-container {
+  width: 100%;
 
-.center {
-  display: flex;
-  flex-basis: 100%;
-  flex-grow: 1;
-}
+  .container {
+    min-height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    flex: 1;
+    transition: $swift-ease-out;
+  
+    @media (min-width: 1281px) {
+      padding-left: $sizebar-size;
+    }
 
-.left-menu {
-  width: 250px;
-  padding: 15px;
-  flex-shrink: 0;
-  flex-grow: 0;
-}
+    .header {
+      display: flex;
+      justify-content: space-between;
 
-.content {
-  flex-basis: 100%;
-  flex-shrink: 1;
-  flex-grow: 1;
-  padding: 15px;
-}
+      .ps-menu-button-conteiner {
+        display: flex;
+        justify-content: flex-start;
+        width: 50%;
+        .ps-menu-btn {
+          @media (min-width: 1281px) {
+            display: none;
+          }
+        }
+      }   
+      .ps-logout-button-conteiner {
+        display: flex;
+        justify-content: flex-end;
+        width: 50%;
+      }         
+    }
+  
+    .main-sidebar.md-sidenav {
+      .md-sidenav-content {
+        width: $sizebar-size;
+        display: flex;
+        flex-flow: column;
+        overflow: hidden; 
+        
+        @media (min-width: 1281px) {
+          transform: translate3d(0, 0, 0) !important;
+          top: 0;
+          pointer-events: auto;
+          box-shadow: $material-shadow-2dp;
+        }
+      }
+
+      .md-toolbar {
+        min-height: 172px;
+        border-bottom: 1px solid rgba(#000, .12);
+      }
+  
+      .vue-material-logo {
+        font-size: 24px;
+  
+        a {
+          width: 100%;
+          display: flex;
+          flex-flow: column;
+          justify-content: center;
+          align-items: center;
+          color: inherit;
+          text-decoration: none;
+  
+          &:hover {
+            color: inherit;
+            text-decoration: none;
+          }
+        }
+  
+        img {
+          width: 160px;
+          margin-bottom: 16px;
+        }
+      }
+  
+      .main-sidebar-links {
+        overflow: auto;
+        flex: 1;
+        
+        .md-list-item {
+          display: flex;            
+        }
+  
+        .md-inset .md-list-item-container {
+          padding-left: 36px;
+        }
+  
+        .md-list-item-container {
+          font-size: 14px;
+          font-weight: 500;
+        }
+      }
+  
+      .release-version {
+        padding: 8px 8px 8px 16px;
+        border-top: 1px solid rgba(#000, .12);
+        display: none;
+  
+        @media (max-width: 480px) {
+          display: block;
+        }
+  
+        > div {
+          justify-content: center;
+        }
+  
+        .md-select:after {
+          color: rgba(#000, .87);
+        }
+      }
+    }
+  
+    .main-content {
+      padding: 16px;
+      flex: 1;
+      overflow: auto;
+      background-color: #fff;
+      transition: $swift-ease-out;
+      transition-delay: .2s;
+    }
+  
+    .md-router-enter,
+    .md-router-leave {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+  
+      @media (min-width: 1281px) {
+        left: $sizebar-size;
+      }
+  
+      .main-content {
+        opacity: 0;
+        overflow: hidden;
+      }
+    }
+  
+    .md-router-leave {
+      z-index: 1;
+      transition: $swift-ease-in;
+      transition-duration: .25s;
+    }
+  
+    .md-router-enter {
+      z-index: 2;
+      transition: $swift-ease-out;
+  
+      .main-content {
+        transform: translate3D(0, 10%, 0);
+      }
+    }   
+  } 
+}  
+
+
+  
+  

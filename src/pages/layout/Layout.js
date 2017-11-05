@@ -14,6 +14,14 @@ export default {
       this.$store.dispatch(`security/${CLEAR_TOKENS}`);
       this.$store.dispatch(`security/${CLEAR_PROFILE}`);
       this.$router.push({ name: "login" });
+    },
+
+    toggleSidenav() {
+      this.$refs['main-sidebar'].toggle();
+    },
+
+    closeSidenav() {
+      this.$refs['main-sidebar'].close();
     }
   }
 }
