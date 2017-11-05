@@ -1,4 +1,6 @@
 import Games from "./games/Games.vue"
+import NewGame from "./games/newgame/NewGame.vue"
+import AllGames from "./games/allgames/AllGames.vue"
 import Login from "./login/Login.vue"
 import Layout from "./layout/Layout.vue"
 import Teams from "./teams/Teams.vue"

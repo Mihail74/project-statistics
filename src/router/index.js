@@ -7,58 +7,68 @@ Vue.use(Router);
 
 let router = new Router({
   routes: [{
-      path: '/',
-      redirect: { path: '/pages/games' }
+    path: '/',
+    redirect: { path: '/pages/games' }
+  },
+
+  {
+    path: "/login",
+    name: "login",
+    component: Pages.Login
+  },
+
+  {
+    path: "/pages",
+    component: Pages.Layout,
+
+    meta: {
+      requiresAuth: true
     },
 
-    {
-      path: "/login",
-      name: "login",
-      component: Pages.Login
-    },
-
-    {
-      path: "/pages",
-      component: Pages.Layout,
-
-      meta: {
-        requiresAuth: true
-      },
-
+    children: [{
+      path: "games",
+      name: "games",
+      component: Pages.Games,
       children: [{
-          path: "games",
-          name: "games",
-          component: Pages.Games
-        },
-        {
-          path: "(teams/forming|teams/formed)",
-          name: "teams",
-          component: Pages.Teams
-        },
-        {
-          path: "team/:id",
-          name: "team",
-          component: Pages.Team,
-          props: true
-        },
-        {
-          path: "invites",
-          name: "invites",
-          component: Pages.Invites
-        },
-        {
-          path: "invite/:id",
-          name: "invite",
-          component: Pages.Invite,
-          props: true
-        },
-        {
-          path: "matches",
-          name: "matches",
-          component: Pages.Matches
-        }
-      ]
+        path: "allgames",
+        name: "allgames",
+        component: Pages.AllGames
+      },
+      {
+        path: "newgame",
+        name: "newgame",
+        component: Pages.NewGame
+      }],
+    },
+    {
+      path: "(teams/forming|teams/formed)",
+      name: "teams",
+      component: Pages.Teams
+    },
+    {
+      path: "team/:id",
+      name: "team",
+      component: Pages.Team,
+      props: true
+    },
+    {
+      path: "invites",
+      name: "invites",
+      component: Pages.Invites
+    },
+    {
+      path: "invite/:id",
+      name: "invite",
+      component: Pages.Invite,
+      props: true
+    },
+    {
+      path: "matches",
+      name: "matches",
+      component: Pages.Matches
     }
+    ]
+  }
   ]
 });
 

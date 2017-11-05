@@ -1,35 +1,34 @@
 import Vue from "vue"
-import CreationGameDialog from "./CreationGameDialog.vue"
 import restApi from "@/restapi"
+import NewGame from "./newgame/NewGame.vue"
+import AllGames from "./allgames/AllGames.vue"
+
+const TAB_INDEX_ROUNTING = {
+  "0" : "/pages/games/allgames",
+  "1" : "/pages/games/newgame"
+}
 
 export default {
   name: "games",
 
   data() {
     return {
-      games: []
     }
   },
 
   components: {
-    CreationGameDialog
-  },
-
-  created() {
-    this.fetchData();
+    NewGame,
+    AllGames
   },
 
   methods: {
 
-    fetchData() {
-      restApi.get("/api/games/")
-        .then(data => {
-          this.games = data.games
-        });
+    isPath(path) {
+      return this.$route.path === path
     },
 
-    openCreationGameDialog() {
-      this.$refs["creationDialog"].openDialog();
+    onTabChanged(tabIndex){
+      this.$router.push({ path: TAB_INDEX_ROUNTING[tabIndex] })
     }
   }
 }

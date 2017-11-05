@@ -1,0 +1,27 @@
+<section>
+  <form>
+    <md-input-container md-clearable ref="name">
+      <label>Название</label>
+      <md-input v-model="name" required></md-input>
+    </md-input-container>
+
+    <md-input-container md-clearable ref="description">
+      <label>Описание</label>
+      <md-input v-model="description" required></md-input>
+    </md-input-container>
+
+    <md-input-container md-clearable ref="scoreToWin">
+      <label>Количество очков для победы</label>
+      <md-input v-model="scoreToWin" required></md-input>
+    </md-input-container>
+
+    <md-input-container md-clearable ref="teamCountInMatch">
+      <label>Количество участников</label>
+      <md-input v-model="teamCountInMatch" required></md-input>
+    </md-input-container>
+
+    <md-button class="md-primary" @click="clearInput()">Отчистить</md-button>
+    <md-button class="md-primary" @click="createGame()">Создать</md-button>
+    </md-dialog>
+  </form>
+</section>

@@ -1,18 +1,12 @@
 <div>
+  <md-tabs class="md-transparent" @change="onTabChanged">
 
-  <md-button class="md-raised md-primary" @click="openCreationGameDialog()">Создать новую игру</md-button>
+    <md-tab id="forming-games-tab" md-label="Игры" :md-active="isPath('/pages/games/allgames')">
+      <all-games />
+    </md-tab>
+    <md-tab id="formed-games-tab" md-label="Создать игру" :md-active="isPath('/pages/games/newgame')">
+      <new-game />
+    </md-tab>
 
-  <div class="card-holder">
-    <md-card v-for="game in games" :key="game.id" md-with-hover>
-      <md-card-header>
-        <div class="md-title">{{game.name}}</div>
-      </md-card-header>
-
-      <md-card-content>
-        {{game.description}}
-      </md-card-content>
-    </md-card>
-  </div>
-
-  <creation-game-dialog ref="creationDialog" @gameCreated="fetchData" />
+  </md-tabs>
 </div>
