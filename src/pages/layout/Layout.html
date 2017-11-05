@@ -26,8 +26,9 @@
         <div class="main-sidebar-links">
           <md-list class="md-dense">
             <md-list-item>
-              <router-link to="/pages/games">Игры</router-link>
-              <md-button class="md-icon-button md-raised md-primary">
+              <!-- <md-button class="md-icon-button md-raised md-primary" @click="allGames()">Игры</md-button> -->
+              <router-link to="/pages/games/allgames" @click.native="allGames()">Игры</router-link>
+              <md-button class="md-icon-button md-raised md-primary" @click="addGame()">
                 <md-icon>add</md-icon>
               </md-button>
             </md-list-item>

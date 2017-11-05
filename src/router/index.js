@@ -41,7 +41,7 @@ let router = new Router({
       }],
     },
     {
-      path: "(teams/forming|teams/formed)",
+      path: "(teams/forming|teams/formed|teams/newteam)",
       name: "teams",
       component: Pages.Teams
     },

@@ -7,21 +7,30 @@ export default {
   methods: {
     logout() {
       restApi.post("/api/auth/logout")
-        .then(this.redirectToLogin, this.redirectToLogin);
+        .then(this.redirectToLogin, this.redirectToLogin)
     },
 
     redirectToLogin() {
-      this.$store.dispatch(`security/${CLEAR_TOKENS}`);
-      this.$store.dispatch(`security/${CLEAR_PROFILE}`);
-      this.$router.push({ name: "login" });
+      this.$store.dispatch(`security/${CLEAR_TOKENS}`)
+      this.$store.dispatch(`security/${CLEAR_PROFILE}`)
+      this.$router.push({ name: "login" })
     },
 
     toggleSidenav() {
-      this.$refs['main-sidebar'].toggle();
+      this.$refs['main-sidebar'].toggle()
     },
 
     closeSidenav() {
-      this.$refs['main-sidebar'].close();
+      this.$refs['main-sidebar'].close()
+    },
+
+    addGame() {
+      this.$router.push('newgame')
+      this.closeSidenav()
+    },
+
+    allGames() {
+      this.closeSidenav()
     }
   }
 }

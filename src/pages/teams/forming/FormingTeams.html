@@ -1,6 +1,4 @@
 <div>
-  <md-button class="md-raised md-primary" @click="openCreationTeamDialog()">Создать новую команду</md-button>
-
   <div class="card-holder cursor-pointer">
     <md-card v-for="team in teams" :key="team.id" @click.native="() => onClick(team)" md-with-hover>
       <md-card-header>
@@ -12,6 +10,4 @@
       </md-card-content>
     </md-card>
   </div>
-
-  <creation-team-dialog ref="creationDialog" @teamCreated="fetchData" />
 </div>
