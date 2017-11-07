@@ -1,7 +1,14 @@
 .card-holder {
   display: flex;
+  /*
+  TODO: в height какая-то срань.
+  Без этого скрола вообще нет. А так он есть, хоть и порезанный снизу.
+  Разобраться потом со скролом.
+  */
+  height: 100vh;
   flex-wrap: wrap;
   padding-top: 16px;
+  overflow-y: auto;
 }
 
 .card-holder .md-card {

@@ -4,8 +4,7 @@ export const CLEAR_TOKENS = 'clearTokens'
 export const CLEAR_PROFILE = 'clearProfile'
 
 function getExpitedTime(token) {
-  return JSON.parse(atob(token.split('.')[1]))
-    .exp * 1000;
+  return JSON.parse(atob(token.split('.')[1])).exp * 1000;
 }
 
 export default {

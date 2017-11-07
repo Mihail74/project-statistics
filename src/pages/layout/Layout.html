@@ -11,13 +11,13 @@
         </div>
         <div class="ps-logout-button-conteiner">
           <md-button class="md-raised md-primary ps-logout" @click="logout">
-            <md-icon md-src="../../static/exit.svg">logout</md-icon>
+            <md-icon>exit_to_app</md-icon>
           </md-button>
         </div>
       </md-toolbar>
 
       <md-sidenav class="main-sidebar md-left md-fixed" md-swipeable ref="main-sidebar">
-        <md-toolbar class="vue-material-logo" md-theme="default">
+        <md-toolbar class="ps-logo" md-theme="default">
           <router-link exact to="/">
             <span>Project statistic</span>
           </router-link>
@@ -26,27 +26,26 @@
         <div class="main-sidebar-links">
           <md-list class="md-dense">
             <md-list-item>
-              <!-- <md-button class="md-icon-button md-raised md-primary" @click="allGames()">Игры</md-button> -->
               <router-link to="/pages/games/allgames" @click.native="allGames()">Игры</router-link>
-              <md-button class="md-icon-button md-raised md-primary" @click="addGame()">
+              <md-button class="md-icon-button md-primary" @click="addGame()">
                 <md-icon>add</md-icon>
               </md-button>
             </md-list-item>
             <md-list-item>
               <router-link to="/pages/teams/formed">Команды</router-link>
-              <md-button class="md-icon-button md-raised md-primary">
+              <md-button class="md-icon-button md-primary">
                 <md-icon>add</md-icon>
               </md-button>
             </md-list-item>
             <md-list-item>
               <router-link to="/pages/invites">Приглашения в команды</router-link>
-              <md-button class="md-icon-button md-raised md-primary">
+              <md-button class="md-icon-button md-primary">
                 <md-icon>add</md-icon>
               </md-button>
             </md-list-item>
             <md-list-item>
               <router-link to="/pages/matches">Матчи</router-link>
-              <md-button class="md-icon-button md-raised md-primary">
+              <md-button class="md-icon-button md-primary">
                 <md-icon>add</md-icon>
               </md-button>
             </md-list-item>
@@ -54,7 +53,7 @@
         </div>
       </md-sidenav>
 
-      <div class="views">
+      <div class="main-content">
         <transition name="md-router" appear>
           <router-view></router-view>
         </transition>
