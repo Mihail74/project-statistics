@@ -14,18 +14,19 @@ div {
 }
 
 .main-content {
-  height: 100%;
-  padding: 16px;
-  flex: 1;
   overflow: auto;
+  padding: 16px;
   transition: $swift-ease-out;
   transition-delay: 0.2s;
 }
 
 .main-container {
+  height: 100%;
   .container {
+    height: 100%;
     .header {
       display: flex;
+      height: 64px;
       justify-content: space-between;
 
       .ps-menu-button-conteiner {
@@ -51,10 +52,7 @@ div {
 
 //from vue-material site
 .main-container {
-  width: 100%;
-
   .container {
-    min-height: 100%;
     display: flex;
     flex-flow: column nowrap;
     flex: 1;
