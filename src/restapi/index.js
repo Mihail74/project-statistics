@@ -1,22 +1,9 @@
 import Vue from "vue"
-import VueResource from "vue-resource"
-import Error from "./error.js"
+import axios from "axios"
 import store from "@/store"
 import router from "@/router"
 import authService from "@/services/authorization"
 
-Vue.use(VueResource);
-
-Vue.http.interceptors.push(function(request, next) {
-  let accessToken = store.state.security.accessToken;
-
-  if (accessToken != null) {
-    request.headers.set('Authorization', accessToken);
-  }
-
-  // continue to next interceptor
-  next();
-});
 
 class RestApi {
   constructor(config) {
@@ -24,13 +11,22 @@ class RestApi {
     if (!!config.port) {
       this.host += ":" + config.port;
     }
+    this.axios = axios.create();
+
+    this.axios.interceptors.request.use(function(config) {
+      config.headers.Authorization = store.state.security.accessToken;
+      return config;
+    }, function(err) {
+      return Promise.reject(err);
+    });
   }
 
+//TODO: Здесь и ниже нужно в reject Использовать свой класс ошибки. Плюс обрабатывать ответ 401 редиректом на форму логина, т.к. в этом случае токен битый
   async post(url, body) {
     await this.ensureLogin();
 
     return new Promise((resolve, reject) => {
-      Vue.http.post(this.host + url, body)
+      this.axios.post(this.host + url, body)
         .then(response => {
             resolve(response.data)
           },
@@ -44,7 +40,7 @@ class RestApi {
     await this.ensureLogin();
 
     return new Promise((resolve, reject) => {
-      Vue.http.put(this.host + url, body)
+      this.axios.put(this.host + url, body)
         .then(response => {
             resolve(response.data)
           },
@@ -57,7 +53,7 @@ class RestApi {
   async get(url, params) {
     await this.ensureLogin();
     return new Promise((resolve, reject) => {
-      Vue.http.get(this.host + url, { params: params })
+      this.axios.get(this.host + url, { params: params })
         .then(response => {
             resolve(response.data)
           },

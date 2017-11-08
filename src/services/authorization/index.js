@@ -1,4 +1,4 @@
-import Vue from "vue"
+import axios from "axios"
 import store from "@/store"
 
 class SecurityService {
@@ -8,6 +8,7 @@ class SecurityService {
     if (!!config.port) {
       this.host += ":" + config.port;
     }
+    this.axios = axios.create();
   }
 
   isTokensExist() {
@@ -27,9 +28,10 @@ class SecurityService {
     return Date.now() < refreshTokenExpiredTime;
   }
 
+//TODO: Здесь и ниже нужно в reject Использовать свой класс ошибки
   refreshTokens() {
     return new Promise((resolve, reject) => {
-      Vue.http.post(this.host + '/api/auth/token/refresh', { refreshToken: store.state.security.refreshToken })
+      this.axios.post(`${this.host}/api/auth/token/refresh`, { refreshToken: store.state.security.refreshToken })
         .then(response => {
             resolve(response.data)
           },
@@ -41,7 +43,7 @@ class SecurityService {
 
   login(credentials) {
     return new Promise((resolve, reject) => {
-      Vue.http.post(this.host + "/api/auth/login", credentials)
+      this.axios.post(`${this.host}/api/auth/login`, credentials)
         .then(response => {
             resolve(response.data)
           },
@@ -53,7 +55,7 @@ class SecurityService {
 
   register(credentials) {
     return new Promise((resolve, reject) => {
-      Vue.http.post(this.host + "/api/auth/register", credentials)
+      this.axios.post(`${this.host}/api/auth/register`, credentials)
         .then(response => {
             resolve(response.data)
           },
