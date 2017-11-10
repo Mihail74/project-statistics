@@ -7,7 +7,7 @@
 
     <md-input-container md-clearable ref="description">
       <label>Описание</label>
-      <md-input v-model="description" required></md-input>
+      <md-input v-model="description"></md-input>
     </md-input-container>
 
     <md-input-container md-clearable ref="scoreToWin">
@@ -20,8 +20,8 @@
       <md-input v-model="teamCountInMatch" required></md-input>
     </md-input-container>
 
-    <md-button class="md-primary" @click="clearInput()">Отчистить</md-button>
     <md-button class="md-primary" @click="createGame()">Создать</md-button>
+    <md-button class="md-primary" @click="clearInput()">Отчистить</md-button>
     </md-dialog>
   </form>
 </section>

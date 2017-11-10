@@ -11,7 +11,7 @@
 import Vue from "vue"
 import restApi from "@/restapi"
 import TeamFormingStatus from "@/enums/teams/TeamFormingStatus.js"
-import TeamSelect from "@/ui/components/teams/select"
+import TeamSelect from "@/components/teams/select"
 
 export default {
   name: "team-and-score",

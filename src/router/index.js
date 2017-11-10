@@ -25,20 +25,15 @@ let router = new Router({
       requiresAuth: true
     },
 
-    children: [{
+children: [{
       path: "games",
       name: "games",
       component: Pages.Games,
-      children: [{
-        path: "allgames",
-        name: "allgames",
-        component: Pages.AllGames
-      },
-      {
-        path: "newgame",
-        name: "newgame",
-        component: Pages.NewGame
-      }],
+    },
+    {
+    path: "games/create",
+    name: "creationGame",
+    component: Pages.CreateGame
     },
     {
       path: "(teams/forming|teams/formed|teams/newteam)",

@@ -1,15 +1,16 @@
 import Vue from "vue"
 import restApi from "@/restapi"
+import ApiError from "@/restApi/ApiError.js"
 
 export default {
-  name: "new-game",
+  name: "createGame",
 
   data() {
     return {
-      name: this.name,
-      description: this.description,
-      scoreToWin: this.scoreToWin,
-      teamCountInMatch: this.teamCountInMatch
+      name: null,
+      description: null,
+      scoreToWin: null,
+      teamCountInMatch: null
     }
   },
 
@@ -24,12 +25,13 @@ export default {
         })
         .then(data => {
             this.clearInput();
+            this.$router.push({ name: "games" })
           },
-          error => {
-            alert("Ошибка")
-          })
+          apiError => {
+            //TODO: доделать обработку ошибок
+          });
     },
-    
+
     clearInput() {
       this.$refs["name"].clearInput();
       this.$refs["description"].clearInput();

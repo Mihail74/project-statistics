@@ -24,13 +24,9 @@ export default {
       this.$refs['main-sidebar'].close()
     },
 
-    addGame() {
-      this.$router.push('newgame')
+    routeTo(routeName) {
       this.closeSidenav()
-    },
-
-    allGames() {
-      this.closeSidenav()
+      this.$router.push({ name: routeName })
     }
   }
 }

@@ -25,9 +25,9 @@
 <script>
 import Vue from "vue"
 import restApi from "@/restapi"
-import GameSelect from "@/ui/components/games/select"
+import GameSelect from "@/components/games/select"
 import TeamAndScore from "./TeamAndScore.vue"
-import TeamSelect from "@/ui/components/teams/select"
+import TeamSelect from "@/components/teams/select"
 
 export default {
   name: "creation-match-dialog",

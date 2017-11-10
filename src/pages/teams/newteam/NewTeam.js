@@ -1,7 +1,7 @@
 import Vue from "vue"
 import restApi from "@/restapi"
-import UsersMultiselect from "@/ui/components/users/multiselect"
-import GameSelect from "@/ui/components/games/select"
+import UsersMultiselect from "@/components/users/multiselect"
+import GameSelect from "@/components/games/select"
 
 export default {
   name: "newteam",

@@ -3,6 +3,7 @@ import axios from "axios"
 import store from "@/store"
 import router from "@/router"
 import authService from "@/services/authorization"
+import ApiError from "@/restApi/ApiError.js"
 
 
 class RestApi {
@@ -21,18 +22,18 @@ class RestApi {
     });
   }
 
-//TODO: Здесь и ниже нужно в reject Использовать свой класс ошибки. Плюс обрабатывать ответ 401 редиректом на форму логина, т.к. в этом случае токен битый
   async post(url, body) {
     await this.ensureLogin();
 
+    console.log("post");
     return new Promise((resolve, reject) => {
       this.axios.post(this.host + url, body)
-        .then(response => {
-            resolve(response.data)
-          },
-          response => {
-            reject(new Error(response.status, response.data.message));
-          });
+        .then(function(response) {
+          resolve(response.data)
+        })
+        .catch(function(error) {
+          reject(new ApiError(error.response.status, error.response.data.cause));
+        });
     });
   }
 
@@ -41,25 +42,26 @@ class RestApi {
 
     return new Promise((resolve, reject) => {
       this.axios.put(this.host + url, body)
-        .then(response => {
-            resolve(response.data)
-          },
-          response => {
-            reject(new Error(response.status, response.data.message));
-          });
+        .then(function(response) {
+          resolve(response.data)
+        })
+        .catch(function(error) {
+          reject(new ApiError(error.response.status, error.response.data.cause));
+        });
     });
   }
 
   async get(url, params) {
     await this.ensureLogin();
+
     return new Promise((resolve, reject) => {
       this.axios.get(this.host + url, { params: params })
-        .then(response => {
-            resolve(response.data)
-          },
-          response => {
-            reject(new Error(response.status, response.data.message));
-          });
+        .then(function(response) {
+          resolve(response.data)
+        })
+        .catch(function(error) {
+          reject(new ApiError(error.response.status, error.response.data.cause));
+        });
     });
   }
 
