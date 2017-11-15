@@ -1,9 +1,9 @@
 <template>
-<md-input-container ref="select">
-  <label>Игра</label>
-  <md-select :required="required" id="game-select" v-model="selectedID" @change="changeSelected">
-    <md-option v-for="game in games" :key="game.id" :value="game.id">
-      {{ game.name }}
+<md-input-container md-clearable ref="select">
+  <label>Пользователь</label>
+  <md-select :required="required" id="user-select" v-model="selectedID" @change="changeSelected">
+    <md-option v-for="user in users" :key="user.id" :value="user.id">
+      {{ user.name }}
     </md-option>
   </md-select>
 </md-input-container>
@@ -13,14 +13,14 @@ import Vue from "vue"
 import restApi from "@/restapi"
 
 export default {
-  name: "game-select",
+  name: "user-select",
   props: {
     required: Boolean
   },
 
   data() {
     return {
-      games: [],
+      users: [],
       selectedID: null
     }
   },
@@ -31,17 +31,17 @@ export default {
 
   methods: {
     fetchData() {
-      restApi.get("/api/games/")
+      restApi.get("/api/users/")
         .then(data => {
-          this.games = data.games
+          this.users = data.users
         }, apiError => {
           //TODO: обработать ошибку
         })
     },
 
     changeSelected() {
-      const selectedGame = this.games.find(e => e.id == this.selectedID)
-      this.$emit("change", selectedGame);
+      const selectedUser = this.users.find(e => e.id == this.selectedID)
+      this.$emit("change", selectedUser);
     },
 
     clearInput(){

@@ -53,7 +53,7 @@ export default {
     },
 
     formTeam() {
-      restApi.put(`/api/me/teams/${this.id}/form`)
+      restApi.post(`/api/me/teams/${this.id}/form`)
         .then(data => {
           this.fetchData();
         });

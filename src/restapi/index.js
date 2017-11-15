@@ -25,7 +25,6 @@ class RestApi {
   async post(url, body) {
     await this.ensureLogin();
 
-    console.log("post");
     return new Promise((resolve, reject) => {
       this.axios.post(this.host + url, body)
         .then(function(response) {

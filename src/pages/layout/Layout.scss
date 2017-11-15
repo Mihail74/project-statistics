@@ -1,9 +1,9 @@
 @import '~@/core/stylesheets/variables.scss';
 $sizebar-size: 280px;
 
-html,
+.body,
 body,
-.body{
+html {
   height: 100%;
   width: 100%;
   overflow: hidden;
@@ -22,8 +22,10 @@ div {
 
 .main-container {
   height: 100%;
+
   .container {
     height: 100%;
+
     .header {
       display: flex;
       height: 64px;
@@ -49,8 +51,8 @@ div {
     }
   }
 }
-
 //from vue-material site
+
 .main-container {
   .container {
     display: flex;

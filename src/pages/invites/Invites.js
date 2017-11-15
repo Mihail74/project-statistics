@@ -5,8 +5,6 @@ import restApi from "@/restapi"
 export default {
   name: "invites",
 
-
-
   data() {
     return {
       invites: []
@@ -24,8 +22,8 @@ export default {
           this.invites = data.invites;
         })
     },
-    onClick(team) {
-      this.$router.push({ name: 'invite', params: { id: team.id } })
+    onClick(invite) {
+      this.$router.push({ name: "invite", params: { id: invite.id } })
     }
   }
 }

@@ -1,0 +1,19 @@
+<section>
+  <form>
+    <game-select :required="true" @change="changeGame" ref="gameSelect" />
+
+    <template v-for="(teamScore, index) in teamScores">
+      <md-whiteframe md-elevation="2" class="teamScore">
+        <team-select :required="true" :gameID="game.id" @change="selectedTeam => chageTeam(selectedTeam, index)" />
+        <md-input-container>
+          <label>Счет</label>
+          <md-input type="number" :max="game.scoreToWin" :min="0" v-model="teamScores[index].score"></md-input>
+        </md-input-container>
+      </md-whiteframe>
+    </template>
+
+
+    <md-button class="md-primary" @click="create">Создать</md-button>
+    <md-button class="md-primary" @click="clearInput">Отчистить</md-button>
+  </form>
+</section>

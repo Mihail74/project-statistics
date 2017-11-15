@@ -1,1 +1,17 @@
+.card-holder {
+  display: flex;
+  flex-wrap: wrap;
+}
 
+.card-holder .md-card {
+  width:100%;
+  margin: 0 4px 16px;
+}
+
+.cursor-pointer{
+  cursor: pointer;
+}
+
+.forming{
+  background-color:  teal;
+}

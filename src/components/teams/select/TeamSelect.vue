@@ -1,20 +1,24 @@
 <template>
-<md-input-container ref="team-select">
+<md-input-container ref="select">
   <label>Команда</label>
-  <md-select name="team-select" id="team.id" v-model="selectedID" @change="changeSelected">
+  <md-select :required="required" id="team-select" v-model="selectedID" @change="changeSelected">
     <md-option v-for="team in teams" :key="team.id" :value="team.id">
       {{ team.name }}
     </md-option>
   </md-select>
 </md-input-container>
 </template>
+
 <script>
 import Vue from "vue"
 import restApi from "@/restapi"
 
 export default {
   name: "team-select",
-props: ["gameID"],
+  props: {
+    required: Boolean,
+    gameID: Number
+  },
 
   data() {
     return {
@@ -28,14 +32,18 @@ props: ["gameID"],
   },
 
   methods: {
-    changeSelected(value) {
-      this.$emit("change", this.selectedID);
+    fetchData() {
+      restApi.get("/api/teams/", { gameID: this.gameID })
+        .then(data => {
+          this.teams = data.teams
+        }, apiError => {
+          //TODO: обработать ошибку
+        })
     },
 
-    fetchData() {
-      restApi.get("/api/teams/", { gameID: this.gameID }).then(data => {
-        this.teams = data.teams
-      })
+    changeSelected(value) {
+      const selectedTeam = this.teams.find(e => e.id == this.selectedID)
+      this.$emit("change", selectedTeam);
     },
 
     clearInput() {

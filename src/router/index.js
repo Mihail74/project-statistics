@@ -32,13 +32,18 @@ children: [{
     },
     {
     path: "games/create",
-    name: "creationGame",
+    name: "creation-game-route",
     component: Pages.CreateGame
     },
     {
-      path: "(teams/forming|teams/formed|teams/newteam)",
+      path: "teams",
       name: "teams",
       component: Pages.Teams
+    },
+    {
+      path: "teams/create",
+      name: "creation-team-route",
+      component: Pages.CreateTeam
     },
     {
       path: "team/:id",
@@ -61,7 +66,12 @@ children: [{
       path: "matches",
       name: "matches",
       component: Pages.Matches
-    }
+    },
+    {
+      path: "matches/create",
+      name: "creation-match-route",
+      component: Pages.CreateMatch
+    },
     ]
   }
   ]

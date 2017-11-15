@@ -15,13 +15,17 @@
       <md-input v-model="scoreToWin" required></md-input>
     </md-input-container>
 
+    <md-input-container md-clearable ref="memberCountInTeam ">
+      <label>Количество участников в команде</label>
+      <md-input v-model="memberCountInTeam" required></md-input>
+    </md-input-container>
+
     <md-input-container md-clearable ref="teamCountInMatch">
-      <label>Количество участников</label>
+      <label>Количество команд в матче</label>
       <md-input v-model="teamCountInMatch" required></md-input>
     </md-input-container>
 
     <md-button class="md-primary" @click="createGame()">Создать</md-button>
     <md-button class="md-primary" @click="clearInput()">Отчистить</md-button>
-    </md-dialog>
   </form>
 </section>

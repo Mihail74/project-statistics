@@ -3,14 +3,15 @@ import restApi from "@/restapi"
 import ApiError from "@/restApi/ApiError.js"
 
 export default {
-  name: "createGame",
+  name: "create-game",
 
   data() {
     return {
       name: null,
       description: null,
       scoreToWin: null,
-      teamCountInMatch: null
+      teamCountInMatch: null,
+      memberCountInTeam: null
     }
   },
 
@@ -21,7 +22,8 @@ export default {
           name: this.name,
           description: this.description,
           scoreToWin: this.scoreToWin,
-          teamCountInMatch: this.teamCountInMatch
+          teamCountInMatch: this.teamCountInMatch,
+          memberCountInTeam: this.memberCountInTeam
         })
         .then(data => {
             this.clearInput();
@@ -37,6 +39,7 @@ export default {
       this.$refs["description"].clearInput();
       this.$refs["scoreToWin"].clearInput();
       this.$refs["teamCountInMatch"].clearInput();
+      this.$refs["memberCountInTeam "].clearInput();
     }
   }
 }

@@ -1,0 +1,17 @@
+<section>
+  <form>
+    <md-input-container md-clearable ref="name">
+      <label>Название</label>
+      <md-input v-model="name" required></md-input>
+    </md-input-container>
+    <game-select :required="true" @change="changeGame" ref="gameSelect" />
+
+    <template v-for="(user, index) in users">
+      <user-select :required="true" @change="selectedUser => chageUser(selectedUser, index)" />
+    </template>
+
+
+    <md-button class="md-primary" @click="create">Создать</md-button>
+    <md-button class="md-primary" @click="clearInput">Отчистить</md-button>
+  </form>
+</section>

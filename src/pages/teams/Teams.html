@@ -1,15 +1,14 @@
-<div>
-  <md-tabs class="md-transparent" @change="onTabChanged">
-    <md-tab id="formed-teams-tab" md-label="Сформированные" :md-active="isPath('/pages/teams/formed')">
-      <formed-teams />
-    </md-tab>
+<section>
+  <div class="card-holder cursor-pointer">
+    <md-card v-for="team in teams" :key="team.id" :class="[{ forming: team.formingStatus == 'FORMING' }]" @click.native="onClick(team)" md-with-hover>
+      <md-card-header>
+        <div class="md-title">{{team.name}}</div>
+      </md-card-header>
 
-    <md-tab id="forming-teams-tab" md-label="Формирующиеся" :md-active="isPath('/pages/teams/forming')">
-      <forming-teams />
-    </md-tab>
-
-    <md-tab id="forming-teams-tab" md-label="Создать новую" :md-active="isPath('/pages/teams/newteam')">
-      <new-team />
-    </md-tab>
-  </md-tabs>
-</div>
+      <md-card-content>
+        <div>Игра: {{team.game.name}}</div>
+        <div v-if="team.formingStatus == 'FORMED'">Рейтинг: {{getTeamStat(team)}}%</div>
+      </md-card-content>
+    </md-card>
+  </div>
+</section>

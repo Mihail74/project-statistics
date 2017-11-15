@@ -1,5 +1,14 @@
-<div>
-  <md-button class="md-raised md-primary" @click="openCreationDialog()">Создать новый матч</md-button>
+<section>
+  <div class="card-holder cursor-pointer">
+    <md-card v-for="match in matches" :key="match.id" md-with-hover>
+      <md-card-header>
+        <div class="md-title">{{match.id}}</div>
+      </md-card-header>
 
-  <creation-match-dialog ref="creationDialog" @matchCreated="fetchData" />
-</div>
+      <md-card-content>
+        <div>Игра: {{match.game.name}}</div>
+        <div>Победитель: {{match.winnerTeam.name}}</div>
+      </md-card-content>
+    </md-card>
+  </div>
+</section>
