@@ -26,7 +26,7 @@ export default {
       restApi.post("/api/teams/create", {
           name: this.name,
           gameID: this.game.id,
-          members: this.users.map(e => e.id)
+          membersID: this.users.map(e => e.id)
         })
         .then(data => {
             this.clearInput();
