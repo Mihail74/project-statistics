@@ -1,0 +1,7 @@
+.name {
+  margin-bottom: 8px;
+}
+
+.comma-separated-item + .comma-separated-item:before {
+  content: ", ";
+}

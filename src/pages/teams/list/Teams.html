@@ -1,0 +1,16 @@
+<section>
+  <div class="card-holder cursor-pointer">
+    <md-card v-for="team in teams" :key="team.id" @click.native="onClick(team)" md-with-hover>
+      <md-icon :class="[{ 'md-accent': isForming(team) }, {'md-primary': isFormed(team)}, {'md-size-2x' : isFormed(team)}]"
+        class="md-fab md-fab-top-right">{{getStatusIcon(team)}}</md-icon>
+      <md-card-header>
+        <div class="md-title">{{team.name}}</div>
+      </md-card-header>
+
+      <md-card-content>
+        <div>Игра: {{team.game.name}}</div>
+        <div v-if="isFormed(team)">Рейтинг: {{getTeamStat(team)}}%</div>
+      </md-card-content>
+    </md-card>
+  </div>
+</section>

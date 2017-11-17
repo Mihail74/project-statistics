@@ -4,7 +4,8 @@
 }
 
 .card-holder .md-card {
-  width:100%;
+  min-width: 400px;
+  max-width: 800px;
   margin: 0 4px 16px;
 }
 

@@ -1,8 +1,6 @@
 <section>
   <div class="card-holder cursor-pointer">
-    <md-card v-for="invite in invites" :key="invite.id"
-    :class="[{ new: invite.status == 'NEW', declined: invite.status == 'DECLINED' }]"
-    @click.native="() => onClick(invite)" md-with-hover>
+    <md-card v-for="invite in invites" :key="invite.id" @click.native="() => onClick(invite)" md-with-hover>
       <md-card-header>
         <div class="md-title">{{invite.team.name}}</div>
       </md-card-header>

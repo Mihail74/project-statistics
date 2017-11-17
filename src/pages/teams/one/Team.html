@@ -1,0 +1,30 @@
+<div>
+  <div class="md-title name">
+    <md-icon :class="[{ 'md-accent': isForming(team) }, {'md-primary': isFormed(team)}]">{{getStatusIcon(team)}}</md-icon>
+    {{team.name}}
+  </div>
+
+  <md-list>
+    <md-list-item>
+      <span>Игра: <md-chip>{{team.game.name}}</md-chip></span>
+    </md-list-item>
+
+    <md-list-item>
+      <span>Капитан: {{team.leader.name}}</span>
+    </md-list-item>
+
+    <md-list-item>
+      <span>Участники: <span v-for="user in team.users" class="comma-separated-item" :key="user.id">{{user.name}}</span></span>
+    </md-list-item>
+
+    <md-list-item v-if="isForming(team)">
+      <span>Приглашенные: <span v-for="invite in invites" class="comma-separated-item" :key="invite.id">{{invite.user.name}}</span></span>
+    </md-list-item>
+
+    <md-list-item v-if="isFormed(team)">
+      <span>Рейтинг: {{getTeamStat()}}%</span>
+    </md-list-item>
+  </md-list>
+
+  <md-button class="md-raised md-primary" v-if="isForming(team) && isLeader()" @click="formTeam">Сформировать команду</md-button><br>
+</div>

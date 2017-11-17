@@ -1,6 +1,6 @@
 import Vue from "vue"
 import restApi from "@/restapi"
-import TeamFormingStatus from "@/enums/teams/TeamFormingStatus.js"
+import mixin from "../mixin.js"
 
 export default {
   name: "teams",
@@ -10,6 +10,8 @@ export default {
       teams: []
     }
   },
+
+  mixins: [mixin],
 
   created() {
     this.fetchData();
@@ -22,13 +24,9 @@ export default {
           this.teams = data.teams;
         })
     },
-    
+
     onClick(team) {
       this.$router.push({ name: 'team', params: { id: team.id } })
-    },
-
-    getTeamStat(team){
-      return Math.floor(team.numberOfWinMatches / team.numberOfMatches * 100);
-    },
+    }
   }
 }
