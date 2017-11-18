@@ -3,8 +3,15 @@ export const UPDATE_PROFILE = 'updateProfile'
 export const CLEAR_TOKENS = 'clearTokens'
 export const CLEAR_PROFILE = 'clearProfile'
 
+function getPayload(token){
+  return JSON.parse(atob(token.split('.')[1]));
+}
 function getExpitedTime(token) {
-  return JSON.parse(atob(token.split('.')[1])).exp * 1000;
+  return getPayload(token).exp * 1000;
+}
+
+function getRoles(token){
+  return getPayload(token).roles;
 }
 
 export default {
@@ -15,7 +22,8 @@ export default {
     accessTokenExpiredTime: null,
     refreshToken: null,
     refreshTokenExpiredTime: null,
-    profile: null
+    profile: null,
+    roles: []
   },
 
   mutations: {
@@ -24,6 +32,7 @@ export default {
       state.accessTokenExpiredTime = getExpitedTime(tokensData.accessToken);
       state.refreshToken = tokensData.refreshToken;
       state.refreshTokenExpiredTime = getExpitedTime(tokensData.refreshToken);
+      state.roles = getRoles(tokensData.accessToken);
     },
 
     [UPDATE_PROFILE]: (state, profile) => {
