@@ -1,6 +1,6 @@
 import Vue from "vue"
 import restApi from "@/restapi"
-
+import InviteStatus from "@/enums/invites/InviteStatus.js"
 
 export default {
   name: "invites",
@@ -22,8 +22,30 @@ export default {
           this.invites = data.invites;
         })
     },
-    onClick(invite) {
+
+    routeToInvite(invite) {
       this.$router.push({ name: "invite", params: { id: invite.id } })
+    },
+
+    getStatusIcon(invite){
+      switch(invite.status) {
+        case InviteStatus.NEW:
+          return 'fiber_new';
+        case InviteStatus.ACCEPTED:
+          return 'check';
+        case InviteStatus.DECLINED:
+          return 'close'
+        default:
+          return '';
+        }
+    },
+
+    isAccepted(invite){
+      return invite.status == InviteStatus.ACCEPTED;
+    },
+
+    isDeclined(invite){
+      return invite.status == InviteStatus.DECLINED;
     }
   }
 }

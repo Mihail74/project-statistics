@@ -1,8 +1,0 @@
-<div>
-  <div v-if="isNewInvite()">
-    <md-button class="md-raised md-primary" @click="acceptInvite()">Принять</md-button>
-    <md-button class="md-raised md-warning" @click="declineInvite()">Отклонить</md-button>
-  </div>
-  <span>Игра:</span>
-  <md-chip class="cursor-pointer" md-static @click.native="() => goToTeam()">{{invite.team.name}}</md-chip><br>
-</div>

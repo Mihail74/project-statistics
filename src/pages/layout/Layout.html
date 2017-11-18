@@ -10,9 +10,16 @@
           </md-button>
         </div>
         <div class="ps-logout-button-conteiner">
-          <md-button class="md-raised md-primary ps-logout" @click="logout">
-            <md-icon>exit_to_app</md-icon>
-          </md-button>
+          <md-menu>
+            <md-button md-menu-trigger>
+              {{profile.name}}
+              <md-icon>arrow_drop_down</md-icon>
+            </md-button>
+
+            <md-menu-content>
+              <md-menu-item @click="logout"><md-icon>exit_to_app</md-icon>Выход</md-menu-item>
+            </md-menu-content>
+          </md-menu>
         </div>
       </md-toolbar>
 

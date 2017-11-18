@@ -1,7 +1,15 @@
-.name {
+.title {
   margin-bottom: 8px;
 }
 
 .comma-separated-item + .comma-separated-item:before {
   content: ", ";
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.red {
+  color: #F44336;
 }

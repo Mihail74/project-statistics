@@ -1,12 +1,12 @@
 <div>
-  <div class="md-title name">
+  <div class="md-title title">
     <md-icon :class="[{ 'md-accent': isForming(team) }, {'md-primary': isFormed(team)}]">{{getStatusIcon(team)}}</md-icon>
     {{team.name}}
   </div>
 
   <md-list>
     <md-list-item>
-      <span>Игра: <md-chip>{{team.game.name}}</md-chip></span>
+      <span>Игра: <md-chip class="cursor-pointer" @click.native="routeToGamesPage">{{team.game.name}}</md-chip></span>
     </md-list-item>
 
     <md-list-item>
@@ -18,7 +18,7 @@
     </md-list-item>
 
     <md-list-item v-if="isForming(team)">
-      <span>Приглашенные: <span v-for="invite in invites" class="comma-separated-item" :key="invite.id">{{invite.user.name}}</span></span>
+      <span>Приглашенные: <span md-theme-default v-for="invite in invites" :class="[{'red' : isDeclinedInvite(invite)}]" class="comma-separated-item" :key="invite.id">{{invite.user.name}}</span></span>
     </md-list-item>
 
     <md-list-item v-if="isFormed(team)">
@@ -26,5 +26,7 @@
     </md-list-item>
   </md-list>
 
-  <md-button class="md-raised md-primary" v-if="isForming(team) && isLeader()" @click="formTeam">Сформировать команду</md-button><br>
+  <md-button class="md-raised md-primary" v-if="isForming(team) && isLeader()" @click="formTeam">Сформировать команду
+    <md-icon class="md-accent">{{getStatusIcon(team)}}</md-icon>
+  </md-button>
 </div>

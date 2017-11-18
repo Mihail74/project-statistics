@@ -4,7 +4,7 @@ import InviteStatus from "@/enums/invites/InviteStatus.js"
 
 export default {
   name: "invite",
-  props: ['id'],
+  props: ["id"],
 
   data() {
     return {
@@ -26,22 +26,22 @@ export default {
         })
     },
 
-    goToTeam(e) {
+    routeToTeam() {
       this.$router.push({ name: "team", params: { id: this.invite.team.id } })
     },
 
-    isNewInvite(){
+    isNew(){
       return this.invite.status == InviteStatus.NEW;
     },
 
-    acceptInvite() {
+    accept() {
       restApi.post(`/api/me/invites/${this.id}/accept`)
         .then(data => {
           this.$router.push({ name: "invites" })
         })
     },
 
-    declineInvite(){
+    decline(){
       restApi.post(`/api/me/invites/${this.id}/decline`)
         .then(data => {
           this.$router.push({ name: "invites" })

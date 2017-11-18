@@ -20,6 +20,10 @@ export default {
         .then(data => {
           this.matches = data.matches;
         });
+    },
+
+    formatDate(date){
+      return new Date(date).toLocaleString("ru", {year: '2-digit', month: 'numeric', day: 'numeric',hour: '2-digit', minute:'2-digit'});
     }
   }
 }

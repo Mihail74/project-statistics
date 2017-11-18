@@ -3,7 +3,12 @@ import { CLEAR_TOKENS, CLEAR_PROFILE } from "@/store/modules/security.js"
 
 export default {
   name: "layout",
-
+  data(){
+    return {
+      profile: this.$store.state.security.profile
+    }
+  },
+  
   methods: {
     logout() {
       restApi.post("/api/auth/logout")

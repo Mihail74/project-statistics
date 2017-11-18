@@ -1,6 +1,7 @@
 import Vue from "vue"
 import restApi from "@/restapi"
 import mixin from "../mixin.js"
+import InviteStatus from "@/enums/invites/InviteStatus.js"
 
 export default {
   name: "team",
@@ -29,7 +30,6 @@ export default {
       restApi.get(`/api/teams/${this.id}`)
         .then(data => {
           this.team = data.team;
-          this.invites = data.invites || [];
         });
 
       restApi.get(`/api/teams/${this.id}/invites`)
@@ -47,6 +47,14 @@ export default {
 
     isLeader() {
       return this.team.leader.id == this.$store.state.security.profile.id;
+    },
+
+    routeToGamesPage(){
+      this.$router.push({ name: "games" });
+    },
+
+    isDeclinedInvite(invite){
+      return invite.status == InviteStatus.DECLINED;
     }
   }
 }
