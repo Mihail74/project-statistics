@@ -24,6 +24,10 @@ export default {
 
     formatDate(date){
       return new Date(date).toLocaleString("ru", {year: '2-digit', month: 'numeric', day: 'numeric',hour: '2-digit', minute:'2-digit'});
+    },
+
+    routeToMatch(match){
+      this.$router.push({ name: 'match', params: { id: match.id } })
     }
   }
 }

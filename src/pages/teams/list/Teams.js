@@ -25,7 +25,7 @@ export default {
         })
     },
 
-    onClick(team) {
+    routeToTeam(team) {
       this.$router.push({ name: 'team', params: { id: team.id } })
     }
   }

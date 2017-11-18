@@ -1,0 +1,24 @@
+<div>
+  <md-list>
+    <md-list-item>
+      <span>Игра: <md-chip class="cursor-pointer" @click.native="routeToGamesPage">{{match.game.name}}</md-chip></span>
+    </md-list-item>
+
+    <md-list-item>
+      <span>Победитель: <md-chip class="cursor-pointer" @click.native="routeToTeam(match.winnerTeam)">{{match.winnerTeam.name}}</md-chip></span>
+    </md-list-item>
+
+    <md-list-item>
+      <span>Команды-участники:
+        <md-chip v-for="tms in match.teamsMatchScore" :key="tms.team.id" class="cursor-pointer chip"
+          @click.native="routeToTeam(tms.team)">
+          {{tms.team.name}} ({{tms.score}})
+        </md-chip>
+      </span>
+    </md-list-item>
+
+    <md-list-item>
+      <span>Время проведения: {{formatDate(match.timestamp)}}</span>
+    </md-list-item>
+  </md-list>
+</div>

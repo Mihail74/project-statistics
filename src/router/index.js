@@ -72,6 +72,12 @@ children: [{
       name: "creation-match-route",
       component: Pages.CreateMatch
     },
+    {
+      path: "matches/:id",
+      name: "match",
+      component: Pages.Match,
+      props: true
+    }
     ]
   }
   ]

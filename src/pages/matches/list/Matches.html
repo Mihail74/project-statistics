@@ -1,6 +1,6 @@
 <section>
   <div class="card-holder cursor-pointer">
-    <md-card v-for="match in matches" :key="match.id" md-with-hover>
+    <md-card v-for="match in matches"  @click.native="routeToMatch(match)" :key="match.id" md-with-hover>
       <md-card-content>
         <div>Игра: {{match.game.name}}</div>
         <div>Участники:

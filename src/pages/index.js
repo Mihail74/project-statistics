@@ -8,7 +8,9 @@ import Teams from "./teams/list/Teams.vue"
 import Invites from "./invites/list/Invites.vue"
 import Invite from "./invites/one/Invite.vue"
 import CreateMatch from "./matches/create/CreateMatch.vue"
+import Match from "./matches/one/Match.vue"
 import Matches from "./matches/list/Matches.vue"
+
 
 export default {
   Login,
@@ -21,5 +23,6 @@ export default {
   Invites,
   Invite,
   Matches,
+  Match,
   CreateMatch
 }
