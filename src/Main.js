@@ -5,12 +5,14 @@ import App from "./App.vue";
 import store from "@/store";
 import router from "./router";
 import VueMaterial from "vue-material";
+import VeeValidate from 'vee-validate';
 
 import "vue-material/dist/vue-material.css";
 
 Vue.config.productionTip = false;
 
 Vue.use(VueMaterial);
+Vue.use(VeeValidate);
 
 Vue.material.registerTheme("default", {
   primary: "teal",

@@ -39,7 +39,7 @@ export default {
       this.$refs["description"].clearInput();
       this.$refs["scoreToWin"].clearInput();
       this.$refs["teamCountInMatch"].clearInput();
-      this.$refs["memberCountInTeam "].clearInput();
+      this.$refs["memberCountInTeam"].clearInput();
     }
   }
 }
