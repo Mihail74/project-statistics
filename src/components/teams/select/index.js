@@ -1,3 +1,3 @@
-import TeamSelect from "./TeamSelect.vue"
+import TeamSelect from "./TeamSelect.vue";
 
-export default TeamSelect
+export default TeamSelect;

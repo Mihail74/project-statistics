@@ -1,4 +1,4 @@
 export default {
-  FORMING: "FORMING",
-  FORMED: "FORMED"
-}
+    FORMING: "FORMING",
+    FORMED: "FORMED"
+};

@@ -1,3 +1,3 @@
-import GameSelect from "./GameSelect.vue"
+import GameSelect from "./GameSelect.vue";
 
-export default GameSelect
+export default GameSelect;

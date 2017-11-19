@@ -1,3 +1,3 @@
-import UserSelect from "./UserSelect.vue"
+import UserSelect from "./UserSelect.vue";
 
-export default UserSelect
+export default UserSelect;

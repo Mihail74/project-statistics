@@ -1,51 +1,50 @@
-import Vue from "vue"
-import restApi from "@/restapi"
-import InviteStatus from "@/enums/invites/InviteStatus.js"
+import restApi from "@/restapi";
+import InviteStatus from "@/enums/invites/InviteStatus.js";
 
 export default {
-  name: "invites",
+    name: "invites",
 
-  data() {
-    return {
-      invites: []
-    }
-  },
-
-  created() {
-    this.fetchData();
-  },
-
-  methods: {
-    fetchData() {
-      restApi.get("/api/me/invites/")
-        .then(data => {
-          this.invites = data.invites;
-        })
+    data() {
+        return {
+            invites: []
+        };
     },
 
-    routeToInvite(invite) {
-      this.$router.push({ name: "invite", params: { id: invite.id } })
+    created() {
+        this.fetchData();
     },
 
-    getStatusIcon(invite){
-      switch(invite.status) {
-        case InviteStatus.NEW:
-          return 'fiber_new';
-        case InviteStatus.ACCEPTED:
-          return 'check';
-        case InviteStatus.DECLINED:
-          return 'close'
-        default:
-          return '';
+    methods: {
+        fetchData() {
+            restApi.get("/api/me/invites/")
+                .then(data => {
+                    this.invites = data.invites;
+                });
+        },
+
+        routeToInvite(invite) {
+            this.$router.push({ name: "invite", params: { id: invite.id } });
+        },
+
+        getStatusIcon(invite){
+            switch(invite.status) {
+            case InviteStatus.NEW:
+                return "fiber_new";
+            case InviteStatus.ACCEPTED:
+                return "check";
+            case InviteStatus.DECLINED:
+                return "close";
+            default:
+                return "";
+            }
+        },
+
+        isAccepted(invite){
+            return invite.status == InviteStatus.ACCEPTED;
+        },
+
+        isDeclined(invite){
+            return invite.status == InviteStatus.DECLINED;
         }
-    },
-
-    isAccepted(invite){
-      return invite.status == InviteStatus.ACCEPTED;
-    },
-
-    isDeclined(invite){
-      return invite.status == InviteStatus.DECLINED;
     }
-  }
-}
+};

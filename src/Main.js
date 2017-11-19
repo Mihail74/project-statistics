@@ -13,22 +13,22 @@ Vue.config.productionTip = false;
 Vue.use(VueMaterial);
 
 Vue.material.registerTheme("default", {
-  primary: "teal",
-  accent: {
-    color: 'red',
-    hue: 900,
-  },
-  warn: "red",
-  background: "white"
+    primary: "teal",
+    accent: {
+        color: "red",
+        hue: 900,
+    },
+    warn: "red",
+    background: "white"
 });
 
 /* eslint-disable no-new */
 new Vue({
-  el: "#app",
-  store,
-  router,
-  template: "<App/>",
-  components: {
-    App
-  }
+    el: "#app",
+    store,
+    router,
+    template: "<App/>",
+    components: {
+        App
+    }
 });

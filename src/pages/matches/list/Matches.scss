@@ -9,14 +9,16 @@
   margin: 0 4px 16px;
 }
 
-.cursor-pointer{
+.cursor-pointer {
   cursor: pointer;
 }
-.card-holder{
-  div{
-    margin: 8px 0px;
+
+.card-holder {
+  div {
+    margin: 8px 0;
   }
 }
+
 .vs-separated-item + .vs-separated-item:before {
   content: " vs ";
 }

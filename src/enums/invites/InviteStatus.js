@@ -1,5 +1,5 @@
 export default {
-  NEW: "NEW",
-  ACCEPTED: "ACCEPTED",
-  DECLINED: "DECLINED"
-}
+    NEW: "NEW",
+    ACCEPTED: "ACCEPTED",
+    DECLINED: "DECLINED"
+};

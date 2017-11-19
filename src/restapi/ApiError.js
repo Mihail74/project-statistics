@@ -1,6 +1,6 @@
- export default class ApiError {
-   constructor(code, cause) {
-     this.code = code;
-     this.cause = cause || "";
-   }
- }
+export default class ApiError {
+    constructor(code, cause) {
+        this.code = code;
+        this.cause = cause || "";
+    }
+}

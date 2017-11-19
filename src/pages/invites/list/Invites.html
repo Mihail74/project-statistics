@@ -1,8 +1,7 @@
 <section>
   <div class="card-holder cursor-pointer">
     <md-card v-for="invite in invites" :key="invite.id" @click.native="() => routeToInvite(invite)" md-with-hover>
-      <md-icon :class="[{ 'md-accent': isDeclined(invite) }, {'md-primary': !isDeclined(invite)}]"
-        class="md-fab md-fab-top-right md-size-2x">{{getStatusIcon(invite)}}</md-icon>
+      <md-icon :class="[{ 'md-accent': isDeclined(invite) }, {'md-primary': !isDeclined(invite)}]" class="md-fab md-fab-top-right md-size-2x">{{getStatusIcon(invite)}}</md-icon>
       <md-card-header>
         <div class="md-title">Команда: {{invite.team.name}}</div>
       </md-card-header>

@@ -1,33 +1,32 @@
-import Vue from "vue"
-import restApi from "@/restapi"
+import restApi from "@/restapi";
 
 export default {
-  name: "matches",
+    name: "matches",
 
-  data() {
-    return {
-      matches: []
-    }
-  },
-
-  created() {
-    this.fetchData();
-  },
-
-  methods: {
-    fetchData() {
-      restApi.get("/api/matches/")
-        .then(data => {
-          this.matches = data.matches;
-        });
+    data() {
+        return {
+            matches: []
+        };
     },
 
-    formatDate(date){
-      return new Date(date).toLocaleString("ru", {year: '2-digit', month: 'numeric', day: 'numeric',hour: '2-digit', minute:'2-digit'});
+    created() {
+        this.fetchData();
     },
 
-    routeToMatch(match){
-      this.$router.push({ name: 'match', params: { id: match.id } })
+    methods: {
+        fetchData() {
+            restApi.get("/api/matches/")
+                .then(data => {
+                    this.matches = data.matches;
+                });
+        },
+
+        formatDate(date){
+            return new Date(date).toLocaleString("ru", {year: "2-digit", month: "numeric", day: "numeric",hour: "2-digit", minute:"2-digit"});
+        },
+
+        routeToMatch(match){
+            this.$router.push({ name: "match", params: { id: match.id } });
+        }
     }
-  }
-}
+};
