@@ -1,13 +1,13 @@
 @import '~styles/cursor/cursor.scss';
 
 .title {
-  margin-bottom: 8px;
+    margin-bottom: 8px;
 }
 
 .comma-separated-item + .comma-separated-item:before {
-  content: ", ";
+    content: ", ";
 }
 
 .red {
-  color: #F44336;
+    color: #F44336;
 }

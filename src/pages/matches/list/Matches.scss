@@ -1,11 +1,11 @@
 @import '~styles/card/card.scss';
 
 .card-holder {
-  div {
-    margin: 8px 0;
-  }
+    div {
+        margin: 8px 0;
+    }
 }
 
 .vs-separated-item + .vs-separated-item:before {
-  content: " vs ";
+    content: " vs ";
 }

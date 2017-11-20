@@ -4,157 +4,157 @@ $sizebar-size: 280px;
 .body,
 body,
 html {
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
 }
 
 div {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 .main-content {
-  overflow: auto;
-  padding: 16px;
-  transition: $swift-ease-out;
-  transition-delay: 0.2s;
+    overflow: auto;
+    padding: 16px;
+    transition: $swift-ease-out;
+    transition-delay: 0.2s;
 }
 
 .main-container {
-  height: 100%;
-
-  .container {
     height: 100%;
 
-    .header {
-      display: flex;
-      height: 64px;
-      justify-content: space-between;
+    .container {
+        height: 100%;
 
-      .ps-menu-button-conteiner {
-        display: flex;
-        justify-content: flex-start;
-        width: 50%;
+        .header {
+            display: flex;
+            height: 64px;
+            justify-content: space-between;
 
-        .ps-menu-btn {
-          @media (min-width: 1281px) {
-            display: none;
-          }
+            .ps-menu-button-conteiner {
+                display: flex;
+                justify-content: flex-start;
+                width: 50%;
+
+                .ps-menu-btn {
+                    @media (min-width: 1281px) {
+                        display: none;
+                    }
+                }
+            }
+
+            .ps-logout-button-conteiner {
+                display: flex;
+                justify-content: flex-end;
+                width: 50%;
+            }
         }
-      }
-
-      .ps-logout-button-conteiner {
-        display: flex;
-        justify-content: flex-end;
-        width: 50%;
-      }
     }
-  }
 }
 //from vue-material site
 
 .main-container {
-  .container {
-    display: flex;
-    flex-flow: column nowrap;
-    flex: 1;
-    transition: $swift-ease-out;
-    @media (min-width: 1281px) {
-      padding-left: $sizebar-size;
-    }
-
-    .header {
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .main-sidebar.md-sidenav {
-      .md-sidenav-content {
-        width: $sizebar-size;
+    .container {
         display: flex;
-        flex-flow: column;
-        overflow: hidden;
-        @media (min-width: 1281px) {
-          transform: translate3d(0, 0, 0) !important;
-          top: 0;
-          pointer-events: auto;
-          box-shadow: $material-shadow-2dp;
-        }
-      }
-
-      .md-toolbar {
-        min-height: 172px;
-        border-bottom: 1px solid rgba(#000, .12);
-      }
-
-      .ps-logo {
-        font-size: 24px;
-
-        a {
-          width: 100%;
-          display: flex;
-          flex-flow: column;
-          justify-content: center;
-          align-items: center;
-          color: inherit;
-          text-decoration: none;
-
-          &:hover {
-            color: inherit;
-            text-decoration: none;
-          }
-        }
-
-        img {
-          width: 160px;
-          margin-bottom: 16px;
-        }
-      }
-
-      .main-sidebar-links {
-        overflow: auto;
+        flex-flow: column nowrap;
         flex: 1;
-
-        .md-list-item {
-          display: flex;
+        transition: $swift-ease-out;
+        @media (min-width: 1281px) {
+            padding-left: $sizebar-size;
         }
 
-        .md-list-item-container {
-          font-size: 14px;
-          font-weight: 500;
+        .header {
+            display: flex;
+            justify-content: space-between;
         }
-      }
+
+        .main-sidebar.md-sidenav {
+            .md-sidenav-content {
+                width: $sizebar-size;
+                display: flex;
+                flex-flow: column;
+                overflow: hidden;
+                @media (min-width: 1281px) {
+                    transform: translate3d(0, 0, 0) !important;
+                    top: 0;
+                    pointer-events: auto;
+                    box-shadow: $material-shadow-2dp;
+                }
+            }
+
+            .md-toolbar {
+                min-height: 172px;
+                border-bottom: 1px solid rgba(#000, .12);
+            }
+
+            .ps-logo {
+                font-size: 24px;
+
+                a {
+                    width: 100%;
+                    display: flex;
+                    flex-flow: column;
+                    justify-content: center;
+                    align-items: center;
+                    color: inherit;
+                    text-decoration: none;
+
+                    &:hover {
+                        color: inherit;
+                        text-decoration: none;
+                    }
+                }
+
+                img {
+                    width: 160px;
+                    margin-bottom: 16px;
+                }
+            }
+
+            .main-sidebar-links {
+                overflow: auto;
+                flex: 1;
+
+                .md-list-item {
+                    display: flex;
+                }
+
+                .md-list-item-container {
+                    font-size: 14px;
+                    font-weight: 500;
+                }
+            }
+        }
+
+        .md-router-enter,
+        .md-router-leave {
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            @media (min-width: 1281px) {
+                left: $sizebar-size;
+            }
+
+            .main-content {
+                opacity: 0;
+                overflow: hidden;
+            }
+        }
+
+        .md-router-enter {
+            z-index: 2;
+            transition: $swift-ease-out;
+
+            .main-content {
+                transform: translate3D(0, 10%, 0);
+            }
+        }
+
+        .md-router-leave {
+            z-index: 1;
+            transition: $swift-ease-in;
+            transition-duration: 0.25s;
+        }
     }
-
-    .md-router-enter,
-    .md-router-leave {
-      position: absolute;
-      top: 0;
-      right: 0;
-      left: 0;
-      @media (min-width: 1281px) {
-        left: $sizebar-size;
-      }
-
-      .main-content {
-        opacity: 0;
-        overflow: hidden;
-      }
-    }
-
-    .md-router-enter {
-      z-index: 2;
-      transition: $swift-ease-out;
-
-      .main-content {
-        transform: translate3D(0, 10%, 0);
-      }
-    }
-
-    .md-router-leave {
-      z-index: 1;
-      transition: $swift-ease-in;
-      transition-duration: 0.25s;
-    }
-  }
 }

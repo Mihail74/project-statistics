@@ -1,31 +1,31 @@
 <section>
-  <form>
-    <md-input-container md-clearable ref="name">
-      <label>Название</label>
-      <md-input v-model="name" required></md-input>
-    </md-input-container>
+    <form>
+        <md-input-container md-clearable ref="name">
+            <label>Название</label>
+            <md-input v-model="name" required></md-input>
+        </md-input-container>
 
-    <md-input-container md-clearable ref="description">
-      <label>Описание</label>
-      <md-input v-model="description"></md-input>
-    </md-input-container>
+        <md-input-container md-clearable ref="description">
+            <label>Описание</label>
+            <md-input v-model="description"></md-input>
+        </md-input-container>
 
-    <md-input-container md-clearable ref="scoreToWin">
-      <label>Количество очков для победы</label>
-      <md-input v-model="scoreToWin" required></md-input>
-    </md-input-container>
+        <md-input-container md-clearable ref="scoreToWin">
+            <label>Количество очков для победы</label>
+            <md-input v-model="scoreToWin" required></md-input>
+        </md-input-container>
 
-    <md-input-container md-clearable ref="memberCountInTeam ">
-      <label>Количество участников в команде</label>
-      <md-input v-model="memberCountInTeam" required></md-input>
-    </md-input-container>
+        <md-input-container md-clearable ref="memberCountInTeam ">
+            <label>Количество участников в команде</label>
+            <md-input v-model="memberCountInTeam" required></md-input>
+        </md-input-container>
 
-    <md-input-container md-clearable ref="teamCountInMatch">
-      <label>Количество команд в матче</label>
-      <md-input v-model="teamCountInMatch" required></md-input>
-    </md-input-container>
+        <md-input-container md-clearable ref="teamCountInMatch">
+            <label>Количество команд в матче</label>
+            <md-input v-model="teamCountInMatch" required></md-input>
+        </md-input-container>
 
-    <md-button class="md-primary" @click="createGame()">Создать</md-button>
-    <md-button class="md-primary" @click="clearInput()">Отчистить</md-button>
-  </form>
+        <md-button class="md-primary" @click="createGame()">Создать</md-button>
+        <md-button class="md-primary" @click="clearInput()">Отчистить</md-button>
+    </form>
 </section>

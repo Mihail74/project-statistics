@@ -1,14 +1,18 @@
 <div>
-  <div class="md-title title">Приглашение в команду</div>
+    <div class="md-title title">Приглашение в команду</div>
 
-  <md-list>
-    <md-list-item>
-      <span>Команда: <md-chip @click.native="routeToTeam">{{invite.team.name}}</md-chip></span>
-    </md-list-item>
-  </md-list>
+    <md-list>
+        <md-list-item>
+            <span>Команда: <md-chip @click.native="routeToTeam">{{invite.team.name}}</md-chip></span>
+        </md-list-item>
+    </md-list>
 
-  <div v-if="isNew()">
-    <md-button class="md-icon-button md-raised md-primary" @click="accept"><md-icon>done</md-icon></md-button>
-    <md-button class="md-icon-button md-raised md-accent" @click="decline"><md-icon>clear</md-icon></md-button>
-  </div>
+    <div v-if="isNew()">
+        <md-button class="md-icon-button md-raised md-primary" @click="accept">
+            <md-icon>done</md-icon>
+        </md-button>
+        <md-button class="md-icon-button md-raised md-accent" @click="decline">
+            <md-icon>clear</md-icon>
+        </md-button>
+    </div>
 </div>

@@ -1,14 +1,14 @@
 <section>
-  <div class="card-holder cursor-pointer">
-    <md-card v-for="match in matches" @click.native="routeToMatch(match)" :key="match.id" md-with-hover>
-      <md-card-content>
-        <div>Игра: {{match.game.name}}</div>
-        <div>Участники:
-          <span class="vs-separated-item" v-for="tms in match.teamsMatchScore">{{tms.team.name}}</span>
-        </div>
-        <div>Победитель: {{match.winnerTeam.name}}</div>
-        <div>Время проведения: {{formatDate(match.timestamp)}}</div>
-      </md-card-content>
-    </md-card>
-  </div>
+    <div class="card-holder cursor-pointer">
+        <md-card v-for="match in matches" @click.native="routeToMatch(match)" :key="match.id" md-with-hover>
+            <md-card-content>
+                <div>Игра: {{match.game.name}}</div>
+                <div>Участники:
+                    <span class="vs-separated-item" v-for="tms in match.teamsMatchScore">{{tms.team.name}}</span>
+                </div>
+                <div>Победитель: {{match.winnerTeam.name}}</div>
+                <div>Время проведения: {{formatDate(match.timestamp)}}</div>
+            </md-card-content>
+        </md-card>
+    </div>
 </section>
