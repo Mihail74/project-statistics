@@ -1,12 +1,1 @@
-.card-holder {
-  display: flex;
-  flex-wrap: wrap;
-  padding-top: 16px;
-  overflow-y: auto;
-}
-
-.card-holder .md-card {
-  min-width: 392px;
-  max-width: 392px;
-  margin: 0 4px 16px;
-}
+@import '~styles/card/card.scss';

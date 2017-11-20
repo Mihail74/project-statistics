@@ -1,17 +1,4 @@
-.card-holder {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.card-holder .md-card {
-  min-width: 392px;
-  max-width: 392px;
-  margin: 0 4px 16px;
-}
-
-.cursor-pointer {
-  cursor: pointer;
-}
+@import '~styles/card/card.scss';
 
 .card-holder {
   div {
