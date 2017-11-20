@@ -4,11 +4,18 @@
     display: flex;
     flex-wrap: wrap;
     padding-top: 16px;
-    overflow-y: auto;
 }
 
 .card-holder .md-card {
-    min-width: 392px;
-    max-width: 392px;
-    margin: 0 4px 16px;
+    width: 23%;
+    max-width: 23%;
+    margin: 0 8px 16px;
+    @media (max-width: 768px) {
+        width: 100%;
+        max-width: 100%;
+    }
+    @media (min-width: 769px) and (max-width: 992px) {
+        width: 47%;
+        max-width: 47%;
+    }
 }
