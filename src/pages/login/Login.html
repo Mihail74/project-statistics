@@ -1,19 +1,19 @@
 <div class="modal-container active">
 
-  <div class="login-modal">
-    <md-tabs md-fixed>
-      <md-tab id="login" md-active md-label="Вход">
-        <login-tab @login="login" />
-      </md-tab>
+    <div class="login-modal">
+        <md-tabs md-fixed>
+            <md-tab id="login" md-active md-label="Вход">
+                <login-tab @login="login" />
+            </md-tab>
 
-      <md-tab id="register" md-label="Регистрация">
-        <register-tab @registered="login" />
-      </md-tab>
-    </md-tabs>
-  </div>
+            <md-tab id="register" md-label="Регистрация">
+                <register-tab @registered="login" />
+            </md-tab>
+        </md-tabs>
+    </div>
 
-  <md-snackbar md-position="bottom center" ref="snackbar" :md-duration="snackBarDuration">
-    <span>Неверный логин или пароль</span>
-    <md-button class="md-accent" @click="$refs.snackbar.close()">ок</md-button>
-  </md-snackbar>
+    <md-snackbar md-position="bottom center" ref="snackbar" :md-duration="snackBarDuration">
+        <span>Неверный логин или пароль</span>
+        <md-button class="md-accent" @click="$refs.snackbar.close()">ок</md-button>
+    </md-snackbar>
 </div>

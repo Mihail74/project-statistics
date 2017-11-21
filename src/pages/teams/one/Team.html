@@ -18,7 +18,7 @@
         </md-list-item>
 
         <md-list-item v-if="isForming(team)">
-            <span>Приглашенные: <span md-theme-default v-for="invite in invites" :class="[{'red' : isDeclinedInvite(invite)}]" class="comma-separated-item" :key="invite.id">{{invite.user.name}}</span></span>
+            <span>Приглашенные: <span md-theme-default v-for="invite in notAcceptedInvites" :class="[{'red' : isDeclinedInvite(invite)}]" class="comma-separated-item" :key="invite.id">{{invite.user.name}}</span></span>
         </md-list-item>
 
         <md-list-item v-if="isFormed(team)">

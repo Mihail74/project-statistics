@@ -34,22 +34,22 @@
                 <div class="main-sidebar-links">
                     <md-list class="md-dense">
                         <md-list-item>
-                            <router-link :to="{ name: 'games'}" @click.native="closeSidenav">Игры</router-link>
+                            <router-link :to="{ name: 'games'}" @click.native="closeSidenav">Игры<md-ink-ripple /></router-link>
                             <md-button class="md-icon-button md-primary" @click="routeTo('creation-game-route')">
                                 <md-icon>add</md-icon>
                             </md-button>
                         </md-list-item>
                         <md-list-item>
-                            <router-link :to="{ name: 'teams'}" @click.native="closeSidenav">Команды</router-link>
+                            <router-link :to="{ name: 'teams'}" @click.native="closeSidenav">Команды<md-ink-ripple /></router-link>
                             <md-button class="md-icon-button md-primary" @click="routeTo('creation-team-route')">
                                 <md-icon>add</md-icon>
                             </md-button>
                         </md-list-item>
                         <md-list-item>
-                            <router-link to="/pages/invites" @click.native="closeSidenav">Приглашения в команды</router-link>
+                            <router-link :to="{ name: 'invites'}" @click.native="closeSidenav">Приглашения в команды</router-link>
                         </md-list-item>
                         <md-list-item>
-                            <router-link to="/pages/matches" @click.native="closeSidenav">Матчи</router-link>
+                            <router-link :to="{ name: 'matches'}" @click.native="closeSidenav">Матчи<md-ink-ripple /></router-link>
                             <md-button class="md-icon-button md-primary" @click="routeTo('creation-match-route')">
                                 <md-icon>add</md-icon>
                             </md-button>

@@ -17,6 +17,12 @@ export default {
         };
     },
 
+    computed:{
+        notAcceptedInvites(){
+            return this.invites.filter(e => e.status != InviteStatus.ACCEPTED);
+        }
+    },
+
     mixins: [mixin],
 
     created() {
