@@ -17,19 +17,21 @@ export default {
 
         createGame() {
             restApi.post("/api/games/create", {
-                name: this.name,
-                description: this.description,
-                scoreToWin: this.scoreToWin,
-                teamCountInMatch: this.teamCountInMatch,
-                memberCountInTeam: this.memberCountInTeam
-            })
+                    name: this.name,
+                    description: this.description,
+                    scoreToWin: this.scoreToWin,
+                    teamCountInMatch: this.teamCountInMatch,
+                    memberCountInTeam: this.memberCountInTeam
+                })
                 .then(() => {
-                    this.clearInput();
-                    this.$router.push({ name: "games" });
-                },
-                () => {
-                    //TODO: доделать обработку ошибок
-                });
+                        this.clearInput();
+                        this.$router.push({
+                            name: "games"
+                        });
+                    },
+                    () => {
+                        //TODO: доделать обработку ошибок
+                    });
         },
 
         clearInput() {
@@ -37,7 +39,7 @@ export default {
             this.$refs["description"].clearInput();
             this.$refs["scoreToWin"].clearInput();
             this.$refs["teamCountInMatch"].clearInput();
-            this.$refs["memberCountInTeam "].clearInput();
+            this.$refs["memberCountInTeam"].clearInput();
         }
     }
 };

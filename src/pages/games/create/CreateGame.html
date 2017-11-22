@@ -1,29 +1,34 @@
 <section>
-    <form>
-        <md-input-container md-clearable ref="name">
-            <label>Название</label>
-            <md-input v-model="name" required></md-input>
-        </md-input-container>
+  <form>
+    <md-input-container :class="{'md-input-invalid': errors.has('name')}" md-clearable ref="name">
+      <label>Название</label>
+      <md-input v-model="name" required data-vv-name="name" v-validate="'required'"></md-input>
+      <span class="md-error">{{errors.first('name')}}</span>
+    </md-input-container>
 
-        <md-input-container md-clearable ref="description">
-            <label>Описание</label>
-            <md-input v-model="description"></md-input>
-        </md-input-container>
+    <md-input-container :class="{'md-input-invalid': errors.has('description')}" md-clearable ref="description">
+      <label>Описание</label>
+      <md-input v-model="description" required data-vv-name="description" v-validate="'required'"></md-input>
+      <span class="md-error">{{errors.first('description')}}</span>
+    </md-input-container>
 
-        <md-input-container md-clearable ref="scoreToWin">
-            <label>Количество очков для победы</label>
-            <md-input v-model="scoreToWin" required></md-input>
-        </md-input-container>
+    <md-input-container :class="{'md-input-invalid': errors.has('scoreToWin')}" md-clearable ref="scoreToWin">
+      <label>Количество очков для победы</label>
+      <md-input v-model="scoreToWin" required data-vv-name="scoreToWin" v-validate="'required|numeric'"></md-input>
+      <span class="md-error">{{errors.first('scoreToWin')}}</span>
+    </md-input-container>
 
-        <md-input-container md-clearable ref="memberCountInTeam ">
-            <label>Количество участников в команде</label>
-            <md-input v-model="memberCountInTeam" required></md-input>
-        </md-input-container>
+    <md-input-container :class="{'md-input-invalid': errors.has('memberCountInTeam')}" md-clearable ref="memberCountInTeam">
+      <label>Количество участников в команде</label>
+      <md-input v-model="memberCountInTeam" required data-vv-name="memberCountInTeam" v-validate="'required|numeric'"></md-input>
+      <span class="md-error">{{errors.first('memberCountInTeam')}}</span>
+    </md-input-container>
 
-        <md-input-container md-clearable ref="teamCountInMatch">
-            <label>Количество команд в матче</label>
-            <md-input v-model="teamCountInMatch" required></md-input>
-        </md-input-container>
+    <md-input-container :class="{'md-input-invalid': errors.has('teamCountInMatch')}" md-clearable ref="teamCountInMatch">
+      <label>Количество команд в матче</label>
+      <md-input v-model="teamCountInMatch" required data-vv-name="teamCountInMatch" v-validate="'required|numeric'"></md-input>
+      <span class="md-error">{{errors.first('teamCountInMatch')}}</span>
+    </md-input-container>
 
         <md-button class="md-primary" @click="createGame()">Создать</md-button>
         <md-button class="md-primary" @click="clearInput()">Отчистить</md-button>
