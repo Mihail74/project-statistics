@@ -10,7 +10,7 @@
         <md-input v-model="password" type="password"></md-input>
     </md-input-container>
 
-    <md-button type="submit" class="md-raised md-primary modal-button" @click="doLogin()">Войти</md-button>
+    <md-button type="submit" class="md-raised md-primary modal-button" @click="doLogin()" autofocus>Войти</md-button>
 </form>
 </template>
 
@@ -29,7 +29,6 @@ export default {
 
     methods: {
         doLogin() {
-            console.log(this.$data)
             const credentials = {
                 login: this.login,
                 password: this.password

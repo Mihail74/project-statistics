@@ -44,6 +44,7 @@ export default {
             state.accessTokenExpiredTime = null;
             state.refreshToken = null;
             state.refreshTokenExpiredTime = null;
+            state.roles = null;
         },
 
         [CLEAR_PROFILE]: (state) => {

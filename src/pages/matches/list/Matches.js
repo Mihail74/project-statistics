@@ -15,7 +15,7 @@ export default {
 
     methods: {
         fetchData() {
-            restApi.get("/api/matches/")
+            restApi.get("/api/matches/", {onlyMyMatches: true})
                 .then(data => {
                     this.matches = data.matches;
                 });
@@ -27,6 +27,10 @@ export default {
 
         routeToMatch(match){
             this.$router.push({ name: "match", params: { id: match.id } });
+        },
+
+        isMemberOfWinnerTeam(match){
+            return match.winnerTeam.users.find(user => user.id == this.$store.state.security.profile.id);
         }
     }
 };

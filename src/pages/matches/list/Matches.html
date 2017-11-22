@@ -1,6 +1,8 @@
 <section>
     <div class="card-holder cursor-pointer">
         <md-card v-for="match in matches" @click.native="routeToMatch(match)" :key="match.id" md-with-hover>
+            <md-icon v-if="isMemberOfWinnerTeam(match)" class="md-fab md-fab-top-right md-primary ">trending_up</md-icon>
+            <md-icon v-else class="md-fab md-fab-top-right md-accent ">trending_down</md-icon>
             <md-card-content>
                 <div>Игра: {{match.game.name}}</div>
                 <div>Участники:
