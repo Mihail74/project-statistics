@@ -17,7 +17,8 @@ export default {
     name: "team-select",
     props: {
         required: Boolean,
-        gameID: Number
+        gameID: Number,
+        memberID: Number
     },
 
     data() {
@@ -34,7 +35,8 @@ export default {
     methods: {
         fetchData() {
             restApi.get("/api/teams/", {
-                    gameID: this.gameID
+                    gameID: this.gameID,
+                    memberID: this.memberID
                 })
                 .then(data => {
                     this.teams = data.teams
