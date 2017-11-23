@@ -13,7 +13,8 @@ export default {
     data() {
         return {
             game: {},
-            teamScores: []
+            teamScores: [],
+            profileID: this.$store.state.security.profile.id
         };
     },
 

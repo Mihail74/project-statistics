@@ -1,5 +1,5 @@
 <template>
-<md-input-container md-clearable ref="select">
+<md-input-container ref="select">
     <label>Пользователь</label>
     <md-select :required="required" id="user-select" v-model="selectedID" @change="changeSelected">
         <md-option v-for="user in users" :key="user.id" :value="user.id">
