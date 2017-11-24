@@ -14,7 +14,7 @@ export default {
     },
 
     methods: {
-        submit(){
+        submit() {
             this.$validator.validateAll().then((isValid) => {
                 if (isValid) {
                     this.createGame();

@@ -6,6 +6,7 @@
             {{ game.name }}
         </md-option>
     </md-select>
+    <span class="md-error">{{ cause }}</span>
 </md-input-container>
 </template>
 <script>
@@ -21,7 +22,8 @@ export default {
     data() {
         return {
             games: [],
-            selectedID: null
+            selectedID: null,
+            cause: null
         }
     },
 
@@ -34,8 +36,8 @@ export default {
             restApi.get("/api/games/")
                 .then(data => {
                     this.games = data.games
-                }, apiError => {
-                    //TODO: обработать ошибку
+                }, error => {
+                    this.cause = error.cause ? error.cause : "Ошибка правильности заполнения полей"
                 })
         },
 

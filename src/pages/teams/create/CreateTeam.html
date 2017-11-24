@@ -1,17 +1,19 @@
 <section>
     <form>
-        <md-input-container md-clearable ref="name">
+        <md-input-container md-clearable ref="name" :class="{'md-input-invalid': errors.has('name')}" md-clearable>
             <label>Название</label>
-            <md-input v-model="name" required></md-input>
+            <md-input v-model="name" required data-vv-name="name" v-validate="'required'"></md-input>
+            <span class="md-error">{{ errors.first('name') }}</span>
         </md-input-container>
         <game-select :required="true" @change="changeGame" ref="gameSelect" />
 
         <template v-for="(user, index) in users">
-      <user-select :required="true" @change="selectedUser => chageUser(selectedUser, index)" />
-    </template>
-
-
-        <md-button class="md-primary" @click="create">Создать</md-button>
-        <md-button class="md-primary" @click="clearInput">Отчистить</md-button>
+            <user-select :required="true" @change="selectedUser => chageUser(selectedUser, index)" />
+        </template>
+        <span class="md-error">{{ cause }}</span>
+        <div class="btns">
+            <md-button class="md-primary" @click="submit">Создать</md-button>
+            <md-button class="md-primary" @click="clearInput">Отчистить</md-button>
+        </div>        
     </form>
 </section>
