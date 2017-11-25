@@ -22,12 +22,24 @@ export default {
     methods: {
 
         submit() {
-            this.$validator.validateAll().then((isValid) => {
-                if (isValid) {
+            let promises = []
+            promises.push(this.$validator.validateAll());
+            promises.push(this.$refs["gameSelect"].validate());
+            if (this.$refs.users) {
+                this.$refs.users.forEach(user => {
+                    promises.push(user.validate())
+                });
+            }
+
+            Promise.all(promises).then((isValid) => {
+                if (isValid.every(Boolean)) {
+                    console.log('all true')
                     this.create();
                     return;
-                }
-            });
+                }   
+            }).catch((error) => {
+                console.log('error')
+            })            
         },
 
         create() {
@@ -67,9 +79,13 @@ export default {
         },
 
         clearInput() {
-            //TODO: чистить ввод
-            // this.$refs["name"].clearInput();
-            // this.$refs["gameSelect"].clearInput();
+            this.$refs["name"].clearInput();
+            this.$refs["gameSelect"].clearSelect();
+            if (this.$refs.users) {
+                this.$refs.users.forEach(user => {
+                    user.clearSelected();
+                });
+            }
         }
     }
 };

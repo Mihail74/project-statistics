@@ -7,13 +7,12 @@
         </md-input-container>
         <game-select :required="true" @change="changeGame" ref="gameSelect" />
 
-        <template v-for="(user, index) in users">
-            <user-select :required="true" @change="selectedUser => chageUser(selectedUser, index)" />
-        </template>
+        <user-select v-for="(user, index) in users" ref='users' :required="true" @change="selectedUser => chageUser(selectedUser, index)"
+        :key="index"/>
         <span class="md-error">{{ cause }}</span>
         <div class="btns">
             <md-button class="md-primary" @click="submit">Создать</md-button>
             <md-button class="md-primary" @click="clearInput">Отчистить</md-button>
-        </div>        
+        </div>
     </form>
 </section>
