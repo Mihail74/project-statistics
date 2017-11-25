@@ -2,7 +2,7 @@ import axios from "axios";
 import store from "@/store";
 import router from "@/router";
 import authService from "@/services/authorization";
-import ApiError from "@/restApi/ApiError.js";
+import ApiError from "@/restapi/ApiError.js";
 
 
 class RestApi {
