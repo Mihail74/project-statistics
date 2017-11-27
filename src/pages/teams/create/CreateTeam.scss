@@ -1,0 +1,12 @@
+.md-error {
+    color: red;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    .btns {
+        display: flex;
+        flex-direction: row;            
+    }
+}

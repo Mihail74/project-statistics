@@ -1,11 +1,13 @@
 <template>
-<md-input-container ref="select">
+<md-input-container ref="select" :class="{'md-input-invalid': errors.has('userSelect')}" md-clearable>
     <label>Пользователь</label>
-    <md-select :required="required" id="user-select" v-model="selectedID" @change="changeSelected">
+    <md-select :required="required" id="user-select" v-model="selectedID" @change="changeSelected" data-vv-name="userSelect" v-validate="'required'">
         <md-option v-for="user in users" :key="user.id" :value="user.id">
             {{ user.name }}
         </md-option>
     </md-select>
+    <span class="md-error">{{ errors.first('teamSelect') }}</span>
+    <span class="md-error">{{ cause }}</span>
 </md-input-container>
 </template>
 <script>
@@ -21,7 +23,8 @@ export default {
     data() {
         return {
             users: [],
-            selectedID: null
+            selectedID: null,
+            cause: null
         }
     },
 
@@ -30,12 +33,16 @@ export default {
     },
 
     methods: {
+        validate() {
+            return this.$validator.validateAll();
+        },
+
         fetchData() {
             restApi.get("/api/users/")
                 .then(data => {
                     this.users = data.users
-                }, apiError => {
-                    //TODO: обработать ошибку
+                },error => {
+                    this.cause = error.cause ? error.cause : "Ошибка правильности заполнения полей"
                 })
         },
 
@@ -44,8 +51,8 @@ export default {
             this.$emit("change", selectedUser);
         },
 
-        clearInput() {
-            this.$refs["select"].clearInput();
+        clearSelected() {
+            this.selectedID = '';
         }
     }
 }

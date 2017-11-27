@@ -1,11 +1,13 @@
 <template>
-<md-input-container ref="select">
+<md-input-container ref="select" :class="{'md-input-invalid': errors.has('teamSelect')}" md-clearable>
     <label>Команда</label>
-    <md-select :required="required" id="team-select" v-model="selectedID" @change="changeSelected">
+    <md-select :required="required" id="team-select" v-model="selectedID" @change="changeSelected" data-vv-name="teamSelect" v-validate="'required'">
         <md-option v-for="team in teams" :key="team.id" :value="team.id">
             {{ team.name }}
         </md-option>
     </md-select>
+    <span class="md-error">{{ errors.first('teamSelect') }}</span>
+    <span class="md-error">{{ cause }}</span>
 </md-input-container>
 </template>
 
@@ -18,20 +20,26 @@ export default {
     props: {
         required: Boolean,
         gameID: Number,
-        memberID: Number
+        memberID: Number,
+        validate: Boolean
     },
 
     data() {
         return {
             teams: [],
-            selectedID: null
+            selectedID: null,
+            cause: null
         }
+    },
+
+    validate() {
+        return this.$validator.validateAll();
     },
 
     created() {
         this.fetchData();
     },
-
+    
     methods: {
         fetchData() {
             restApi.get("/api/teams/", {
@@ -40,8 +48,8 @@ export default {
                 })
                 .then(data => {
                     this.teams = data.teams
-                }, apiError => {
-                    //TODO: обработать ошибку
+                },error => {
+                    this.cause = error.cause ? error.cause : "Ошибка правильности заполнения полей"
                 })
         },
 
@@ -50,8 +58,8 @@ export default {
             this.$emit("change", selectedTeam);
         },
 
-        clearInput() {
-            this.selectedID = null;
+        clearSelect() {
+            this.selectedID = '';
         }
     }
 }
