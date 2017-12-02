@@ -1,13 +1,15 @@
 import restApi from "@/restapi";
 import GameSelect from "@/components/games/select";
 import UserSelect from "@/components/users/select";
+import ApiErrors from "@/components/errors/apiErrors";
 
 export default {
     name: "create-team",
 
     components: {
         GameSelect,
-        UserSelect
+        UserSelect,
+        ApiErrors
     },
 
     data() {
@@ -15,7 +17,8 @@ export default {
             name: null,
             game: {},
             users: [],
-            cause: ''
+            cause: '',
+            apiErrors: null
         };
     },
 
@@ -33,13 +36,12 @@ export default {
 
             Promise.all(promises).then((isValid) => {
                 if (isValid.every(Boolean)) {
-                    console.log('all true')
                     this.create();
                     return;
-                }   
+                }
             }).catch((error) => {
                 console.log('error')
-            })            
+            })
         },
 
         create() {
@@ -48,14 +50,14 @@ export default {
                 gameID: this.game.id,
                 membersID: this.users.map(e => e.id)
             }).then(() => {
-                    this.clearInput();
-                    this.$router.push({
-                        name: "teams"
-                    });
-                },
-                error => {
-                    this.cause = error.cause ? error.cause : "Ошибка правильности заполнения полей"
+                this.clearInput();
+                this.$router.push({
+                    name: "teams"
                 });
+            }).catch(errors => {
+                this.apiErrors = errors
+                this.openSnackBar();
+            });
         },
 
         changeGame(game) {
@@ -86,6 +88,10 @@ export default {
                     user.clearSelected();
                 });
             }
+        },
+
+        openSnackBar() {
+            this.$refs.snackbar.open();
         }
     }
 };

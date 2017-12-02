@@ -1,4 +1,5 @@
 import restApi from "@/restapi";
+import ApiErrors from "@/components/errors/apiErrors";
 
 export default {
     name: "create-game",
@@ -9,8 +10,13 @@ export default {
             description: null,
             scoreToWin: null,
             teamCountInMatch: null,
-            memberCountInTeam: null
+            memberCountInTeam: null,
+            apiErrors: null
         };
+    },
+
+    components: {
+        ApiErrors
     },
 
     methods: {
@@ -35,6 +41,9 @@ export default {
                 this.$router.push({
                     name: "games"
                 });
+            }).catch(errors => {
+                this.apiErrors = errors
+                this.openSnackBar();
             });
         },
 
@@ -44,6 +53,10 @@ export default {
             this.$refs["scoreToWin"].clearInput();
             this.$refs["teamCountInMatch"].clearInput();
             this.$refs["memberCountInTeam"].clearInput();
+        },
+
+        openSnackBar() {
+            this.$refs.snackbar.open();
         }
     }
 };

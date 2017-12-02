@@ -28,9 +28,8 @@ class RestApi {
             this.axios.post(this.host + url, body)
                 .then(function(response) {
                     resolve(response.data);
-                })
-                .catch(function(error) {
-                    reject(new ApiError(error.response.status, error.response.data.cause));
+                }).catch((error) => {                    
+                    reject(error.response.data.errors)
                 });
         });
     }
@@ -42,9 +41,8 @@ class RestApi {
             this.axios.put(this.host + url, body)
                 .then(function(response) {
                     resolve(response.data);
-                })
-                .catch(function(error) {
-                    reject(new ApiError(error.response.status, error.response.data.cause));
+                }).catch((error) => {                    
+                    reject(error.response.data.errors)
                 });
         });
     }
@@ -56,9 +54,8 @@ class RestApi {
             this.axios.get(this.host + url, { params: params })
                 .then(function(response) {
                     resolve(response.data);
-                })
-                .catch(function(error) {
-                    reject(new ApiError(error.response.status, error.response.data.cause));
+                }).catch((error) => {                    
+                    reject(error.response.data.errors)
                 });
         });
     }

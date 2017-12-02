@@ -8,11 +8,12 @@
         <game-select :required="true" @change="changeGame" ref="gameSelect" />
 
         <user-select v-for="(user, index) in users" ref='users' :required="true" @change="selectedUser => chageUser(selectedUser, index)"
-        :key="index"/>
+            :key="index" />
         <span class="md-error">{{ cause }}</span>
         <div class="btns">
             <md-button class="md-primary" @click="submit">Создать</md-button>
             <md-button class="md-primary" @click="clearInput">Отчистить</md-button>
+            <api-errors :apiErrors="apiErrors" ref="snackbar"></api-errors>
         </div>
     </form>
 </section>

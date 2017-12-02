@@ -1,6 +1,7 @@
 import LoginTab from "./LoginTab.vue";
 import RegisterTab from "./RegisterTab.vue";
 import authService from "@/services/authorization";
+import ApiErrors from "@/components/errors/apiErrors";
 import {UPDATE_TOKENS, UPDATE_PROFILE} from "@/store/modules/security.js";
 
 export default {
@@ -8,12 +9,13 @@ export default {
 
     data() {
         return {
-            snackBarDuration: 4000
+            apiErrors: null
         };
     },
     components: {
         LoginTab,
-        RegisterTab
+        RegisterTab,
+        ApiErrors
     },
 
     beforeRouteEnter(to, from, next) {
@@ -41,7 +43,8 @@ export default {
 
                     let redirect = this.$route.query.redirect || { name: "games" };
                     this.$router.push(redirect);
-                }, () => {
+                }).catch(errors => {
+                    this.apiErrors = errors
                     this.openSnackBar();
                 });
         },

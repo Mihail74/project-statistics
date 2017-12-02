@@ -12,8 +12,5 @@
         </md-tabs>
     </div>
 
-    <md-snackbar md-position="bottom center" ref="snackbar" :md-duration="snackBarDuration">
-        <span>Неверный логин или пароль</span>
-        <md-button class="md-accent" @click="$refs.snackbar.close()">ок</md-button>
-    </md-snackbar>
+    <api-errors :apiErrors="apiErrors" ref="snackbar"></api-errors>
 </div>

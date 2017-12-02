@@ -1,5 +1,6 @@
 import axios from "axios";
 import store from "@/store";
+import ApiError from "@/restapi/ApiError.js";
 
 class SecurityService {
 
@@ -31,12 +32,13 @@ class SecurityService {
     //TODO: Здесь и ниже нужно в reject Использовать свой класс ошибки
     refreshTokens() {
         return new Promise((resolve, reject) => {
-            this.axios.post(`${this.host}/api/auth/token/refresh`, { refreshToken: store.state.security.refreshToken })
+            this.axios.post(`${this.host}/api/auth/token/refresh`, {
+                    refreshToken: store.state.security.refreshToken
+                })
                 .then(response => {
                     resolve(response.data);
-                },
-                response => {
-                    reject(new Error(response.status, response.data.message));
+                }).catch((error) => {                    
+                    reject(error.response.data.errors)
                 });
         });
     }
@@ -46,9 +48,8 @@ class SecurityService {
             this.axios.post(`${this.host}/api/auth/login`, credentials)
                 .then(response => {
                     resolve(response.data);
-                },
-                response => {
-                    reject(new Error(response.status, response.data.message));
+                }).catch((error) => {                    
+                    reject(error.response.data.errors)
                 });
         });
     }
@@ -58,9 +59,8 @@ class SecurityService {
             this.axios.post(`${this.host}/api/auth/register`, credentials)
                 .then(response => {
                     resolve(response.data);
-                },
-                response => {
-                    reject(new Error(response.status, response.data.message));
+                }).catch((error) => {
+                    reject(error.response.data.errors)
                 });
         });
     }

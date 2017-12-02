@@ -1,13 +1,15 @@
 import restApi from "@/restapi";
 import GameSelect from "@/components/games/select";
 import TeamSelect from "@/components/teams/select";
+import ApiErrors from "@/components/errors/apiErrors";
 
 export default {
     name: "create-team",
 
     components: {
         GameSelect,
-        TeamSelect
+        TeamSelect,
+        ApiErrors
     },
 
     data() {
@@ -17,13 +19,14 @@ export default {
             profileID: this.$store.state.security.profile.id,
             cause: null,
             teamScore: null,
-            validate: false
+            validate: false,
+            apiErrors: null
         };
     },
 
     methods: {
         submit() {
-            this.$validator.validateAll().then((isValid) => {                
+            this.$validator.validateAll().then((isValid) => {
                 if (isValid) {
                     this.create();
                     return;
@@ -33,25 +36,26 @@ export default {
 
         create() {
             restApi.post("/api/matches/create", {
-                    timestamp: Date.now(),
-                    gameID: this.game.id,
-                    teamsScore: this.teamScores.map(e => {
-                        return {
-                            teamID: e.team.id,
-                            score: e.score
-                        };
-                    })
-                }).then(
-                    // первая функция-обработчик - запустится при вызове resolve
-                    () => {
-                        this.clearInput();
-                        this.$router.push({ name: "matches" });
-                    },
-                    // вторая функция - запустится при вызове reject
-                    error => {
-                        this.cause = error.cause ? error.cause : "Ошибка правильности заполнения полей"
-                    }
-                );
+                timestamp: Date.now(),
+                gameID: this.game.id,
+                teamsScore: this.teamScores.map(e => {
+                    return {
+                        teamID: e.team.id,
+                        score: e.score
+                    };
+                })
+            }).then(
+                // первая функция-обработчик - запустится при вызове resolve
+                () => {
+                    this.clearInput();
+                    this.$router.push({
+                        name: "matches"
+                    });
+                }
+            ).catch(errors => {
+                this.apiErrors = errors
+                this.openSnackBar();
+            });
         },
 
         changeGame(game) {
@@ -81,6 +85,10 @@ export default {
         clearInput() {
             this.$refs["name"].clearInput();
             this.$refs["gameSelect"].clearInput();
+        },
+
+        openSnackBar() {
+            this.$refs.snackbar.open();
         }
     }
 };
