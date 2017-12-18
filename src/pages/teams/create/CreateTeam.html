@@ -1,6 +1,6 @@
 <section>
     <form>
-        <md-input-container md-clearable ref="name" :class="{'md-input-invalid': errors.has('name')}" md-clearable>
+        <md-input-container ref="name" :class="{'md-input-invalid': errors.has('name')}">
             <label>Название</label>
             <md-input v-model="name" required data-vv-name="name" v-validate="'required'"></md-input>
             <span class="md-error">{{ errors.first('name') }}</span>

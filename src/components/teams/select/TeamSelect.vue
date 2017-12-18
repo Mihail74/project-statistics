@@ -1,5 +1,5 @@
 <template>
-<md-input-container ref="select" :class="{'md-input-invalid': errors.has('teamSelect')}" md-clearable>
+<md-input-container ref="select" :class="{'md-input-invalid': errors.has('teamSelect')}">
     <label>Команда</label>
     <md-select :required="required" id="team-select" v-model="selectedID" @change="changeSelected" data-vv-name="teamSelect" v-validate="'required'">
         <md-option v-for="team in teams" :key="team.id" :value="team.id">

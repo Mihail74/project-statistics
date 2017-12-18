@@ -13,7 +13,7 @@
                     :memberID="index == 0 ? profileID : undefined" 
                     @change="selectedTeam => changeTeam(selectedTeam, index)"
                     />
-                    <md-input-container :class="{'md-input-invalid': errors.has('teamScore')}" md-clearable>
+                    <md-input-container :class="{'md-input-invalid': errors.has('teamScore')}">
                         <label>Счет</label>
                         <md-input type="number" :max="game.scoreToWin" :min="0" v-model="teamScores[index].score" data-vv-name="teamScore" v-validate="'required|numeric'"></md-input>
                         <span class="md-error">{{ errors.first('teamScore') }}</span>

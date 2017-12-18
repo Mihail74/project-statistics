@@ -1,5 +1,5 @@
 <template>
-<md-input-container ref="select" :class="{'md-input-invalid': errors.has('userSelect')}" md-clearable>
+<md-input-container ref="select" :class="{'md-input-invalid': errors.has('userSelect')}">
     <label>Пользователь</label>
     <md-select :required="required" id="user-select" v-model="selectedID" @change="changeSelected" data-vv-name="userSelect" v-validate="'required'">
         <md-option v-for="user in users" :key="user.id" :value="user.id">

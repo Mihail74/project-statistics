@@ -1,5 +1,5 @@
 <template>
-<md-input-container ref="select" :class="{'md-input-invalid': errors.has('gameSelect')}" md-clearable>
+<md-input-container ref="select" :class="{'md-input-invalid': errors.has('gameSelect')}">
     <label>Игра</label>
     <md-select :required="required" id="game-select" v-model="selectedID" @change="changeSelected" data-vv-name="gameSelect" v-validate="'required'">
         <md-option v-for="game in games" :key="game.id" :value="game.id">

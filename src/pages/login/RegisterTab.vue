@@ -1,18 +1,18 @@
 <template>
 <div @keyup.enter="doLogin">
-    <md-input-container :class="{'md-input-invalid': errors.has('name')}" md-clearable ref="name">
+    <md-input-container :class="{'md-input-invalid': errors.has('name')}" ref="name">
         <label>Имя</label>
         <md-input v-model="name" required data-vv-name="name" v-validate="'required'"></md-input>
         <span class="md-error">{{errors.first('name')}}</span>
     </md-input-container>
 
-    <md-input-container :class="{'md-input-invalid': errors.has('login')}" md-clearable ref="login">
+    <md-input-container :class="{'md-input-invalid': errors.has('login')}" ref="login">
         <label>Логин</label>
         <md-input v-model="login" required data-vv-name="login" v-validate="'required'"></md-input>
         <span class="md-error">{{errors.first('login')}}</span>
     </md-input-container>
 
-    <md-input-container :class="{'md-input-invalid': errors.has('password')}" md-clearable ref="password">
+    <md-input-container :class="{'md-input-invalid': errors.has('password')}" ref="password">
         <label>Пароль</label>
         <md-input v-model="password" type="password" required data-vv-name="password" v-validate="'required'"></md-input>
         <span class="md-error">{{errors.first('password')}}</span>
