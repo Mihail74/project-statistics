@@ -37,8 +37,12 @@ class SecurityService {
                 })
                 .then(response => {
                     resolve(response.data);
-                }).catch((error) => {                    
-                    reject(error.response.data.errors)
+                }).catch((error) => {
+                    if(error.response.data.errors) {
+                        reject(error.response.data.errors)
+                    } else {
+                        reject(['Ошибка не обработана на сервере'])
+                    }
                 });
         });
     }
@@ -48,8 +52,13 @@ class SecurityService {
             this.axios.post(`${this.host}/api/auth/login`, credentials)
                 .then(response => {
                     resolve(response.data);
-                }).catch((error) => {                    
-                    reject(error.response.data.errors)
+                }).catch((error) => {             
+                    if(error.response.data.errors) {
+                        reject(error.response.data.errors)
+                    } else {
+                        var errors = [{"detail": "Ошибка на стороне сервера и не обработана"}];
+                        reject(errors)
+                    }
                 });
         });
     }
@@ -60,7 +69,11 @@ class SecurityService {
                 .then(response => {
                     resolve(response.data);
                 }).catch((error) => {
-                    reject(error.response.data.errors)
+                    if(error.response.data.errors) {
+                        reject(error.response.data.errors)
+                    } else {
+                        reject(['Ошибка не обработана на сервере'])
+                    }
                 });
         });
     }

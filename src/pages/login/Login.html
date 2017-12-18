@@ -4,6 +4,7 @@
         <md-tabs md-fixed>
             <md-tab id="login" md-active md-label="Вход">
                 <login-tab @login="login" />
+                <ps-errors :psErrors="apiErrors"></ps-errors>
             </md-tab>
 
             <md-tab id="register" md-label="Регистрация">
@@ -11,6 +12,4 @@
             </md-tab>
         </md-tabs>
     </div>
-
-    <api-errors :apiErrors="apiErrors" ref="snackbar"></api-errors>
 </div>

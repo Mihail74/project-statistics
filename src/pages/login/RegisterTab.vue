@@ -19,13 +19,13 @@
     </md-input-container>
 
     <md-button class="md-raised md-primary modal-button" @click="submit()">Зарегестрироваться</md-button>
-    <api-errors :apiErrors="apiErrors" ref="snackbar"></api-errors>
+    <ps-errors :psErrors="apiErrors"></ps-errors>
 </div>
 </template>
 
 <script>
 import authService from "@/services/authorization"
-import ApiErrors from "@/components/errors/apiErrors";
+import PsErrors from "@/components/errors/psErrors";
 
 export default {
     name: "register-tab",
@@ -39,7 +39,7 @@ export default {
         }
     },
     components: {
-        ApiErrors
+        PsErrors
     },
 
     methods: {
@@ -63,11 +63,7 @@ export default {
                     this.$emit("registered", credentials)
                 }).catch(errors => {
                     this.apiErrors = errors
-                    this.openSnackBar();
                 });
-        },
-        openSnackBar() {
-            this.$refs.snackbar.open();
         }
     }
 }

@@ -1,7 +1,7 @@
 import LoginTab from "./LoginTab.vue";
 import RegisterTab from "./RegisterTab.vue";
 import authService from "@/services/authorization";
-import ApiErrors from "@/components/errors/apiErrors";
+import PsErrors from "@/components/errors/psErrors";
 import {UPDATE_TOKENS, UPDATE_PROFILE} from "@/store/modules/security.js";
 
 export default {
@@ -15,7 +15,7 @@ export default {
     components: {
         LoginTab,
         RegisterTab,
-        ApiErrors
+        PsErrors
     },
 
     beforeRouteEnter(to, from, next) {
@@ -45,12 +45,7 @@ export default {
                     this.$router.push(redirect);
                 }).catch(errors => {
                     this.apiErrors = errors
-                    this.openSnackBar();
                 });
-        },
-
-        openSnackBar() {
-            this.$refs.snackbar.open();
         }
     }
 };
