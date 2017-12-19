@@ -1,7 +1,7 @@
 <div>
     <div class="md-title title">
-        <md-icon :class="[{ 'md-accent': isForming(team) }, {'md-primary': isFormed(team)}]">{{getStatusIcon(team)}}</md-icon>
-        {{team.name}}
+        <md-icon v-if="isForming(team)" class="md-accent">build</md-icon>
+        Команда: {{team.name}}
     </div>
 
     <md-list>
@@ -26,7 +26,5 @@
         </md-list-item>
     </md-list>
 
-    <md-button class="md-raised md-primary" v-if="isForming(team) && isLeader()" @click="formTeam">Сформировать команду
-        <md-icon class="md-accent">{{getStatusIcon(team)}}</md-icon>
-    </md-button>
+    <md-button class="md-raised md-primary" v-if="isForming(team) && isLeader()" @click="formTeam">Сформировать команду</md-button>
 </div>
