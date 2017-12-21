@@ -6,7 +6,7 @@
             {{ user.name }}
         </md-option>
     </md-select>
-    <span class="md-error">{{ errors.first('teamSelect') }}</span>
+    <span class="md-error">{{ errors.first('userSelect') }}</span>
     <span class="md-error">{{ cause }}</span>
 </md-input-container>
 </template>
