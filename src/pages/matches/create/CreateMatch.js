@@ -53,7 +53,7 @@ export default {
                     });
                 }
             ).catch(errors => {
-                console.log('err' + errors)
+                console.log('errors' + errors)
                 this.apiErrors = errors
             });
         },
@@ -83,8 +83,7 @@ export default {
         },
 
         clearInput() {
-            this.$refs["name"].clearInput();
-            this.$refs["gameSelect"].clearInput();
+            this.$refs["gameSelect"].clearSelect();
         }
     }
 };
