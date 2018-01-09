@@ -3,11 +3,10 @@ import store from "@/store";
 import router from "@/router";
 import authService from "@/services/authorization";
 import ApiError from "@/restapi/ApiError.js";
-import config from "@/config";
 
 class RestApi {
     constructor() {
-        this.host = config.server_host;
+        this.host = window.__APP_CONFIG__.api.url;
         this.axios = axios.create();
 
         this.axios.interceptors.request.use(function(config) {

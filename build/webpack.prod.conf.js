@@ -1,7 +1,7 @@
 var path = require('path')
 var utils = require('./utils')
 var webpack = require('webpack')
-var config = require('../config')
+var buildConfig = require('./config')
 var merge = require('webpack-merge')
 var baseWebpackConfig = require('./webpack.base.conf')
 var CopyWebpackPlugin = require('copy-webpack-plugin')
@@ -9,18 +9,18 @@ var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 
-var env = config.build.env
+var env = buildConfig.build.env
 
 var webpackConfig = merge(baseWebpackConfig, {
   module: {
     rules: utils.styleLoaders({
-      sourceMap: config.build.productionSourceMap,
+      sourceMap: buildConfig.build.productionSourceMap,
       extract: true
     })
   },
-  devtool: config.build.productionSourceMap ? '#source-map' : false,
+  devtool: buildConfig.build.productionSourceMap ? '#source-map' : false,
   output: {
-    path: config.build.assetsRoot,
+    path: buildConfig.build.assetsRoot,
     filename: utils.assetsPath('js/[name].[chunkhash].js'),
     chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
   },
@@ -50,8 +50,8 @@ var webpackConfig = merge(baseWebpackConfig, {
     // you can customize output by editing /index.html
     // see https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
-      filename: config.build.index,
-      template: 'index.html',
+      filename: buildConfig.build.index,
+      template: 'index.hbs',
       inject: true,
       minify: {
         removeComments: true,
@@ -87,14 +87,14 @@ var webpackConfig = merge(baseWebpackConfig, {
     new CopyWebpackPlugin([
       {
         from: path.resolve(__dirname, '../static'),
-        to: config.build.assetsSubDirectory,
+        to: buildConfig.build.assetsSubDirectory,
         ignore: ['.*']
       }
     ])
   ]
 })
 
-if (config.build.productionGzip) {
+if (buildConfig.build.productionGzip) {
   var CompressionWebpackPlugin = require('compression-webpack-plugin')
 
   webpackConfig.plugins.push(
@@ -103,7 +103,7 @@ if (config.build.productionGzip) {
       algorithm: 'gzip',
       test: new RegExp(
         '\\.(' +
-        config.build.productionGzipExtensions.join('|') +
+        buildConfig.build.productionGzipExtensions.join('|') +
         ')$'
       ),
       threshold: 10240,
@@ -112,7 +112,7 @@ if (config.build.productionGzip) {
   )
 }
 
-if (config.build.bundleAnalyzerReport) {
+if (buildConfig.build.bundleAnalyzerReport) {
   var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
   webpackConfig.plugins.push(new BundleAnalyzerPlugin())
 }

@@ -8,14 +8,22 @@
 # install dependencies
 npm install
 
-# serve with hot reload at localhost:8080
+# serve with hot reload at localhost:12222
 npm run dev
+```
+
+## Production Setup
+
+``` bash
+# install dependencies
+npm install
 
 # build for production with minification
 npm run build
 
-# build for production and view the bundle analyzer report
-npm run build --report
-```
+# install pm2
+npm i pm2 -g
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+# start by pm2
+pm2 start ecosystem.config.js --env production
+```

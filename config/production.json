@@ -1,0 +1,7 @@
+{
+  "frontend": {
+    "api": {
+      "url": "http://localhost:11111"
+    }
+  }
+}

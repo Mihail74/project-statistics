@@ -7,13 +7,13 @@ var rm = require('rimraf')
 var path = require('path')
 var chalk = require('chalk')
 var webpack = require('webpack')
-var config = require('../config')
+var buildConfig = require('./config')
 var webpackConfig = require('./webpack.prod.conf')
 
 var spinner = ora('building for production...')
 spinner.start()
 
-rm(path.join(config.build.assetsRoot, config.build.assetsSubDirectory), err => {
+rm(path.join(buildConfig.build.assetsRoot, buildConfig.build.assetsSubDirectory), err => {
   if (err) throw err
   webpack(webpackConfig, function (err, stats) {
     spinner.stop()

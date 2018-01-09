@@ -1,12 +1,11 @@
 import axios from "axios";
 import store from "@/store";
 import ApiError from "@/restapi/ApiError.js";
-import config from "@/config";
 
 class SecurityService {
 
     constructor() {
-        this.host = config.server_host;
+        this.host = window.__APP_CONFIG__.api.url;
         this.axios = axios.create();
     }
 
