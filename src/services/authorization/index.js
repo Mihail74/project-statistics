@@ -1,14 +1,12 @@
 import axios from "axios";
 import store from "@/store";
 import ApiError from "@/restapi/ApiError.js";
+import config from "@/config";
 
 class SecurityService {
 
-    constructor(config) {
-        this.host = "http://" + config.host;
-        if (config.port) {
-            this.host += ":" + config.port;
-        }
+    constructor() {
+        this.host = config.server_host;
         this.axios = axios.create();
     }
 
@@ -53,7 +51,7 @@ class SecurityService {
             this.axios.post(`${this.host}/api/auth/login`, credentials)
                 .then(response => {
                     resolve(response.data);
-                }).catch((error) => {             
+                }).catch((error) => {
                     if(error.response.data.errors) {
                         reject(error.response.data.errors)
                     } else {
@@ -82,7 +80,4 @@ class SecurityService {
 }
 
 
-export default new SecurityService({
-    host: "localhost",
-    port: "11111"
-});
+export default new SecurityService();
