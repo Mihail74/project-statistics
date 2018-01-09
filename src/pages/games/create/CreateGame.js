@@ -1,5 +1,5 @@
 import restApi from "@/restapi";
-import ApiErrors from "@/components/errors/apiErrors";
+import PsErrors from "@/components/errors/psErrors";
 
 export default {
     name: "create-game",
@@ -16,7 +16,7 @@ export default {
     },
 
     components: {
-        ApiErrors
+        PsErrors
     },
 
     methods: {
@@ -43,7 +43,6 @@ export default {
                 });
             }).catch(errors => {
                 this.apiErrors = errors
-                this.openSnackBar();
             });
         },
 
@@ -53,10 +52,6 @@ export default {
             this.$refs["scoreToWin"].clearInput();
             this.$refs["teamCountInMatch"].clearInput();
             this.$refs["memberCountInTeam"].clearInput();
-        },
-
-        openSnackBar() {
-            this.$refs.snackbar.open();
         }
     }
 };

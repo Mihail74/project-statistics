@@ -1,7 +1,7 @@
 import restApi from "@/restapi";
 import GameSelect from "@/components/games/select";
 import TeamSelect from "@/components/teams/select";
-import ApiErrors from "@/components/errors/apiErrors";
+import PsErrors from "@/components/errors/psErrors";
 
 export default {
     name: "create-team",
@@ -9,7 +9,7 @@ export default {
     components: {
         GameSelect,
         TeamSelect,
-        ApiErrors
+        PsErrors
     },
 
     data() {
@@ -53,8 +53,8 @@ export default {
                     });
                 }
             ).catch(errors => {
+                console.log('errors' + errors)
                 this.apiErrors = errors
-                this.openSnackBar();
             });
         },
 
@@ -83,12 +83,7 @@ export default {
         },
 
         clearInput() {
-            this.$refs["name"].clearInput();
-            this.$refs["gameSelect"].clearInput();
-        },
-
-        openSnackBar() {
-            this.$refs.snackbar.open();
+            this.$refs["gameSelect"].clearSelect();
         }
     }
 };

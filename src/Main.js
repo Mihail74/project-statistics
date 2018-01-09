@@ -12,7 +12,21 @@ import "vue-material/dist/vue-material.css";
 Vue.config.productionTip = false;
 
 Vue.use(VueMaterial);
-Vue.use(VeeValidate);
+Vue.use(VeeValidate, {
+    locale: 'ru',
+    dictionary: {
+        ru: {
+            messages: {
+                required: () => 'Поле обязательно для заполнения',
+                numeric: () => 'Поле должно быть числом',
+                required: () => 'Поле обязательно для заполнения',
+                required: () => 'Поле обязательно для заполнения'
+            }
+        }
+        //   en: { attributes: attributesEn },
+        //   ar: { messages: messagesAr, attributes: attributesAr }
+    }
+});
 
 Vue.material.registerTheme("default", {
     primary: "teal",

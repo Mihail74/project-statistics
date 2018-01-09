@@ -41,7 +41,8 @@ class SecurityService {
                     if(error.response.data.errors) {
                         reject(error.response.data.errors)
                     } else {
-                        reject(['Ошибка не обработана на сервере'])
+                        var errors = [{"detail": "Ошибка на стороне сервера и не обработана"}];
+                        reject(errors)
                     }
                 });
         });
@@ -72,7 +73,8 @@ class SecurityService {
                     if(error.response.data.errors) {
                         reject(error.response.data.errors)
                     } else {
-                        reject(['Ошибка не обработана на сервере'])
+                        var errors = [{"detail": "Ошибка на стороне сервера и не обработана"}];
+                        reject(errors)
                     }
                 });
         });
