@@ -3,14 +3,11 @@ import store from "@/store";
 import router from "@/router";
 import authService from "@/services/authorization";
 import ApiError from "@/restapi/ApiError.js";
-
+import config from "@/config";
 
 class RestApi {
-    constructor(config) {
-        this.host = "http://" + config.host;
-        if (config.port) {
-            this.host += ":" + config.port;
-        }
+    constructor() {
+        this.host = config.server_host;
         this.axios = axios.create();
 
         this.axios.interceptors.request.use(function(config) {
@@ -28,7 +25,7 @@ class RestApi {
             this.axios.post(this.host + url, body)
                 .then(function(response) {
                     resolve(response.data);
-                }).catch((error) => {                    
+                }).catch((error) => {
                     reject(error.response.data.errors)
                 });
         });
@@ -41,7 +38,7 @@ class RestApi {
             this.axios.put(this.host + url, body)
                 .then(function(response) {
                     resolve(response.data);
-                }).catch((error) => {                    
+                }).catch((error) => {
                     reject(error.response.data.errors)
                 });
         });
@@ -54,7 +51,7 @@ class RestApi {
             this.axios.get(this.host + url, { params: params })
                 .then(function(response) {
                     resolve(response.data);
-                }).catch((error) => {                    
+                }).catch((error) => {
                     reject(error.response.data.errors)
                 });
         });
@@ -89,7 +86,4 @@ class RestApi {
 }
 
 
-export default new RestApi({
-    host: "localhost",
-    port: "11111"
-});
+export default new RestApi();
