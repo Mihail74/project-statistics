@@ -1,7 +1,7 @@
 {
   "frontend": {
     "api": {
-      "url": "http://localhost:11111"
+      "url": "http://172.27.30.171:12222"
     }
   }
 }
