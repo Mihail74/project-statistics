@@ -11,6 +11,7 @@ import CreateMatch from "./matches/create/CreateMatch.vue";
 import Match from "./matches/one/Match.vue";
 import Matches from "./matches/list/Matches.vue";
 import Users from "./users/list/Users.vue";
+import Register from "./register/Register.vue";
 
 
 export default {
@@ -26,5 +27,6 @@ export default {
     Matches,
     Match,
     CreateMatch,
-    Users
+    Users,
+    Register
 };
