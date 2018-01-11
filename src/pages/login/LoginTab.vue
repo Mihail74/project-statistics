@@ -4,7 +4,6 @@
         <label>Логин</label>
         <md-input v-model="login"></md-input>
     </md-input-container>
-
     <md-input-container>
         <label>Пароль</label>
         <md-input v-model="password" type="password"></md-input>

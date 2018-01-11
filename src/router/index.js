@@ -18,6 +18,12 @@ let router = new Router({
     },
 
     {
+        path: "/register",
+        name: "register",
+        component: Pages.Register
+    },
+
+    {
         path: "/pages",
         component: Pages.Layout,
 

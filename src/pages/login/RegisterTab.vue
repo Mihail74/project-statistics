@@ -18,7 +18,7 @@
         <span class="md-error">{{errors.first('password')}}</span>
     </md-input-container>
 
-    <md-button class="md-raised md-primary modal-button" @click="submit()">Зарегестрироваться</md-button>
+    <md-button class="md-raised md-primary modal-button" @click="submit()">Зарегистрироваться</md-button>
     <ps-errors :psErrors="apiErrors"></ps-errors>
 </div>
 </template>
