@@ -1,12 +1,3 @@
-.modal-button {
-    width: 100%;
-    margin: 0 auto;
-}
-
-.modal-container * {
-    // box-sizing: border-box;
-}
-
 .modal-container {
     position: fixed;
     width: 100%;
@@ -20,22 +11,22 @@
     transition: all 0.25s linear;
     display: flex;
     justify-content: center;
-}
 
-.modal-container.active {
-    opacity: 1;
-    visibility: visible;
-}
+    &.active {
+        opacity: 1;
+        visibility: visible;
+    }
 
-.modal-container .login-modal {
-    position: relative;
-    width: 90%;
-    max-width: 500px;
-    align-self: center;
-    background-color: white;
-}
+    .login-modal {
+        position: relative;
+        width: 90%;
+        max-width: 500px;
+        align-self: center;
+        background-color: white;
 
-.modal-container .login-modal .modal-button {
-    width: 100%;
-    margin: 0 auto;
+        .modal-button {
+            width: 100%;
+            margin: 0 auto;
+        }
+    }
 }

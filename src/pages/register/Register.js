@@ -1,43 +1,47 @@
-import authService from "@/services/authorization"
-import PsErrors from "@/components/errors/psErrors";
+import RegisterTab from "./RegisterTab.vue";
+import authService from "@/services/authorization";
+import {UPDATE_TOKENS, UPDATE_PROFILE} from "@/store/modules/security.js";
 
 export default {
-    name: "register-tab",
+    name: "login",
 
     data() {
         return {
-            name: "",
-            login: "",
-            password: "",
             apiErrors: null
-        }
+        };
     },
     components: {
-        PsErrors
+        RegisterTab,
+    },
+
+    beforeRouteEnter(to, from, next) {
+        next(async vm => {
+            if (authService.isTokensExist()) {
+                if (authService.isAtiveTokenExist()) {
+                    vm.$router.push(from.fullPath);
+                } else if (authService.canRefreshToken()) {
+                    await authService.refreshTokens()
+                        .then(data => {
+                            this.$store.dispatch(`security/${UPDATE_TOKENS}`, data);
+                            vm.$router.push(from.fullPath);
+                        });
+                }
+            }
+        });
     },
 
     methods: {
-        submit() {
-            this.$validator.validateAll().then((isValid) => {
-                if (isValid) {
-                    this.register();
-                    return;
-                }
-            });
-        },
-        register() {
-            const credentials = {
-                login: this.login,
-                password: this.password,
-                name: this.name
-            };
+        login(credentials) {
+            authService.login(credentials)
+                .then(data => {
+                    this.$store.dispatch(`security/${UPDATE_TOKENS}`, data);
+                    this.$store.dispatch(`security/${UPDATE_PROFILE}`, data.user);
 
-            authService.register(credentials)
-                .then(r => {
-                    this.$emit("registered", credentials)
+                    let redirect = this.$route.query.redirect || { name: "games" };
+                    this.$router.push(redirect);
                 }).catch(errors => {
                     this.apiErrors = errors
                 });
         }
     }
-}
+};
