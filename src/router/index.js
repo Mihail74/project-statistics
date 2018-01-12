@@ -77,6 +77,11 @@ let router = new Router({
             name: "match",
             component: Pages.Match,
             props: true
+        },
+        {
+            path: "users",
+            name: "users",
+            component: Pages.Users
         }
         ]
     }

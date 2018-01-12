@@ -34,6 +34,9 @@
                 <div class="main-sidebar-links">
                     <md-list class="md-dense">
                         <md-list-item>
+                            <router-link :to="{ name: 'users'}" @click.native="closeSidenav">Пользователи<md-ink-ripple /></router-link>
+                        </md-list-item>
+                        <md-list-item>
                             <router-link :to="{ name: 'games'}" @click.native="closeSidenav">Игры<md-ink-ripple /></router-link>
                             <md-button class="md-icon-button md-primary" @click="routeTo('creation-game-route')">
                                 <md-icon>add</md-icon>
