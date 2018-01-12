@@ -1,5 +1,4 @@
 import LoginTab from "./LoginTab.vue";
-import RegisterTab from "./RegisterTab.vue";
 import authService from "@/services/authorization";
 import PsErrors from "@/components/errors/psErrors";
 import {UPDATE_TOKENS, UPDATE_PROFILE} from "@/store/modules/security.js";
@@ -14,7 +13,6 @@ export default {
     },
     components: {
         LoginTab,
-        RegisterTab,
         PsErrors
     },
 

@@ -19,6 +19,9 @@
     </md-input-container>
 
     <md-button class="md-raised md-primary modal-button" @click="submit()">Зарегистрироваться</md-button>
+    <div class="link">
+        <a class="md-caption" href="#/login">Уже зарегистрированы?</a>
+    </div>
     <ps-errors :psErrors="apiErrors"></ps-errors>
 </div>
 </template>
@@ -72,5 +75,10 @@ export default {
 .modal-button {
     width: 100%;
     margin: 0 auto;
+}
+.link {
+    margin-top: 4px;
+    text-decoration: underline;
+    text-align: center;
 }
 </style>
