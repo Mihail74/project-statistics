@@ -9,3 +9,7 @@
 .vs-separated-item + .vs-separated-item:before {
     content: " vs ";
 }
+
+.vs-colon-item + .vs-colon-item:before {
+    content: " : ";
+}
