@@ -5,7 +5,9 @@ export default {
 
     data() {
         return {
-            matches: []
+            matches: [],
+            sortField: 'TIMESTAMP',
+            sortDirection: 'ASC'
         };
     },
 
@@ -14,10 +16,15 @@ export default {
     },
 
     methods: {
-        fetchData() {
-            restApi.get("/api/matches/", {onlyMyMatches: true})
+        fetchData(sortField, sortDirection) {
+            restApi.get("/api/matches/", {
+                    onlyMyMatches: true,
+                    sortField: this.sortField,
+                    sortDirection: this.sortDirection
+                })
                 .then(data => {
-                    this.matches = data.matches;
+                    this.matches = [];
+                    this.matches = data.matches;                    
                 });
         },
 
@@ -31,6 +38,12 @@ export default {
 
         isMemberOfWinnerTeam(match){
             return match.winnerTeam.users.find(user => user.id == this.$store.state.security.profile.id);
+        },
+
+        reOrder(object) {
+            this.sortField = object.name.toUpperCase()
+            this.sortDirection = object.type.toUpperCase()
+            this.fetchData()
         }
     }
 };

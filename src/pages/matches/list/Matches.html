@@ -1,16 +1,31 @@
 <section>
-    <div class="card-holder cursor-pointer">
-        <md-card v-for="match in matches" @click.native="routeToMatch(match)" :key="match.id" md-with-hover>
-            <md-icon v-if="isMemberOfWinnerTeam(match)" class="md-fab md-fab-top-right md-primary ">trending_up</md-icon>
-            <md-icon v-else class="md-fab md-fab-top-right md-accent ">trending_down</md-icon>
-            <md-card-content>
-                <div>Игра: {{match.game.name}}</div>
-                <div>Участники:
-                    <span class="vs-separated-item" v-for="tms in match.teamsMatchScore">{{tms.team.name}}</span>
-                </div>
-                <div>Победитель: {{match.winnerTeam.name}}</div>
-                <div>Время проведения: {{formatDate(match.timestamp)}}</div>
-            </md-card-content>
-        </md-card>
-    </div>
+    <md-table md-sort="timestamp" @sort="reOrder">
+        <md-table-header>
+            <md-table-row>
+                <md-table-head md-tooltip="Игра, в которой проводился матч">Игра</md-table-head>
+                <md-table-head md-tooltip="Участники матча">Участники</md-table-head>
+                <md-table-head md-tooltip="Счет в игре">Счет</md-table-head>
+                <md-table-head md-tooltip="Победитель матча">Победитель</md-table-head>
+                <md-table-head md-sort-by="timestamp" md-tooltip="Дата и время проведения матча">Время проведения</md-table-head>
+                <md-table-head></md-table-head>
+            </md-table-row>
+        </md-table-header>
+        <md-table-body>
+            <md-table-row v-for="match in matches" @click.native="routeToMatch(match)" :key="match.id">
+                <md-table-cell>{{ match.game.name }}</md-table-cell>
+                <md-table-cell>
+                    <span class="vs-separated-item" v-for="tms in match.teamsMatchScore">{{ tms.team.name }}</span>
+                </md-table-cell>
+                <md-table-cell>
+                    <span class="vs-colon-item" v-for="tms in match.teamsMatchScore">{{ tms.score }}</span>
+                </md-table-cell>
+                <md-table-cell>{{ match.winnerTeam.name }}</md-table-cell>
+                <md-table-cell>{{ formatDate(match.timestamp) }}</md-table-cell>
+                <md-table-cell>
+                    <md-icon v-if="isMemberOfWinnerTeam(match)" class="md-primary">trending_up</md-icon>
+                    <md-icon v-else class="md-accent">trending_down</md-icon>
+                </md-table-cell>
+            </md-table-row>
+        </md-table-body>
+    </md-table>
 </section>
