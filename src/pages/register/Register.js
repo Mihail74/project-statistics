@@ -1,6 +1,5 @@
-import LoginTab from "./LoginTab.vue";
+import RegisterTab from "./RegisterTab.vue";
 import authService from "@/services/authorization";
-import PsErrors from "@/components/errors/psErrors";
 import {UPDATE_TOKENS, UPDATE_PROFILE} from "@/store/modules/security.js";
 
 export default {
@@ -12,24 +11,7 @@ export default {
         };
     },
     components: {
-        LoginTab,
-        PsErrors
-    },
-
-    beforeRouteEnter(to, from, next) {
-        next(async vm => {
-            if (authService.isTokensExist()) {
-                if (authService.isAtiveTokenExist()) {
-                    vm.$router.push(from.fullPath);
-                } else if (authService.canRefreshToken()) {
-                    await authService.refreshTokens()
-                        .then(data => {
-                            this.$store.dispatch(`security/${UPDATE_TOKENS}`, data);
-                            vm.$router.push(from.fullPath);
-                        });
-                }
-            }
-        });
+        RegisterTab,
     },
 
     methods: {
