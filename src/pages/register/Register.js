@@ -14,22 +14,6 @@ export default {
         RegisterTab,
     },
 
-    beforeRouteEnter(to, from, next) {
-        next(async vm => {
-            if (authService.isTokensExist()) {
-                if (authService.isAtiveTokenExist()) {
-                    vm.$router.push(from.fullPath);
-                } else if (authService.canRefreshToken()) {
-                    await authService.refreshTokens()
-                        .then(data => {
-                            this.$store.dispatch(`security/${UPDATE_TOKENS}`, data);
-                            vm.$router.push(from.fullPath);
-                        });
-                }
-            }
-        });
-    },
-
     methods: {
         login(credentials) {
             authService.login(credentials)
