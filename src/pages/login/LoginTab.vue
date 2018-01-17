@@ -4,13 +4,15 @@
         <label>Логин</label>
         <md-input v-model="login"></md-input>
     </md-input-container>
-
     <md-input-container>
         <label>Пароль</label>
         <md-input v-model="password" type="password"></md-input>
     </md-input-container>
 
     <md-button type="submit" class="md-raised md-primary modal-button" @click="doLogin()" autofocus>Войти</md-button>
+    <div class="link">
+        <a class="md-caption" href="#/register">Новый пользователь?</a>
+    </div>
 </form>
 </template>
 
@@ -43,5 +45,10 @@ export default {
 .login-modal .modal-button {
     width: 100%;
     margin: 0 auto;
+}
+.link {
+    margin-top: 4px;
+    text-decoration: underline;
+    text-align: center;
 }
 </style>

@@ -1,0 +1,15 @@
+<section>
+  <md-table>
+    <md-table-header>
+      <md-table-row>
+        <md-table-head>Имя</md-table-head>
+      </md-table-row>
+    </md-table-header>
+
+    <md-table-body>
+      <md-table-row v-for="user in users" :key="user.id">
+        <md-table-cell> {{ user.name }} </md-table-cell>
+      </md-table-row>
+    </md-table-body>
+  </md-table>
+</section>

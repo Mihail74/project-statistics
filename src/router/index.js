@@ -18,6 +18,12 @@ let router = new Router({
     },
 
     {
+        path: "/register",
+        name: "register",
+        component: Pages.Register
+    },
+
+    {
         path: "/pages",
         component: Pages.Layout,
 
@@ -77,6 +83,11 @@ let router = new Router({
             name: "match",
             component: Pages.Match,
             props: true
+        },
+        {
+            path: "users",
+            name: "users",
+            component: Pages.Users
         }
         ]
     }
