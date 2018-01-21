@@ -1,13 +1,28 @@
 import restApi from "@/restapi";
-
+import MatchesFilter from "./MatchesFilter.vue";
 export default {
     name: "matches",
 
+    components: {
+        MatchesFilter
+    },
+
     data() {
         return {
-            matches: [],
-            sortField: 'TIMESTAMP',
-            sortDirection: 'ASC'
+            page: {
+                content: [],
+                countOfElements: 0,
+                pageNumber: 1,
+                totalElements: 0,
+                totalPages: 0
+            },
+            filters: {
+                onlyMyMatches: false,
+                teamId: null
+            },
+            sortField: "TIMESTAMP",
+            sortDirection: "DESC",
+            isLoading: false
         };
     },
 
@@ -16,15 +31,18 @@ export default {
     },
 
     methods: {
-        fetchData(sortField, sortDirection) {
+        fetchData() {
+            this.isLoading = true;
             restApi.get("/api/matches/", {
-                    onlyMyMatches: true,
-                    sortField: this.sortField,
-                    sortDirection: this.sortDirection
-                })
+                onlyMyMatches: this.filters.onlyMyMatches,
+                teamID: this.filters.teamID,
+                sortField: this.sortField,
+                sortDirection: this.sortDirection,
+                pageNumber: this.page.pageNumber
+            })
                 .then(data => {
-                    this.matches = [];
-                    this.matches = data.matches;                    
+                    this.page = data.page;
+                    this.isLoading = false;
                 });
         },
 
@@ -40,10 +58,19 @@ export default {
             return match.winnerTeam.users.find(user => user.id == this.$store.state.security.profile.id);
         },
 
-        reOrder(object) {
-            this.sortField = object.name.toUpperCase()
-            this.sortDirection = object.type.toUpperCase()
-            this.fetchData()
+        reOrder(sortField) {
+            this.sortField = sortField.name.toUpperCase();
+            this.sortDirection = sortField.type.toUpperCase();
+            this.fetchData();
+        },
+        onPagination(pageNumber){
+            this.page.pageNumber = pageNumber;
+            this.fetchData();
+        },
+        filterChanged(filters){
+            this.filters.onlyMyMatches = filters.onlyMyMatches;
+            this.filters.teamID = filters.teamID;
+            this.fetchData();
         }
     }
 };

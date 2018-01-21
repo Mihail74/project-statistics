@@ -20,7 +20,7 @@ export default {
         fetchData() {
             restApi.get("/api/teams/")
                 .then(data => {
-                    this.teams = data.teams;
+                    this.teams = data.page.content;
                 });
         },
 

@@ -1,6 +1,6 @@
 <template>
 <md-input-container ref="select" :class="{'md-input-invalid': errors.has('teamSelect')}">
-    <label>Команда</label>
+    <label>{{ label }}</label>
     <md-select :required="required" id="team-select" v-model="selectedID" @change="changeSelected" data-vv-name="teamSelect" v-validate="'required'">
         <md-option v-for="team in teams" :key="team.id" :value="team.id">
             {{ team.name }}
@@ -21,7 +21,11 @@ export default {
         required: Boolean,
         gameID: Number,
         memberID: Number,
-        validate: Boolean
+        validate: Boolean,
+        label: {
+          type: String,
+          default: "Команда"
+        }
     },
 
     data() {
@@ -39,7 +43,7 @@ export default {
     created() {
         this.fetchData();
     },
-    
+
     methods: {
         fetchData() {
             restApi.get("/api/teams/", {
@@ -47,7 +51,7 @@ export default {
                     memberID: this.memberID
                 })
                 .then(data => {
-                    this.teams = data.teams
+                    this.teams = data.page.content
                 },error => {
                     this.cause = error.cause ? error.cause : "Ошибка правильности заполнения полей"
                 })
