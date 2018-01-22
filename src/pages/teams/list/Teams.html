@@ -1,5 +1,5 @@
 <section>
-    <div class="card-holder cursor-pointer">
+    <!-- <div class="card-holder cursor-pointer">
         <md-card v-for="team in teams" :key="team.id" @click.native="routeToTeam(team)" md-with-hover>
             <md-icon v-if="isForming(team)" class="md-fab md-fab-top-right md-accent">build</md-icon>
             <md-card-header>
@@ -11,5 +11,48 @@
                 <div v-if="isFormed(team)">Рейтинг: {{getTeamStat(team)}}%</div>
             </md-card-content>
         </md-card>
-    </div>
+    </div> -->
+
+
+    <template v-if="isLoading">
+      <md-layout md-align="center" class="spinner-container">
+          <md-spinner :md-size="150" md-indeterminate></md-spinner>
+      </md-layout>
+    </template>
+    <template v-else>
+      <md-table-card>
+        <md-table>
+            <md-table-header>
+                <md-table-row>
+                    <md-table-head>Название</md-table-head>
+                    <md-table-head>Игра</md-table-head>
+                    <md-table-head>Рейтинг</md-table-head>
+                    <md-table-head></md-table-head>
+                </md-table-row>
+            </md-table-header>
+            <md-table-body>
+                <md-table-row class="cursor-pointer" v-for="team in page.content" @click.native="routeToTeam(team)" :key="team.id">
+                    <md-table-cell>{{ team.name }}</md-table-cell>
+                    <md-table-cell>
+                        {{team.game.name}}
+                    </md-table-cell>
+                    <md-table-cell>
+                        <span v-if="isFormed(team)">{{getTeamStat(team)}}%</span>
+                    </md-table-cell>
+                    <md-table-cell>
+                      <md-icon v-if="isForming(team)" class="md-accent">build</md-icon>
+                    </md-table-cell>
+                </md-table-row>
+            </md-table-body>
+        </md-table>
+        <md-table-pagination
+        :md-size="10"
+        :md-total="page.totalElements"
+        :md-page="page.pageNumber"
+        md-label="Строк"
+        md-separator="из"
+        :md-page-options=false
+        @page="onPagination"></md-table-pagination>
+      </md-table-card>
+    </template>
 </section>

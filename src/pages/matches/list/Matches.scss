@@ -1,10 +1,4 @@
-@import '~styles/card/card.scss';
-
-.card-holder {
-    div {
-        margin: 8px 0;
-    }
-}
+@import '~styles/cursor/cursor.scss';
 
 .vs-separated-item + .vs-separated-item:before {
     content: " vs ";
@@ -12,4 +6,12 @@
 
 .vs-colon-item + .vs-colon-item:before {
     content: " : ";
+}
+
+.filter {
+  margin-bottom: 8px;
+}
+
+.spinner-container {
+  padding: 16px;
 }
