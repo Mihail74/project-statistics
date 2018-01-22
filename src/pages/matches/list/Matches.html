@@ -1,31 +1,49 @@
 <section>
-    <md-table md-sort="timestamp" @sort="reOrder">
-        <md-table-header>
-            <md-table-row>
-                <md-table-head md-tooltip="Игра, в которой проводился матч">Игра</md-table-head>
-                <md-table-head md-tooltip="Участники матча">Участники</md-table-head>
-                <md-table-head md-tooltip="Счет в игре">Счет</md-table-head>
-                <md-table-head md-tooltip="Победитель матча">Победитель</md-table-head>
-                <md-table-head md-sort-by="timestamp" md-tooltip="Дата и время проведения матча">Время проведения</md-table-head>
-                <md-table-head></md-table-head>
-            </md-table-row>
-        </md-table-header>
-        <md-table-body>
-            <md-table-row v-for="match in matches" @click.native="routeToMatch(match)" :key="match.id">
-                <md-table-cell>{{ match.game.name }}</md-table-cell>
-                <md-table-cell>
-                    <span class="vs-separated-item" v-for="tms in match.teamsMatchScore">{{ tms.team.name }}</span>
-                </md-table-cell>
-                <md-table-cell>
-                    <span class="vs-colon-item" v-for="tms in match.teamsMatchScore">{{ tms.score }}</span>
-                </md-table-cell>
-                <md-table-cell>{{ match.winnerTeam.name }}</md-table-cell>
-                <md-table-cell>{{ formatDate(match.timestamp) }}</md-table-cell>
-                <md-table-cell>
-                    <md-icon v-if="isMemberOfWinnerTeam(match)" class="md-primary">trending_up</md-icon>
-                    <md-icon v-else class="md-accent">trending_down</md-icon>
-                </md-table-cell>
-            </md-table-row>
-        </md-table-body>
-    </md-table>
+  <matches-filter class="filter" @filter="filterChanged"></matches-filter>
+  <template v-if="isLoading">
+    <md-layout md-align="center" class="spinner-container">
+        <md-spinner :md-size="150" md-indeterminate></md-spinner>
+    </md-layout>
+  </template>
+  <template v-else>
+    <md-table-card>
+      <md-table md-sort="timestamp" md-sort-type="desc" @sort="reOrder">
+          <md-table-header>
+              <md-table-row>
+                  <md-table-head>Игра</md-table-head>
+                  <md-table-head>Участники</md-table-head>
+                  <md-table-head>Счет</md-table-head>
+                  <md-table-head>Победитель</md-table-head>
+                  <md-table-head md-sort-by="timestamp">Время проведения</md-table-head>
+                  <md-table-head></md-table-head>
+              </md-table-row>
+          </md-table-header>
+          <md-table-body>
+              <md-table-row class="cursor-pointer" v-for="match in page.content" @click.native="routeToMatch(match)" :key="match.id">
+                  <md-table-cell>{{ match.game.name }}</md-table-cell>
+                  <md-table-cell>
+                      <span class="vs-separated-item" v-for="tms in match.teamsMatchScore">{{ tms.team.name }}</span>
+                  </md-table-cell>
+                  <md-table-cell>
+                      <span class="vs-colon-item" v-for="tms in match.teamsMatchScore">{{ tms.score }}</span>
+                  </md-table-cell>
+                  <md-table-cell>{{ match.winnerTeam.name }}</md-table-cell>
+                  <md-table-cell>{{ formatDate(match.timestamp) }}</md-table-cell>
+                  <md-table-cell>
+                      <md-icon v-if="isMemberOfWinnerTeam(match)" class="md-primary">trending_up</md-icon>
+                      <md-icon v-else class="md-accent">trending_down</md-icon>
+                  </md-table-cell>
+              </md-table-row>
+          </md-table-body>
+      </md-table>
+      <md-table-pagination
+      :md-size="10"
+      :md-total="page.totalElements"
+      :md-page="page.pageNumber"
+      md-label="Строк"
+      md-separator="из"
+      :md-page-options=false
+      @page="onPagination"></md-table-pagination>
+    </md-table-card>
+  </template>
 </section>
