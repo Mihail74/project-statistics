@@ -1,6 +1,6 @@
 <template>
   <md-whiteframe class="whiteframe">
-    <h1>Фильтры</h1>
+    <h2 class="md-body-2">Фильтры</h2>
     <div>
       <md-checkbox id="onlyMyMatches" name="onlyMyMatches" v-model="onlyMyMatches">Только мои команды</md-checkbox>
       <team-select label="Обязательная команда участник" @change="changeTeam"/>

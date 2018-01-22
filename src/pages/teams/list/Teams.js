@@ -6,7 +6,14 @@ export default {
 
     data() {
         return {
-            teams: []
+            isLoading: false,
+            page: {
+                content: [],
+                countOfElements: 0,
+                pageNumber: 1,
+                totalElements: 0,
+                totalPages: 0
+            }
         };
     },
 
@@ -18,9 +25,11 @@ export default {
 
     methods: {
         fetchData() {
+            this.isLoading = true;
             restApi.get("/api/teams/")
                 .then(data => {
-                    this.teams = data.page.content;
+                    this.page = data.page;
+                    this.isLoading = false;
                 });
         },
 
@@ -31,6 +40,10 @@ export default {
                     id: team.id
                 }
             });
+        },
+        onPagination(pageNumber){
+            this.page.pageNumber = pageNumber;
+            this.fetchData();
         }
     }
 };
