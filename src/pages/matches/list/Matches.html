@@ -1,5 +1,5 @@
 <section>
-  <matches-filter class="filter" @filter="filterChanged"></matches-filter>
+  <!-- <matches-filter class="filter" @filter="filterChanged"></matches-filter> -->
   <template v-if="isLoading">
     <md-layout md-align="center" class="spinner-container">
         <md-spinner :md-size="150" md-indeterminate></md-spinner>
@@ -37,13 +37,14 @@
           </md-table-body>
       </md-table>
       <md-table-pagination
-      :md-size="10"
+      :md-size="1"
       :md-total="page.totalElements"
       :md-page="page.pageNumber"
       md-label="Строк"
       md-separator="из"
       :md-page-options=false
-      @page="onPagination"></md-table-pagination>
+      @page="onPagination">
+    </md-table-pagination>
     </md-table-card>
   </template>
 </section>

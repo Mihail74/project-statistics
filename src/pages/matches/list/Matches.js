@@ -16,6 +16,7 @@ export default {
                 totalElements: 0,
                 totalPages: 0
             },
+            count: 0,
             filters: {
                 onlyMyMatches: false,
                 teamId: null
@@ -32,7 +33,8 @@ export default {
 
     methods: {
         fetchData() {
-            this.isLoading = true;
+            this.count++;
+            // this.isLoading = true;
             restApi.get("/api/matches/", {
                 onlyMyMatches: this.filters.onlyMyMatches,
                 teamID: this.filters.teamID,
@@ -42,7 +44,7 @@ export default {
             })
                 .then(data => {
                     this.page = data.page;
-                    this.isLoading = false;
+                    // this.isLoading = false;
                 });
         },
 

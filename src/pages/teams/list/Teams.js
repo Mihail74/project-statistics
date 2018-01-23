@@ -25,11 +25,11 @@ export default {
 
     methods: {
         fetchData() {
-            this.isLoading = true;
+            // this.isLoading = true;
             restApi.get("/api/teams/")
                 .then(data => {
                     this.page = data.page;
-                    this.isLoading = false;
+                    // this.isLoading = false;
                 });
         },
 
